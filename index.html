@@ -116,9 +116,12 @@
             
             <!-- The Royal Cameo -->
             <div class="relative w-56 h-56 md:w-72 md:h-72 rounded-full mb-16 cameo-portrait z-20">
-                <img src="IMG_4468.jpeg" alt="Her Imperial Majesty, Kaiserin Liesl" class="w-full h-full object-cover rounded-full">
+                <!-- Image Wrapper for perfect zooming and clipping -->
+                <div class="w-full h-full rounded-full overflow-hidden">
+                    <img src="IMG_4468.jpeg" alt="Her Imperial Majesty, Kaiserin Liesl" class="w-full h-full object-cover transform scale-[1.2] translate-y-[5%] hover:scale-[1.35] transition-transform duration-700">
+                </div>
                 <!-- Decorative Crown atop the portrait -->
-                <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 text-habsburg text-5xl filter drop-shadow-md">
+                <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 text-habsburg text-5xl filter drop-shadow-md pointer-events-none">
                     <i class="ri-vip-crown-2-fill"></i>
                 </div>
             </div>
