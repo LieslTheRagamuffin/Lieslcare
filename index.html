@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lieslcare | The Imperial Standard</title>
     
     <!-- Royal Fonts: Cinzel for majesty, Great Vibes for romance, Lora for classic reading -->
@@ -41,12 +41,18 @@
         }
     </script>
     <style>
+        /* Strict global overflow to prevent zooming/scrolling issues on mobile */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         /* Hide scrollbars for the main horizontal book layout */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         /* Classic Storybook Scrollbar for inner cards */
-        .inner-scroll::-webkit-scrollbar { width: 8px; }
+        .inner-scroll::-webkit-scrollbar { width: 6px; }
         .inner-scroll::-webkit-scrollbar-track { background: transparent; border-left: 1px solid #E8D5A5; }
         .inner-scroll::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
         
@@ -62,7 +68,12 @@
         }
         .baedeker-frame {
             border: 2px solid #D4AF37;
-            box-shadow: 0 0 0 6px #991B1B, 0 0 0 8px #D4AF37, inset 0 0 0 2px #991B1B, inset 0 0 0 4px #D4AF37;
+            box-shadow: 0 0 0 4px #991B1B, 0 0 0 6px #D4AF37, inset 0 0 0 2px #991B1B, inset 0 0 0 3px #D4AF37;
+        }
+        @media (min-width: 768px) {
+            .baedeker-frame {
+                box-shadow: 0 0 0 6px #991B1B, 0 0 0 8px #D4AF37, inset 0 0 0 2px #991B1B, inset 0 0 0 4px #D4AF37;
+            }
         }
 
         /* Parchment Page Frame */
@@ -70,29 +81,52 @@
             background: linear-gradient(to bottom right, #ffffff, #F4EFE6);
             border: 1px solid #C5A059;
             box-shadow: 
-                inset 0 0 0 4px #FDFBF7,
-                inset 0 0 0 5px #C5A059,
-                0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                inset 0 0 0 3px #FDFBF7,
+                inset 0 0 0 4px #C5A059,
+                0 15px 30px -10px rgba(0, 0, 0, 0.5);
             position: relative;
+        }
+        @media (min-width: 768px) {
+            .storybook-frame {
+                box-shadow: 
+                    inset 0 0 0 4px #FDFBF7,
+                    inset 0 0 0 5px #C5A059,
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
         }
 
         .storybook-frame::before, .storybook-frame::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px;
+            height: 15px;
             border: 1px solid #C5A059;
             pointer-events: none;
         }
-        .storybook-frame::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
-        .storybook-frame::after { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+        @media (min-width: 768px) {
+            .storybook-frame::before, .storybook-frame::after {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .storybook-frame::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+        .storybook-frame::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
 
         .cameo-portrait {
             box-shadow: 
-                0 0 0 8px #FDFBF7,
-                0 0 0 10px #C5A059,
-                0 0 0 16px rgba(197, 160, 89, 0.2),
-                0 20px 40px rgba(44, 26, 29, 0.3);
+                0 0 0 6px #FDFBF7,
+                0 0 0 8px #C5A059,
+                0 0 0 12px rgba(197, 160, 89, 0.2),
+                0 15px 30px rgba(44, 26, 29, 0.3);
+        }
+        @media (min-width: 768px) {
+            .cameo-portrait {
+                box-shadow: 
+                    0 0 0 8px #FDFBF7,
+                    0 0 0 10px #C5A059,
+                    0 0 0 16px rgba(197, 160, 89, 0.2),
+                    0 20px 40px rgba(44, 26, 29, 0.3);
+            }
         }
 
         .wax-seal {
@@ -112,52 +146,52 @@
         }
     </style>
 </head>
-<body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white overflow-hidden">
+<body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white overflow-hidden w-full max-w-full">
 
     <!-- Baedeker Welcome Screen Overlay -->
-    <div id="welcome-screen" class="fixed inset-0 z-[200] baedeker-cover flex items-center justify-center p-4 md:p-12 page-turn" style="perspective: 1500px;">
-        <div class="baedeker-frame w-full max-w-3xl h-full max-h-[90vh] flex flex-col items-center justify-between py-12 px-6 text-center text-baedeker-gold bg-baedeker/90 backdrop-blur-sm relative overflow-hidden">
+    <div id="welcome-screen" class="fixed inset-0 z-[200] baedeker-cover flex items-center justify-center p-3 md:p-12 page-turn w-full max-w-full" style="perspective: 1500px;">
+        <div class="baedeker-frame w-full max-w-3xl h-[95vh] md:h-full max-h-[90vh] flex flex-col items-center justify-between py-8 px-4 md:py-12 md:px-6 text-center text-baedeker-gold bg-baedeker/90 backdrop-blur-sm relative overflow-x-hidden overflow-y-auto">
             
             <div class="absolute inset-0 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none"></div>
 
-            <div class="relative z-10 w-full">
-                <p class="font-imperial text-xs md:text-sm tracking-[0.4em] uppercase mb-8 border-b border-baedeker-gold/30 pb-4 inline-block">
+            <div class="relative z-10 w-full max-w-full flex flex-col items-center">
+                <p class="font-imperial text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.4em] uppercase mb-4 md:mb-8 border-b border-baedeker-gold/30 pb-2 md:pb-4 inline-block text-center w-full break-words">
                     K. u. K. Hoflieferant
                 </p>
-                <h1 class="font-imperial text-5xl md:text-7xl font-bold tracking-wider mb-2 leading-none" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">BAEDEKER'S</h1>
-                <h1 class="font-script text-4xl md:text-5xl text-parchment mb-4" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</h1>
+                <h1 class="font-imperial text-4xl md:text-7xl font-bold tracking-wider mb-2 leading-none w-full break-words" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">BAEDEKER'S</h1>
+                <h1 class="font-script text-3xl md:text-5xl text-parchment mb-4 w-full break-words" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</h1>
             </div>
 
             <!-- Fading Portrait Slideshow (Now Clickable) -->
-            <button id="enter-court-trigger" class="relative w-[55%] min-w-[160px] min-h-[220px] flex-shrink-0 aspect-[2/3] md:w-64 md:h-80 my-4 md:my-8 rounded-t-full border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50">
+            <button id="enter-court-trigger" class="relative w-3/5 max-w-[220px] md:max-w-[280px] aspect-[2/3] my-4 md:my-8 rounded-t-full border-[3px] md:border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50 flex-shrink-0">
                 <div class="w-full h-full rounded-t-full overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
                     <img id="baedeker-slide-1" src="IMG_1603.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
                     <img id="baedeker-slide-2" src="IMG_1799.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Her Majesty">
                 </div>
                 <!-- Crown Decoration -->
-                <i class="ri-vip-crown-2-fill absolute -top-4 left-1/2 transform -translate-x-1/2 text-5xl text-baedeker-gold filter drop-shadow-md z-20 group-hover:-translate-y-2 transition-transform duration-500"></i>
+                <i class="ri-vip-crown-2-fill absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2 text-4xl md:text-5xl text-baedeker-gold filter drop-shadow-md z-20 group-hover:-translate-y-2 transition-transform duration-500"></i>
             </button>
 
-            <div class="relative z-10 w-full flex flex-col items-center">
-                <p class="font-serif italic text-baedeker-gold/80 text-sm md:text-md mb-6 max-w-lg">
+            <div class="relative z-10 w-full max-w-full flex flex-col items-center">
+                <p class="font-serif italic text-baedeker-gold/80 text-xs md:text-md mb-4 md:mb-6 max-w-lg break-words px-2">
                     "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können."<br>
-                    <span class="block mt-2 font-imperial text-[10px] tracking-widest text-baedeker-gold">— Friedrich Nietzsche</span>
+                    <span class="block mt-2 font-imperial text-[9px] md:text-[10px] tracking-widest text-baedeker-gold">— Friedrich Nietzsche</span>
                 </p>
                 
-                <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] uppercase text-baedeker-gold animate-pulse mb-6 font-bold cursor-pointer" onclick="document.getElementById('enter-court-trigger').click()">
+                <p class="font-imperial text-[10px] md:text-xs tracking-[0.1em] md:tracking-[0.2em] uppercase text-baedeker-gold animate-pulse mb-4 md:mb-6 font-bold cursor-pointer break-words w-full" onclick="document.getElementById('enter-court-trigger').click()">
                     [ Tap Her Majesty To Open ]
                 </p>
 
-                <p class="font-imperial text-xs tracking-[0.3em] uppercase opacity-70">Leipzig: Karl Baedeker</p>
+                <p class="font-imperial text-[9px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-70 break-words w-full">Leipzig: Karl Baedeker</p>
             </div>
         </div>
     </div>
 
     <!-- Royal Ribbon Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-parchment-dark/95 backdrop-blur-sm border-b-2 border-habsburg shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="font-imperial font-bold text-xl tracking-widest text-velvet flex items-center gap-2">
-                <i class="ri-vip-crown-fill text-habsburg"></i> LIESLCARE
+    <nav class="fixed top-0 w-full max-w-full z-50 bg-parchment-dark/95 backdrop-blur-sm border-b-2 border-habsburg shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <div class="font-imperial font-bold text-lg md:text-xl tracking-widest text-velvet flex items-center gap-2 truncate">
+                <i class="ri-vip-crown-fill text-habsburg flex-shrink-0"></i> LIESLCARE
             </div>
             <!-- Horizontal Anchor Links -->
             <div class="hidden md:flex space-x-8 text-sm font-imperial tracking-widest text-velvet/70">
@@ -171,28 +205,28 @@
                 Royal Decree
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-habsburg text-3xl hover:text-habsburg-light transition-colors">
+            <button id="mobile-menu-btn" class="md:hidden text-habsburg text-2xl hover:text-habsburg-light transition-colors p-1">
                 <i class="ri-menu-3-line"></i>
             </button>
         </div>
     </nav>
 
     <!-- Mobile Royal Sidebar -->
-    <div id="mobile-sidebar" class="fixed inset-y-0 right-0 w-72 bg-parchment-dark/95 backdrop-blur-md border-l-2 border-habsburg shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-6 flex flex-col h-full">
-            <button id="close-sidebar-btn" class="self-end text-velvet hover:text-habsburg text-3xl mb-12">
+    <div id="mobile-sidebar" class="fixed inset-y-0 right-0 w-64 bg-parchment-dark/95 backdrop-blur-md border-l-2 border-habsburg shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-6 flex flex-col h-full overflow-y-auto">
+            <button id="close-sidebar-btn" class="self-end text-velvet hover:text-habsburg text-3xl mb-8">
                 <i class="ri-close-line"></i>
             </button>
-            <div class="flex flex-col space-y-8 font-imperial tracking-widest text-velvet text-lg text-center">
+            <div class="flex flex-col space-y-6 font-imperial tracking-widest text-velvet text-md text-center">
                 <a href="#hero" class="hover:text-habsburg transition-colors mobile-link">Cover Page</a>
                 <a href="#banquet" class="hover:text-habsburg transition-colors mobile-link">I. Banquet</a>
                 <a href="#diversions" class="hover:text-habsburg transition-colors mobile-link">II. Diversions</a>
                 <a href="#rituals" class="hover:text-habsburg transition-colors mobile-link">III. Rituals</a>
                 <a href="#alchemy" class="hover:text-habsburg transition-colors mobile-link">IV. Alchemy</a>
-                <div class="h-px w-1/2 mx-auto bg-habsburg/30 my-4"></div>
+                <div class="h-px w-1/2 mx-auto bg-habsburg/30 my-2"></div>
                 <a href="#emergency" class="text-decree font-bold hover:text-red-900 transition-colors mobile-link">Royal Decree</a>
             </div>
-            <div class="mt-auto text-center opacity-50">
+            <div class="mt-auto pt-6 text-center opacity-50">
                 <i class="ri-vip-crown-line text-4xl text-habsburg"></i>
             </div>
         </div>
@@ -207,90 +241,90 @@
     </button>
 
     <!-- HORIZONTAL STORYBOOK CONTAINER -->
-    <div id="book-container" class="flex w-screen h-[100dvh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar pt-16">
+    <div id="book-container" class="flex w-full max-w-full h-[100dvh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar pt-14 md:pt-16">
 
         <!-- TITLE PAGE (Hero Section) -->
-        <section id="hero" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col items-center justify-center text-center p-5 md:p-8 lg:p-12 overflow-y-auto inner-scroll bg-parchment relative">
+        <section id="hero" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col items-center justify-center text-center p-4 md:p-8 lg:p-12 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment relative">
                 
-                <div class="relative w-40 h-40 flex-shrink-0 md:w-64 md:h-64 rounded-full mb-6 md:mb-10 cameo-portrait z-20 mt-4 md:mt-8">
+                <div class="relative w-32 h-32 flex-shrink-0 md:w-64 md:h-64 rounded-full mb-4 md:mb-10 cameo-portrait z-20 mt-2 md:mt-8">
                     <div class="w-full h-full rounded-full overflow-hidden">
                         <img src="IMG_4468.jpeg" alt="Her Imperial Majesty, Kaiserin Liesl" class="w-full h-full object-cover transform scale-[1.4] translate-y-[5%] hover:scale-[1.45] transition-transform duration-700">
                     </div>
-                    <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 text-habsburg text-5xl filter drop-shadow-md pointer-events-none">
+                    <div class="absolute -top-6 md:-top-10 left-1/2 transform -translate-x-1/2 text-habsburg text-3xl md:text-5xl filter drop-shadow-md pointer-events-none">
                         <i class="ri-vip-crown-2-fill"></i>
                     </div>
                 </div>
 
-                <div class="font-imperial text-habsburg text-xs tracking-[0.3em] uppercase mb-6 border-b border-habsburg-light pb-2 inline-block">
+                <div class="font-imperial text-habsburg text-[9px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 md:mb-6 border-b border-habsburg-light pb-2 inline-block break-words max-w-full">
                     The Official Veneration Guide
                 </div>
                 
-                <h1 class="font-script text-4xl md:text-7xl text-velvet mb-4 leading-tight">
+                <h1 class="font-script text-4xl md:text-7xl text-velvet mb-3 md:mb-4 leading-tight break-words px-2 w-full">
                     Eine Hommage an die <br>
                     Schönheit von <span class="text-habsburg">Kaiserin Liesl</span>
                 </h1>
                 
-                <p class="text-sm md:text-lg text-velvet/70 font-serif italic max-w-2xl mx-auto mb-6 md:mb-8">
+                <p class="text-xs md:text-lg text-velvet/70 font-serif italic max-w-2xl mx-auto mb-4 md:mb-8 px-2">
                     "Die Schönheit ist ein offener Empfehlungsbrief, der die Herzen im Voraus für uns gewinnt."<br>
-                    <span class="block mt-2 font-imperial text-[10px] tracking-widest text-habsburg">— Arthur Schopenhauer</span>
+                    <span class="block mt-2 font-imperial text-[8px] md:text-[10px] tracking-widest text-habsburg">— Arthur Schopenhauer</span>
                 </p>
 
-                <div class="flex items-center justify-center gap-4 text-habsburg mb-6 md:mb-8">
-                    <div class="h-px w-16 bg-habsburg"></div>
-                    <i class="ri-leaf-fill"></i>
-                    <div class="h-px w-16 bg-habsburg"></div>
+                <div class="flex items-center justify-center gap-2 md:gap-4 text-habsburg mb-4 md:mb-8 w-full px-4">
+                    <div class="h-px flex-grow max-w-[64px] bg-habsburg"></div>
+                    <i class="ri-leaf-fill flex-shrink-0"></i>
+                    <div class="h-px flex-grow max-w-[64px] bg-habsburg"></div>
                 </div>
 
-                <blockquote class="text-xs md:text-md italic text-velvet/80 max-w-xl mx-auto bg-parchment-dark p-4 md:p-6 border border-habsburg/30">
+                <blockquote class="text-[10px] md:text-md italic text-velvet/80 max-w-xl mx-auto bg-parchment-dark p-3 md:p-6 border border-habsburg/30 break-words w-[95%]">
                     "Gewisse Bücher scheinen geschrieben zu sein, nicht damit man daraus lerne, sondern damit man wisse, daß der Verfasser etwas gewußt hat."<br>
-                    <span class="block mt-4 font-imperial text-[10px] tracking-widest text-habsburg">— Johann Wolfgang von Goethe</span>
+                    <span class="block mt-2 md:mt-4 font-imperial text-[8px] md:text-[10px] tracking-widest text-habsburg">— Johann Wolfgang von Goethe</span>
                 </blockquote>
             </div>
         </section>
 
         <!-- Chapter 01: The Banquet -->
-        <section id="banquet" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row overflow-y-auto inner-scroll bg-parchment">
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs tracking-[0.2em] text-habsburg uppercase mb-2">Chapter I</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-velvet">Das Bankett</h2>
+        <section id="banquet" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-center flex-shrink-0">
+                    <div class="text-center mb-4 md:mb-8">
+                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-habsburg uppercase mb-1 md:mb-2">Chapter I</p>
+                        <h2 class="font-script text-3xl md:text-5xl text-velvet">Das Bankett</h2>
                     </div>
                     
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-habsburg pl-4 md:pl-6">
-                            <h3 class="font-imperial font-bold text-md md:text-lg text-velvet flex items-center gap-2 mb-2">
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="border-l-2 md:border-l-4 border-habsburg pl-3 md:pl-6">
+                            <h3 class="font-imperial font-bold text-sm md:text-lg text-velvet flex items-center gap-2 mb-1 md:mb-2">
                                 <i class="ri-goblet-fill text-habsburg"></i> Das Abendmahl
                             </h3>
-                            <p class="text-xs md:text-sm text-velvet/80 leading-relaxed italic mb-3">A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel. For the prosperity of the empire, add <strong>1/8 tsp of Lysine</strong> and <strong>half the measuring cup of her Proden Plaqueoff</strong>.</p>
-                            <button id="open-carousel-btn" class="inline-flex items-center gap-2 text-[10px] md:text-xs font-imperial tracking-widest text-habsburg hover:text-habsburg-light border-b border-habsburg/30 pb-1 transition-colors">
+                            <p class="text-[10px] md:text-sm text-velvet/80 leading-relaxed italic mb-2">A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel. For the prosperity of the empire, add <strong>1/8 tsp of Lysine</strong> and <strong>half the measuring cup of her Proden Plaqueoff</strong>.</p>
+                            <button id="open-carousel-btn" class="inline-flex items-center gap-1 md:gap-2 text-[9px] md:text-xs font-imperial tracking-widest text-habsburg hover:text-habsburg-light border-b border-habsburg/30 pb-1 transition-colors break-words text-left">
                                 <i class="ri-image-line"></i> View Preparation Precepts
                             </button>
                         </div>
                         
-                        <div class="border-l-4 border-habsburg-light pl-4 md:pl-6">
-                            <h3 class="font-imperial font-bold text-md md:text-lg text-velvet flex items-center gap-2 mb-2">
+                        <div class="border-l-2 md:border-l-4 border-habsburg-light pl-3 md:pl-6">
+                            <h3 class="font-imperial font-bold text-sm md:text-lg text-velvet flex items-center gap-2 mb-1 md:mb-2">
                                 <i class="ri-bowl-fill text-habsburg-light"></i> Trockene Gaben
                             </h3>
-                            <p class="text-xs md:text-sm text-velvet/80 leading-relaxed">The supply of dry delicacies is replenished by unseen magic. A <strong>weekly polishing</strong> of her serving dish is essential.</p>
+                            <p class="text-[10px] md:text-sm text-velvet/80 leading-relaxed">The supply of dry delicacies is replenished by unseen magic. A <strong>weekly polishing</strong> of her serving dish is essential.</p>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-                            <div>
-                                <h3 class="font-imperial font-bold text-xs text-velvet mb-1"><i class="ri-star-smile-fill text-habsburg"></i> Nektar der Götter</h3>
-                                <p class="text-[11px] text-velvet/80 mb-1"><strong>Churu:</strong> Offer this ambrosia as a token of adoration.</p>
-                                <p class="text-[11px] text-velvet/80 mb-2"><strong>Katzenminze (Catnip):</strong> A sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
+                            <div class="w-full">
+                                <h3 class="font-imperial font-bold text-[11px] md:text-xs text-velvet mb-1 truncate"><i class="ri-star-smile-fill text-habsburg"></i> Nektar der Götter</h3>
+                                <p class="text-[10px] md:text-[11px] text-velvet/80 mb-1"><strong>Churu:</strong> Offer this ambrosia as a token of adoration.</p>
+                                <p class="text-[10px] md:text-[11px] text-velvet/80 mb-1"><strong>Katzenminze (Catnip):</strong> A sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
                                 <div class="bg-habsburg/10 p-2 rounded-sm border border-habsburg/20 mt-1">
-                                    <p class="text-[9px] text-velvet/80 italic font-serif">
+                                    <p class="text-[8px] md:text-[9px] text-velvet/80 italic font-serif">
                                         * Both sacred offerings are safely secreted away within the lower left drawer of the grand media cabinet.
                                     </p>
                                 </div>
                             </div>
-                            <div>
-                                <h3 class="font-imperial font-bold text-xs text-velvet mb-1"><i class="ri-drop-fill text-sissi"></i> Der Lebensbrunnen</h3>
-                                <p class="text-[10px] text-velvet/70 mb-2">Renewed <strong>every two days</strong>. <span class="text-decree font-bold">Note:</span> The top and base are not connected; handle with care.</p>
-                                <button id="open-fountain-btn" class="inline-flex items-center gap-1 text-[10px] font-imperial tracking-widest text-sissi hover:text-blue-400 border-b border-sissi/30 transition-colors">
+                            <div class="w-full mt-2 sm:mt-0">
+                                <h3 class="font-imperial font-bold text-[11px] md:text-xs text-velvet mb-1 truncate"><i class="ri-drop-fill text-sissi"></i> Der Lebensbrunnen</h3>
+                                <p class="text-[9px] md:text-[10px] text-velvet/70 mb-2">Renewed <strong>every two days</strong>. <span class="text-decree font-bold">Note:</span> The top and base are not connected; handle with care.</p>
+                                <button id="open-fountain-btn" class="inline-flex items-center gap-1 text-[9px] md:text-[10px] font-imperial tracking-widest text-sissi hover:text-blue-400 border-b border-sissi/30 transition-colors">
                                     <i class="ri-drop-line"></i> Water Levels
                                 </button>
                             </div>
@@ -298,45 +332,45 @@
                     </div>
                 </div>
                 
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex justify-center items-center bg-white lg:border-l border-t lg:border-t-0 border-habsburg/20">
-                    <div class="w-full max-w-[200px] md:max-w-sm aspect-[3/4] p-3 border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex justify-center items-center bg-white lg:border-l border-t lg:border-t-0 border-habsburg/20 flex-shrink-0">
+                    <div class="w-full max-w-[150px] sm:max-w-[200px] md:max-w-sm aspect-[3/4] p-2 md:p-3 border-[1px] md:border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
                         <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-4"></div>
+                        <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-2 md:m-4"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Chapter 02: Diversions -->
-        <section id="diversions" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col-reverse lg:flex-row overflow-y-auto inner-scroll bg-parchment">
+        <section id="diversions" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col-reverse lg:flex-row overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
                 
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex justify-center items-center bg-sissi/5 lg:border-r border-b lg:border-b-0 border-habsburg/20">
-                    <div class="w-full max-w-[200px] md:max-w-sm aspect-square rounded-full cameo-portrait bg-white p-2 relative shadow-xl hover:scale-[1.02] transition-transform">
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex justify-center items-center bg-sissi/5 lg:border-r border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
+                    <div class="w-full max-w-[150px] sm:max-w-[200px] md:max-w-sm aspect-square rounded-full cameo-portrait bg-white p-1 md:p-2 relative shadow-xl hover:scale-[1.02] transition-transform">
                         <div class="w-full h-full rounded-full overflow-hidden border-2 border-sissi/50 relative">
                             <img src="IMG_4881.jpeg" alt="Imperial Playtime" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs tracking-[0.2em] text-sissi uppercase mb-2">Chapter II</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-velvet">Imperial Diversions</h2>
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-center flex-shrink-0">
+                    <div class="text-center mb-4 md:mb-8">
+                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-sissi uppercase mb-1 md:mb-2">Chapter II</p>
+                        <h2 class="font-script text-3xl md:text-5xl text-velvet">Imperial Diversions</h2>
                     </div>
                     
-                    <p class="text-sm md:text-md text-velvet/80 mb-6 md:mb-8 italic text-center">A soul of such sensitivity requires moments of whim and play. It is your sacred duty to delight Her Majesty.</p>
+                    <p class="text-xs md:text-md text-velvet/80 mb-4 md:mb-8 italic text-center px-2">A soul of such sensitivity requires moments of whim and play. It is your sacred duty to delight Her Majesty.</p>
                     
-                    <div class="space-y-6 md:space-y-8">
-                        <div class="relative pl-10 md:pl-12">
-                            <i class="ri-sparkling-fill absolute left-0 top-0 md:top-1 text-xl md:text-2xl text-sissi"></i>
-                            <h4 class="font-imperial font-bold text-md md:text-lg text-velvet mb-1 md:mb-2">Die Jagd nach dem Sternenlicht</h4>
-                            <p class="text-xs md:text-sm text-velvet/80">Capture a beam of light at dusk and let it dance like a firefly through her chambers.</p>
+                    <div class="space-y-4 md:space-y-8 px-2">
+                        <div class="relative pl-8 md:pl-12">
+                            <i class="ri-sparkling-fill absolute left-0 top-0 text-lg md:text-2xl text-sissi"></i>
+                            <h4 class="font-imperial font-bold text-sm md:text-lg text-velvet mb-1">Die Jagd nach dem Sternenlicht</h4>
+                            <p class="text-[10px] md:text-sm text-velvet/80">Capture a beam of light at dusk and let it dance like a firefly through her chambers.</p>
                         </div>
-                        <div class="relative pl-10 md:pl-12">
-                            <i class="ri-music-2-fill absolute left-0 top-0 md:top-1 text-xl md:text-2xl text-sissi"></i>
-                            <h4 class="font-imperial font-bold text-md md:text-lg text-velvet mb-1 md:mb-2">Spiele der Musen</h4>
-                            <p class="text-xs md:text-sm text-velvet/80">Let small feathers and shining orbs bounce from the furniture like notes in a symphony.</p>
+                        <div class="relative pl-8 md:pl-12">
+                            <i class="ri-music-2-fill absolute left-0 top-0 text-lg md:text-2xl text-sissi"></i>
+                            <h4 class="font-imperial font-bold text-sm md:text-lg text-velvet mb-1">Spiele der Musen</h4>
+                            <p class="text-[10px] md:text-sm text-velvet/80">Let small feathers and shining orbs bounce from the furniture like notes in a symphony.</p>
                         </div>
                     </div>
                 </div>
@@ -344,46 +378,46 @@
         </section>
 
         <!-- Chapter 03: Beauty -->
-        <section id="rituals" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col overflow-y-auto inner-scroll bg-parchment p-5 md:p-8 lg:p-16">
+        <section id="rituals" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col overflow-y-auto overflow-x-hidden inner-scroll bg-parchment p-4 md:p-8 lg:p-16">
                 <div class="flex items-center justify-center mb-2 md:mb-4">
-                    <i class="ri-shining-fill text-3xl md:text-4xl text-rose-400"></i>
+                    <i class="ri-shining-fill text-2xl md:text-4xl text-rose-400"></i>
                 </div>
-                <div class="text-center mb-6 md:mb-8">
-                    <p class="font-imperial text-xs tracking-[0.2em] text-habsburg uppercase mb-2">Chapter III</p>
-                    <h2 class="font-script text-4xl md:text-5xl text-velvet">Die Rituale der Schönheit</h2>
+                <div class="text-center mb-4 md:mb-8">
+                    <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-habsburg uppercase mb-1 md:mb-2">Chapter III</p>
+                    <h2 class="font-script text-3xl md:text-5xl text-velvet">Die Rituale der Schönheit</h2>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-grow">
-                    <div class="bg-rose/10 p-5 md:p-6 border border-rose-200 flex flex-col justify-center">
-                        <h4 class="font-imperial font-bold text-md md:text-lg mb-2 md:mb-3 text-velvet">Der Kaiserliche Mantel</h4>
-                        <p class="text-xs md:text-sm text-velvet/80 italic">Her coat requires your most delicate touch. The <span class="text-emerald-700 font-semibold">green brush</span> smooths the strands, while the <span class="text-sissi font-bold">blue comb</span> resolves any tiny imperfection.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 flex-grow items-center">
+                    <div class="bg-rose/10 p-4 md:p-6 border border-rose-200 flex flex-col justify-center">
+                        <h4 class="font-imperial font-bold text-sm md:text-lg mb-1 md:mb-3 text-velvet">Der Kaiserliche Mantel</h4>
+                        <p class="text-[10px] md:text-sm text-velvet/80 italic">Her coat requires your most delicate touch. The <span class="text-emerald-700 font-semibold">green brush</span> smooths the strands, while the <span class="text-sissi font-bold">blue comb</span> resolves any tiny imperfection.</p>
                     </div>
-                    <div class="bg-rose/10 p-5 md:p-6 border border-rose-200 flex flex-col justify-center">
-                        <h4 class="font-imperial font-bold text-md md:text-lg mb-2 md:mb-3 text-velvet">Die Fenster zur Seele</h4>
-                        <p class="text-xs md:text-sm text-velvet/80 italic">Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
+                    <div class="bg-rose/10 p-4 md:p-6 border border-rose-200 flex flex-col justify-center">
+                        <h4 class="font-imperial font-bold text-sm md:text-lg mb-1 md:mb-3 text-velvet">Die Fenster zur Seele</h4>
+                        <p class="text-[10px] md:text-sm text-velvet/80 italic">Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
                     </div>
-                    <div class="md:col-span-2 bg-rose/10 p-5 md:p-6 border border-rose-200">
-                        <h4 class="font-imperial font-bold text-md md:text-lg mb-2 md:mb-3 text-velvet text-center">Die Wacht am Rücken</h4>
-                        <p class="text-xs md:text-sm text-velvet/80 italic text-center max-w-xl mx-auto">Although rare, under certain circumstances, her rear may be compromised. Cleansing wipes befitting her station are located in the lower left cabinet adjacent to the range.</p>
+                    <div class="md:col-span-2 bg-rose/10 p-4 md:p-6 border border-rose-200">
+                        <h4 class="font-imperial font-bold text-sm md:text-lg mb-1 md:mb-3 text-velvet text-center">Die Wacht am Rücken</h4>
+                        <p class="text-[10px] md:text-sm text-velvet/80 italic text-center max-w-xl mx-auto">Although rare, under certain circumstances, her rear may be compromised. Cleansing wipes befitting her station are located in the lower left cabinet adjacent to the range.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Chapter 04: Alchemy -->
-        <section id="alchemy" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row overflow-y-auto inner-scroll bg-velvet text-parchment" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px;">
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs tracking-[0.2em] text-habsburg-light uppercase mb-2">Chapter IV</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-parchment">Die Alchemie</h2>
+        <section id="alchemy" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row overflow-y-auto overflow-x-hidden inner-scroll bg-velvet text-parchment" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px;">
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-center flex-shrink-0">
+                    <div class="text-center mb-4 md:mb-8">
+                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-habsburg-light uppercase mb-1 md:mb-2">Chapter IV</p>
+                        <h2 class="font-script text-3xl md:text-5xl text-parchment">Die Alchemie</h2>
                     </div>
                     
-                    <div class="border border-habsburg/30 p-5 md:p-6 mb-4 md:mb-6">
-                        <h4 class="font-imperial text-center text-xs md:text-sm tracking-widest text-habsburg mb-3 md:mb-4 border-b border-habsburg/30 pb-2">The 5-Day Renewal</h4>
-                        <ol class="text-[10px] md:text-xs space-y-2 text-parchment-dark list-decimal list-inside font-serif italic">
-                            <li>Halt the mechanism with reverence</li>
+                    <div class="border border-habsburg/30 p-3 md:p-6 mb-3 md:mb-6 w-full max-w-full box-border">
+                        <h4 class="font-imperial text-center text-[10px] md:text-sm tracking-widest text-habsburg mb-2 md:mb-4 border-b border-habsburg/30 pb-1 md:pb-2 break-words">The 5-Day Renewal</h4>
+                        <ol class="text-[9px] md:text-xs space-y-1 md:space-y-2 text-parchment-dark list-decimal list-inside font-serif italic pl-1">
+                            <li>Halt mechanism with reverence</li>
                             <li>Remove the old offerings</li>
                             <li>Place a new, pure receptacle</li>
                             <li>Commence the ritual anew</li>
@@ -391,19 +425,19 @@
                         </ol>
                     </div>
 
-                    <div class="bg-sissi/10 p-4 md:p-5 border border-sissi/30 relative">
-                        <i class="ri-alert-fill absolute -top-3 -right-3 text-lg md:text-xl text-sissi bg-velvet rounded-full"></i>
-                        <h4 class="font-imperial font-bold text-xs md:text-sm mb-1 md:mb-2 text-sissi">Die Kaiserliche Unterbrechung</h4>
-                        <p class="text-[9px] md:text-[10px] text-parchment-dark/90 italic">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion.</p>
+                    <div class="bg-sissi/10 p-3 md:p-5 border border-sissi/30 relative w-full box-border">
+                        <i class="ri-alert-fill absolute -top-2 -right-2 md:-top-3 md:-right-3 text-md md:text-xl text-sissi bg-velvet rounded-full"></i>
+                        <h4 class="font-imperial font-bold text-[11px] md:text-sm mb-1 text-sissi truncate">Die Kaiserliche Unterbrechung</h4>
+                        <p class="text-[9px] md:text-[10px] text-parchment-dark/90 italic pr-2">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion.</p>
                     </div>
                 </div>
 
-                <div class="w-full lg:w-1/2 p-5 md:p-8 lg:p-12 flex flex-col justify-center items-center bg-[#1A0F11] lg:border-l border-t lg:border-t-0 border-habsburg/20">
-                    <div class="w-full relative group">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-velvet px-3 font-imperial text-[10px] tracking-widest text-habsburg uppercase whitespace-nowrap z-10 border border-habsburg/30">
+                <div class="w-full lg:w-1/2 p-4 md:p-8 lg:p-12 flex flex-col justify-center items-center bg-[#1A0F11] lg:border-l border-t lg:border-t-0 border-habsburg/20 flex-shrink-0">
+                    <div class="w-full max-w-full relative group">
+                        <div class="absolute -top-2 md:-top-3 left-1/2 transform -translate-x-1/2 bg-velvet px-2 md:px-3 font-imperial text-[8px] md:text-[10px] tracking-widest text-habsburg uppercase whitespace-nowrap z-10 border border-habsburg/30">
                             Visual Grimoire
                         </div>
-                        <div class="aspect-video w-full relative overflow-hidden border-2 border-habsburg/40 shadow-inner">
+                        <div class="aspect-video w-full max-w-full relative overflow-hidden border-[1px] md:border-2 border-habsburg/40 shadow-inner">
                             <iframe 
                                 class="w-full h-full absolute inset-0" 
                                 src="https://www.youtube.com/embed/fPADbNj6k44" 
@@ -413,72 +447,72 @@
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <p class="text-center font-serif italic text-[10px] md:text-xs text-parchment-dark/50 mt-4">A moving portrait demonstrating the sacred purification rites.</p>
+                        <p class="text-center font-serif italic text-[8px] md:text-xs text-parchment-dark/50 mt-2 md:mt-4 break-words px-2">A moving portrait demonstrating the sacred purification rites.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Emergency Protocol / Royal Decree -->
-        <section id="emergency" class="min-w-[100vw] h-full flex-shrink-0 snap-center flex items-center justify-center p-4 lg:p-12 relative">
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] p-3 md:p-4 bg-decree relative shadow-2xl overflow-y-auto inner-scroll">
-                <div class="border-2 border-habsburg p-5 md:p-8 lg:p-12 h-full flex flex-col relative overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-decree to-[#5a1c1c]">
+        <section id="emergency" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-4 lg:p-12 relative box-border">
+            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] p-2 md:p-4 bg-decree relative shadow-2xl overflow-y-auto overflow-x-hidden inner-scroll">
+                <div class="border-[1px] md:border-2 border-habsburg p-4 md:p-8 lg:p-12 h-full flex flex-col relative overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-decree to-[#5a1c1c] box-border">
                     
                     <!-- Wax Seal Deco -->
-                    <div class="absolute top-4 right-4 w-12 h-12 md:w-20 md:h-20 wax-seal rounded-full flex items-center justify-center border-2 border-[#5a1c1c] opacity-80 transform rotate-12">
-                        <i class="ri-vip-crown-line text-xl md:text-3xl text-[#5a1c1c]"></i>
+                    <div class="absolute top-2 right-2 md:top-4 md:right-4 w-10 h-10 md:w-20 md:h-20 wax-seal rounded-full flex items-center justify-center border-2 border-[#5a1c1c] opacity-80 transform rotate-12">
+                        <i class="ri-vip-crown-line text-lg md:text-3xl text-[#5a1c1c]"></i>
                     </div>
 
-                    <div class="text-center mb-6 md:mb-10 mt-4 md:mt-6 relative z-10">
-                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.3em] text-habsburg uppercase mb-2 md:mb-4">Royal Decree • Urgent</p>
-                        <h2 class="font-script text-4xl md:text-6xl text-parchment mb-2 md:mb-4">Der Schutz der Rose</h2>
-                        <p class="text-sm md:text-md text-parchment/90 max-w-xl mx-auto italic font-serif">
+                    <div class="text-center mb-4 md:mb-10 mt-2 md:mt-6 relative z-10">
+                        <p class="font-imperial text-[8px] md:text-xs tracking-[0.2em] md:tracking-[0.3em] text-habsburg uppercase mb-1 md:mb-4">Royal Decree • Urgent</p>
+                        <h2 class="font-script text-3xl md:text-6xl text-parchment mb-1 md:mb-4">Der Schutz der Rose</h2>
+                        <p class="text-[10px] md:text-md text-parchment/90 max-w-xl mx-auto italic font-serif px-2 break-words">
                             "Der Mut ist die höchste Eigenschaft des Geistes."<br>
-                            <span class="block mt-2 font-imperial text-[9px] md:text-[10px] tracking-widest text-habsburg-light">— Carl von Clausewitz</span>
+                            <span class="block mt-1 md:mt-2 font-imperial text-[8px] md:text-[10px] tracking-widest text-habsburg-light">— Carl von Clausewitz</span>
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 text-center flex-grow items-center relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 text-center flex-grow items-center relative z-10 box-border w-full">
                         <!-- Vet -->
-                        <div class="border-t border-habsburg/30 pt-4">
-                            <h4 class="font-imperial text-[10px] text-habsburg tracking-widest uppercase mb-2">Königliche Leibarzt</h4>
-                            <p class="font-serif text-lg mb-1 text-parchment">Toebeans and Tails</p>
-                            <p class="text-xs text-parchment/70 mb-3 italic">Alexandria</p>
-                            <a href="tel:7039884181" class="font-imperial text-md text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1">
+                        <div class="border-t border-habsburg/30 pt-2 md:pt-4">
+                            <h4 class="font-imperial text-[9px] md:text-[10px] text-habsburg tracking-widest uppercase mb-1 md:mb-2 truncate">Königliche Leibarzt</h4>
+                            <p class="font-serif text-sm md:text-lg mb-0 md:mb-1 text-parchment truncate">Toebeans and Tails</p>
+                            <p class="text-[9px] md:text-xs text-parchment/70 mb-1 md:mb-3 italic">Alexandria</p>
+                            <a href="tel:7039884181" class="font-imperial text-sm md:text-md text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1 break-words">
                                 (703) 988-4181
                             </a>
                         </div>
                         
                         <!-- Head Lady in Waiting -->
-                        <div class="border-t border-habsburg/30 pt-4">
-                            <h4 class="font-imperial text-[10px] text-habsburg tracking-widest uppercase mb-2">Oberste Hofdame</h4>
-                            <p class="font-serif text-lg mb-3 text-parchment">Sharon Prince</p>
-                            <a href="tel:5862672151" class="font-imperial text-md text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1">
+                        <div class="border-t border-habsburg/30 pt-2 md:pt-4">
+                            <h4 class="font-imperial text-[9px] md:text-[10px] text-habsburg tracking-widest uppercase mb-1 md:mb-2 truncate">Oberste Hofdame</h4>
+                            <p class="font-serif text-sm md:text-lg mb-1 md:mb-3 text-parchment truncate">Sharon Prince</p>
+                            <a href="tel:5862672151" class="font-imperial text-sm md:text-md text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1 break-words">
                                 (586) 267-2151
                             </a>
                         </div>
 
                         <!-- Loyal Court -->
-                        <div class="border-t border-habsburg/30 pt-4 md:col-span-2 lg:col-span-1">
-                            <h4 class="font-imperial text-[10px] text-habsburg tracking-widest uppercase mb-3">Der Getreue Hofstaat</h4>
-                            <div class="space-y-3">
-                                <div>
-                                    <span class="block font-serif text-sm text-parchment">Humaira Ahmed</span>
-                                    <a href="tel:9258267542" class="font-imperial text-xs text-parchment/80 hover:text-habsburg">(925) 826-7542</a>
+                        <div class="border-t border-habsburg/30 pt-2 md:pt-4 md:col-span-2 lg:col-span-1">
+                            <h4 class="font-imperial text-[9px] md:text-[10px] text-habsburg tracking-widest uppercase mb-2 md:mb-3 truncate">Der Getreue Hofstaat</h4>
+                            <div class="space-y-1 md:space-y-3">
+                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
+                                    <span class="block font-serif text-xs md:text-sm text-parchment truncate">Humaira Ahmed</span>
+                                    <a href="tel:9258267542" class="font-imperial text-[10px] md:text-xs text-parchment/80 hover:text-habsburg break-words">(925) 826-7542</a>
                                 </div>
-                                <div>
-                                    <span class="block font-serif text-sm text-parchment">Haley Johnson</span>
-                                    <a href="tel:2315100580" class="font-imperial text-xs text-parchment/80 hover:text-habsburg">(231) 510-0580</a>
+                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
+                                    <span class="block font-serif text-xs md:text-sm text-parchment truncate">Haley Johnson</span>
+                                    <a href="tel:2315100580" class="font-imperial text-[10px] md:text-xs text-parchment/80 hover:text-habsburg break-words">(231) 510-0580</a>
                                 </div>
-                                <div>
-                                    <span class="block font-serif text-sm text-parchment">Amber DeJohn</span>
-                                    <a href="tel:8105160069" class="font-imperial text-xs text-parchment/80 hover:text-habsburg">(810) 516-0069</a>
+                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
+                                    <span class="block font-serif text-xs md:text-sm text-parchment truncate">Amber DeJohn</span>
+                                    <a href="tel:8105160069" class="font-imperial text-[10px] md:text-xs text-parchment/80 hover:text-habsburg break-words">(810) 516-0069</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="text-center mt-8 text-parchment/30 text-xs font-imperial tracking-widest relative z-10">
+                    <div class="text-center mt-4 md:mt-8 text-parchment/30 text-[8px] md:text-xs font-imperial tracking-widest relative z-10 break-words w-full">
                         © 2026 Lieslcare. All Royal Rights Reserved.
                     </div>
                 </div>
@@ -492,28 +526,28 @@
 
     <!-- Modals (Overlayed above the book) -->
     <!-- Carousel Modal -->
-    <div id="carousel-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-parchment p-6 rounded-sm max-w-3xl w-full relative storybook-frame shadow-2xl">
-            <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
-            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6">Preparing Her Majesty's Sustenance</h3>
-            <div class="relative w-full aspect-video overflow-hidden border-2 border-habsburg/30 bg-white flex items-center justify-center">
+    <div id="carousel-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-2 md:p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
+        <div class="bg-parchment p-4 md:p-6 rounded-sm w-[95%] max-w-3xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
+            <button class="close-carousel absolute top-2 right-2 md:top-4 md:right-4 text-velvet hover:text-habsburg text-2xl md:text-3xl z-10"><i class="ri-close-line"></i></button>
+            <h3 class="font-script text-2xl md:text-4xl text-center text-velvet mb-4 md:mb-6 pr-6">Preparing Her Majesty's Sustenance</h3>
+            <div class="relative w-full flex-grow aspect-video overflow-hidden border-[1px] md:border-2 border-habsburg/30 bg-white flex items-center justify-center">
                 <img id="carousel-img" src="IMG_4894.jpeg" class="max-w-full max-h-full object-contain transition-opacity duration-300" alt="Sustenance preparation">
             </div>
-            <div class="flex justify-between items-center mt-6 px-4">
-                <button id="prev-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest"><i class="ri-arrow-left-s-line"></i> Prev</button>
-                <span id="carousel-counter" class="font-serif italic text-velvet/70">1 / 6</span>
-                <button id="next-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest">Next <i class="ri-arrow-right-s-line"></i></button>
+            <div class="flex justify-between items-center mt-4 md:mt-6 px-2 md:px-4">
+                <button id="prev-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-xs md:text-base"><i class="ri-arrow-left-s-line"></i> Prev</button>
+                <span id="carousel-counter" class="font-serif italic text-velvet/70 text-xs md:text-base">1 / 5</span>
+                <button id="next-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-xs md:text-base">Next <i class="ri-arrow-right-s-line"></i></button>
             </div>
         </div>
     </div>
 
     <!-- Fountain Modal -->
-    <div id="fountain-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-parchment p-6 rounded-sm max-w-xl w-full relative storybook-frame shadow-2xl">
-            <button class="close-fountain absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
-            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6">The Royal Water Levels</h3>
-            <div class="w-full border-2 border-sissi/50 p-2 bg-white flex items-center justify-center">
-                <img src="IMG_4900.jpeg" class="max-w-full h-auto object-contain" alt="Fountain water levels">
+    <div id="fountain-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-2 md:p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
+        <div class="bg-parchment p-4 md:p-6 rounded-sm w-[95%] max-w-xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
+            <button class="close-fountain absolute top-2 right-2 md:top-4 md:right-4 text-velvet hover:text-habsburg text-2xl md:text-3xl z-10"><i class="ri-close-line"></i></button>
+            <h3 class="font-script text-2xl md:text-4xl text-center text-velvet mb-4 md:mb-6 pr-6">The Royal Water Levels</h3>
+            <div class="w-full flex-grow border-[1px] md:border-2 border-sissi/50 p-1 md:p-2 bg-white flex items-center justify-center">
+                <img src="IMG_4900.jpeg" class="max-w-full max-h-[60vh] object-contain" alt="Fountain water levels">
             </div>
         </div>
     </div>
