@@ -124,7 +124,6 @@
                 <p class="font-imperial text-xs md:text-sm tracking-[0.4em] uppercase mb-8 border-b border-baedeker-gold/30 pb-4 inline-block">
                     K. u. K. Hoflieferant
                 </p>
-                <h2 class="font-imperial text-sm md:text-md tracking-[0.2em] mb-2">Austria-Hungary & The Imperial Salons</h2>
                 <h1 class="font-imperial text-5xl md:text-7xl font-bold tracking-wider mb-2 leading-none" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">BAEDEKER'S</h1>
                 <h1 class="font-script text-4xl md:text-5xl text-parchment mb-4" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</h1>
             </div>
@@ -141,7 +140,8 @@
 
             <div class="relative z-10 w-full flex flex-col items-center">
                 <p class="font-serif italic text-baedeker-gold/80 text-sm md:text-md mb-8 max-w-lg">
-                    "Step into the World of Yesterday. A definitive handbook for travellers seeking the audience of the Rose of the Realm."
+                    "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können."<br>
+                    <span class="block mt-2 font-imperial text-[10px] tracking-widest text-baedeker-gold">— Friedrich Nietzsche</span>
                 </p>
                 
                 <p class="font-imperial text-sm tracking-[0.3em] uppercase mb-8">Leipzig: Karl Baedeker</p>
@@ -232,7 +232,8 @@
                 </h1>
                 
                 <p class="text-md md:text-lg text-velvet/70 font-serif italic max-w-2xl mx-auto mb-8">
-                    "A definitive guide to the care and keeping of Her Imperial Majesty, the Rose of the Realm."
+                    "Die Schönheit ist ein offener Empfehlungsbrief, der die Herzen im Voraus für uns gewinnt."<br>
+                    <span class="block mt-2 font-imperial text-[10px] tracking-widest text-habsburg">— Arthur Schopenhauer</span>
                 </p>
 
                 <div class="flex items-center justify-center gap-4 text-habsburg mb-8">
@@ -278,7 +279,13 @@
                         <div class="grid grid-cols-2 gap-4 pt-4">
                             <div>
                                 <h3 class="font-imperial font-bold text-xs text-velvet mb-1"><i class="ri-star-smile-fill text-habsburg"></i> Nektar der Götter</h3>
-                                <p class="text-xs text-velvet/70"><strong>Churu:</strong> Offer this ambrosia as a token of adoration.</p>
+                                <p class="text-[11px] text-velvet/80 mb-1"><strong>Churu:</strong> Offer this ambrosia as a token of adoration.</p>
+                                <p class="text-[11px] text-velvet/80 mb-2"><strong>Katzenminze (Catnip):</strong> A sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
+                                <div class="bg-habsburg/10 p-2 rounded-sm border border-habsburg/20 mt-1">
+                                    <p class="text-[9px] text-velvet/80 italic font-serif">
+                                        * Both sacred offerings are safely secreted away within the lower left drawer of the grand media cabinet.
+                                    </p>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="font-imperial font-bold text-xs text-velvet mb-1"><i class="ri-drop-fill text-sissi"></i> Der Lebensbrunnen</h3>
@@ -426,7 +433,8 @@
                         <p class="font-imperial text-xs tracking-[0.3em] text-habsburg uppercase mb-4">Royal Decree • Urgent</p>
                         <h2 class="font-script text-5xl md:text-6xl text-parchment mb-4">Der Schutz der Rose</h2>
                         <p class="text-md text-parchment/90 max-w-xl mx-auto italic font-serif">
-                            "Should this treasure ever be imperiled, act with swiftness and certainty."
+                            "Der Mut ist die höchste Eigenschaft des Geistes."<br>
+                            <span class="block mt-2 font-imperial text-[10px] tracking-widest text-habsburg-light">— Carl von Clausewitz</span>
                         </p>
                     </div>
 
@@ -592,7 +600,7 @@
         const closeCarouselBtns = document.querySelectorAll('.close-carousel');
         const closeFountainBtns = document.querySelectorAll('.close-fountain');
 
-        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4897.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg'];
+        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg'];
         let currentImageIndex = 0;
         const carouselImg = document.getElementById('carousel-img');
         const carouselCounter = document.getElementById('carousel-counter');
