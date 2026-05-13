@@ -128,27 +128,27 @@
                 <h1 class="font-script text-4xl md:text-5xl text-parchment mb-4" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</h1>
             </div>
 
-            <!-- Fading Portrait Slideshow -->
-            <div class="relative w-[55%] min-w-[160px] min-h-[220px] flex-shrink-0 aspect-[2/3] md:w-64 md:h-80 my-4 md:my-8 rounded-t-full border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1">
-                <div class="w-full h-full rounded-t-full overflow-hidden relative">
+            <!-- Fading Portrait Slideshow (Now Clickable) -->
+            <button id="enter-court-trigger" class="relative w-[55%] min-w-[160px] min-h-[220px] flex-shrink-0 aspect-[2/3] md:w-64 md:h-80 my-4 md:my-8 rounded-t-full border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50">
+                <div class="w-full h-full rounded-t-full overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
                     <img id="baedeker-slide-1" src="IMG_1603.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
                     <img id="baedeker-slide-2" src="IMG_1799.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Her Majesty">
                 </div>
                 <!-- Crown Decoration -->
-                <i class="ri-vip-crown-2-fill absolute -top-4 left-1/2 transform -translate-x-1/2 text-5xl text-baedeker-gold filter drop-shadow-md z-20"></i>
-            </div>
+                <i class="ri-vip-crown-2-fill absolute -top-4 left-1/2 transform -translate-x-1/2 text-5xl text-baedeker-gold filter drop-shadow-md z-20 group-hover:-translate-y-2 transition-transform duration-500"></i>
+            </button>
 
             <div class="relative z-10 w-full flex flex-col items-center">
-                <p class="font-serif italic text-baedeker-gold/80 text-sm md:text-md mb-8 max-w-lg">
+                <p class="font-serif italic text-baedeker-gold/80 text-sm md:text-md mb-6 max-w-lg">
                     "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können."<br>
                     <span class="block mt-2 font-imperial text-[10px] tracking-widest text-baedeker-gold">— Friedrich Nietzsche</span>
                 </p>
                 
-                <p class="font-imperial text-sm tracking-[0.3em] uppercase mb-8">Leipzig: Karl Baedeker</p>
+                <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] uppercase text-baedeker-gold animate-pulse mb-6 font-bold cursor-pointer" onclick="document.getElementById('enter-court-trigger').click()">
+                    [ Tap Her Majesty To Open ]
+                </p>
 
-                <button id="enter-court-btn" class="bg-baedeker-gold text-baedeker px-10 py-3 font-imperial font-bold tracking-widest uppercase hover:bg-parchment transition-colors border-2 border-transparent shadow-lg hover:shadow-xl group">
-                    Open the Guidebook <i class="ri-book-open-line ml-2 group-hover:animate-pulse"></i>
-                </button>
+                <p class="font-imperial text-xs tracking-[0.3em] uppercase opacity-70">Leipzig: Karl Baedeker</p>
             </div>
         </div>
     </div>
@@ -561,11 +561,11 @@
 
         // Welcome Screen & Audio Logic
         const welcomeScreen = document.getElementById('welcome-screen');
-        const enterBtn = document.getElementById('enter-court-btn');
+        const enterTrigger = document.getElementById('enter-court-trigger');
         const royalWaltz = document.getElementById('royal-waltz');
 
-        if (enterBtn && welcomeScreen) {
-            enterBtn.addEventListener('click', () => {
+        if (enterTrigger && welcomeScreen) {
+            enterTrigger.addEventListener('click', () => {
                 welcomeScreen.classList.add('page-turn-active');
                 document.body.classList.remove('overflow-hidden'); // Unlock main doc
                 setTimeout(() => {
