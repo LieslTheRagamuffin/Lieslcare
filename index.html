@@ -89,7 +89,22 @@
         }
     </style>
 </head>
-<body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white">
+<body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white overflow-hidden">
+
+    <!-- Welcome Screen Overlay -->
+    <div id="welcome-screen" class="fixed inset-0 z-[200] bg-velvet flex flex-col items-center justify-center transition-opacity duration-1000">
+        <div class="storybook-frame p-8 md:p-16 bg-parchment text-center max-w-2xl mx-4 shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#E8D5A5_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+            <div class="relative z-10">
+                <i class="ri-vip-crown-2-fill text-6xl text-habsburg mb-6 block"></i>
+                <h1 class="font-script text-5xl md:text-7xl text-velvet mb-4">Welcome to the <br> Imperial Court</h1>
+                <p class="font-serif italic text-velvet/80 mb-8 text-lg">Before entering the presence of Her Majesty, please prepare yourself for the royal waltz.</p>
+                <button id="enter-court-btn" class="bg-habsburg text-white px-8 py-3 font-imperial tracking-widest uppercase hover:bg-habsburg-light transition-colors border-2 border-transparent hover:border-habsburg shadow-lg hover:shadow-xl">
+                    Enter & Play Waltz
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Royal Ribbon Navigation -->
     <nav class="fixed w-full z-50 bg-parchment-dark/95 backdrop-blur-sm border-b-2 border-habsburg shadow-sm transition-all duration-300">
@@ -194,6 +209,9 @@
                             <i class="ri-goblet-fill text-habsburg"></i> Das Abendmahl
                         </h3>
                         <p class="text-md text-velvet/80 leading-relaxed italic">A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel. A warmed meal, reminiscent of the heat of a fresh hunt, delights her greatly. For the prosperity of the empire, add <strong>1/8 tsp of Lysine</strong> and <strong>half the measuring cup of her Proden Plaqueoff</strong>.</p>
+                        <button id="open-carousel-btn" class="mt-4 inline-flex items-center gap-2 text-sm font-imperial tracking-widest text-habsburg hover:text-habsburg-light border-b border-habsburg/30 pb-1 transition-colors">
+                            <i class="ri-image-line"></i> Visual Instructions for Sustaining Her Majesty's Sustenance
+                        </button>
                     </div>
                     
                     <div class="border-l-4 border-habsburg-light pl-6">
@@ -210,7 +228,10 @@
                         </div>
                         <div>
                             <h3 class="font-imperial font-bold text-sm text-velvet mb-1"><i class="ri-drop-fill text-sissi"></i> Der Lebensbrunnen</h3>
-                            <p class="text-sm text-velvet/70">Her fountain must retain the purity of a mountain spring. It is to be renewed <strong>every two days</strong>.</p>
+                            <p class="text-sm text-velvet/70 mb-3">Her fountain must retain the purity of a mountain spring. It is to be renewed <strong>every two days</strong>. <span class="text-decree font-bold">Please note:</span> The top and the base of the fountain are not connected and hence should be handled with the utmost care when replacing her waters.</p>
+                            <button id="open-fountain-btn" class="inline-flex items-center gap-2 text-xs font-imperial tracking-widest text-sissi hover:text-blue-400 border-b border-sissi/30 pb-1 transition-colors">
+                                <i class="ri-drop-line"></i> View Correct Water Levels
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -425,8 +446,40 @@
         </div>
     </footer>
 
-    <!-- Royal Sidebar Scripts -->
+    <!-- Royal Audio -->
+    <audio id="royal-waltz" src="_An_der_schönen,_blauen_Donau_,_performed_by_the_US_Marine_Band.mp3" loop></audio>
+
+    <!-- Modals -->
+    <!-- Carousel Modal -->
+    <div id="carousel-modal" class="fixed inset-0 z-[150] bg-velvet/90 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-parchment p-6 rounded-sm max-w-3xl w-full relative storybook-frame shadow-2xl">
+            <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
+            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6">Sustaining Her Majesty's Sustenance</h3>
+            <div class="relative w-full aspect-video overflow-hidden border-2 border-habsburg/30 bg-white flex items-center justify-center">
+                <img id="carousel-img" src="IMG_4894.jpeg" class="max-w-full max-h-full object-contain transition-opacity duration-300" alt="Sustenance preparation">
+            </div>
+            <div class="flex justify-between items-center mt-6 px-4">
+                <button id="prev-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest"><i class="ri-arrow-left-s-line"></i> Prev</button>
+                <span id="carousel-counter" class="font-serif italic text-velvet/70">1 / 6</span>
+                <button id="next-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest">Next <i class="ri-arrow-right-s-line"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fountain Modal -->
+    <div id="fountain-modal" class="fixed inset-0 z-[150] bg-velvet/90 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-parchment p-6 rounded-sm max-w-xl w-full relative storybook-frame shadow-2xl">
+            <button class="close-fountain absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
+            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6">The Royal Water Levels</h3>
+            <div class="w-full border-2 border-sissi/50 p-2 bg-white flex items-center justify-center">
+                <img src="IMG_4900.jpeg" class="max-w-full h-auto object-contain" alt="Fountain water levels">
+            </div>
+        </div>
+    </div>
+
+    <!-- Royal Scripts -->
     <script>
+        // Sidebar Logic
         const sidebar = document.getElementById('mobile-sidebar');
         const openBtn = document.getElementById('mobile-menu-btn');
         const closeBtn = document.getElementById('close-sidebar-btn');
@@ -441,6 +494,88 @@
             closeBtn.addEventListener('click', toggleSidebar);
             links.forEach(link => link.addEventListener('click', toggleSidebar));
         }
+
+        // Welcome Screen & Audio Logic
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const enterBtn = document.getElementById('enter-court-btn');
+        const royalWaltz = document.getElementById('royal-waltz');
+
+        if (enterBtn && welcomeScreen) {
+            enterBtn.addEventListener('click', () => {
+                welcomeScreen.classList.add('opacity-0');
+                document.body.classList.remove('overflow-hidden'); // Unlock scrolling!
+                setTimeout(() => {
+                    welcomeScreen.classList.add('hidden');
+                    if (royalWaltz) {
+                        royalWaltz.volume = 0.5; // Majestic background volume
+                        royalWaltz.play().catch(e => console.log("Audio play failed:", e));
+                    }
+                }, 1000);
+            });
+        }
+
+        // Modal & Carousel Logic
+        const carouselModal = document.getElementById('carousel-modal');
+        const fountainModal = document.getElementById('fountain-modal');
+        const openCarouselBtn = document.getElementById('open-carousel-btn');
+        const openFountainBtn = document.getElementById('open-fountain-btn');
+        const closeCarouselBtns = document.querySelectorAll('.close-carousel');
+        const closeFountainBtns = document.querySelectorAll('.close-fountain');
+
+        // The Royal Images Array
+        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4897.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg'];
+        let currentImageIndex = 0;
+        const carouselImg = document.getElementById('carousel-img');
+        const carouselCounter = document.getElementById('carousel-counter');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateCarousel() {
+            if(carouselImg && carouselCounter) {
+                carouselImg.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    carouselImg.src = images[currentImageIndex];
+                    carouselCounter.innerText = `${currentImageIndex + 1} / ${images.length}`;
+                    carouselImg.style.opacity = 1; // Fade in
+                }, 200);
+            }
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
+                updateCarousel();
+            });
+            nextBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex === images.length - 1) ? 0 : currentImageIndex + 1;
+                updateCarousel();
+            });
+        }
+
+        // Smooth Open/Close functions
+        function openModal(modal) {
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            }
+        }
+
+        function closeModal(modal) {
+            if (modal) {
+                modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        if (openCarouselBtn) openCarouselBtn.addEventListener('click', () => openModal(carouselModal));
+        if (openFountainBtn) openFountainBtn.addEventListener('click', () => openModal(fountainModal));
+        
+        closeCarouselBtns.forEach(btn => btn.addEventListener('click', () => closeModal(carouselModal)));
+        closeFountainBtns.forEach(btn => btn.addEventListener('click', () => closeModal(fountainModal)));
     </script>
 </body>
 </html>
