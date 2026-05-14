@@ -174,8 +174,8 @@
 
             <div class="relative z-10 w-full max-w-full flex flex-col items-center mt-2">
                 <p class="font-serif italic text-baedeker-gold/90 text-sm md:text-base mb-4 md:mb-6 max-w-lg break-words px-2">
-                    "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können."<br>
-                    <span class="block mt-2 font-imperial text-xs md:text-sm tracking-widest text-baedeker-gold">— Friedrich Nietzsche</span>
+                    "Ich bin der letzte Monarch der alten Schule..."<br>
+                    <span class="block mt-2 font-imperial text-xs md:text-sm tracking-widest text-baedeker-gold">— Kaiser Franz Joseph I.</span>
                 </p>
                 
                 <p class="font-imperial text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase text-baedeker-gold animate-pulse mb-4 md:mb-6 font-bold cursor-pointer break-words w-full" onclick="document.getElementById('enter-court-trigger').click()">
@@ -244,7 +244,7 @@
     <div id="book-container" class="flex w-full max-w-full h-[100dvh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar pt-14 md:pt-16">
 
         <!-- TITLE PAGE (Hero Section) -->
-        <section id="hero" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+        <section id="hero" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
             <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col items-center justify-start md:justify-center text-center p-6 md:p-8 lg:p-12 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment relative">
                 
                 <div class="relative w-32 h-32 flex-shrink-0 md:w-64 md:h-64 rounded-full mb-6 md:mb-10 cameo-portrait z-20 mt-4 md:mt-8">
@@ -284,8 +284,8 @@
         </section>
 
         <!-- Chapter 01: The Banquet -->
-        <section id="banquet" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col-reverse ensures the image (second element in DOM) moves to the TOP on mobile -->
+        <section id="banquet" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+            <!-- flex-col-reverse ensures the image moves to the TOP on mobile -->
             <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col-reverse lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
                 <div class="w-full lg:w-1/2 px-4 py-4 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
                     <div class="text-center mb-6 md:mb-8">
@@ -343,8 +343,8 @@
         </section>
 
         <!-- Chapter 02: Diversions -->
-        <section id="diversions" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col ensures the image (first element in DOM) stays at the TOP on mobile -->
+        <section id="diversions" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+            <!-- flex-col ensures the image stays at the TOP on mobile -->
             <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
                 
                 <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-sissi/5 lg:border-r border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
@@ -380,7 +380,7 @@
         </section>
 
         <!-- Chapter 03: Beauty -->
-        <section id="rituals" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+        <section id="rituals" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
             <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col overflow-y-auto overflow-x-hidden inner-scroll bg-parchment px-4 py-6 md:p-8 lg:p-16">
                 <div class="flex items-center justify-center mb-4">
                     <i class="ri-shining-fill text-4xl text-rose-400"></i>
@@ -408,8 +408,8 @@
         </section>
 
         <!-- Chapter 04: Alchemy -->
-        <section id="alchemy" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col ensures the text is on top and video is safely at the bottom on mobile! -->
+        <section id="alchemy" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+            <!-- flex-col ensures text is on top and video is safely at the bottom on mobile -->
             <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-velvet text-parchment" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px;">
                 
                 <div class="w-full lg:w-1/2 px-4 py-6 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
@@ -424,6 +424,7 @@
                             <li>Halt mechanism with reverence</li>
                             <li>Remove the old offerings</li>
                             <li>Place a new, pure receptacle</li>
+                            <li>Replenish the sacred sands to the inner line of purification</li>
                             <li>Commence the ritual anew</li>
                             <li>Press the button of renewal</li>
                         </ol>
@@ -458,7 +459,7 @@
         </section>
 
         <!-- Emergency Protocol / Royal Decree -->
-        <section id="emergency" class="w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
+        <section id="emergency" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
             <!-- inner-scroll applied here so the whole frame allows scrolling -->
             <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] p-2 md:p-4 bg-decree relative shadow-2xl overflow-y-auto overflow-x-hidden inner-scroll">
                 <!-- Inner border container is now min-h-full, naturally growing to hold content -->
@@ -631,6 +632,29 @@
                 bookContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
             });
         }
+
+        // Intersection Observer to reset chapter scroll positions when swiping
+        const sections = document.querySelectorAll('.book-chapter');
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Reset all OTHER chapters to the top, so they are fresh when visited
+                    sections.forEach(sec => {
+                        if (sec !== entry.target) {
+                            const innerFrame = sec.querySelector('.inner-scroll');
+                            if (innerFrame) {
+                                innerFrame.scrollTop = 0;
+                            }
+                        }
+                    });
+                }
+            });
+        }, {
+            root: document.getElementById('book-container'),
+            threshold: 0.5
+        });
+
+        sections.forEach(sec => scrollObserver.observe(sec));
 
         // Modal & Carousel Logic
         const carouselModal = document.getElementById('carousel-modal');
