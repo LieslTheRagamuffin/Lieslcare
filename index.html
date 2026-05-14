@@ -285,8 +285,18 @@
 
         <!-- Chapter 01: The Banquet -->
         <section id="banquet" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col-reverse ensures the image moves to the TOP on mobile -->
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col-reverse lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
+            <!-- flex-col lg:flex-row-reverse guarantees the Image is naturally first in the DOM, eliminating all buggy mobile starting scroll positions! -->
+            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row-reverse gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
+                
+                <!-- DOM #1: IMAGE -->
+                <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-white lg:border-l border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
+                    <div class="w-full max-w-[200px] md:max-w-sm aspect-[3/4] p-3 md:p-4 border-[1px] md:border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
+                        <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-3 md:m-5"></div>
+                    </div>
+                </div>
+
+                <!-- DOM #2: TEXT -->
                 <div class="w-full lg:w-1/2 px-4 py-4 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
                     <div class="text-center mb-6 md:mb-8">
                         <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg uppercase mb-1 md:mb-2">Chapter I</p>
@@ -332,13 +342,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-white lg:border-l border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
-                    <div class="w-full max-w-[200px] md:max-w-sm aspect-[3/4] p-3 md:p-4 border-[1px] md:border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
-                        <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-3 md:m-5"></div>
-                    </div>
-                </div>
+
             </div>
         </section>
 
