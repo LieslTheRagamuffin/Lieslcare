@@ -165,7 +165,7 @@
             <!-- Fading Portrait Slideshow (Now Clickable) -->
             <button id="enter-court-trigger" class="relative w-3/5 max-w-[220px] md:max-w-[280px] aspect-[2/3] my-4 md:my-8 rounded-t-full border-[3px] md:border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50 flex-shrink-0">
                 <div class="w-full h-full rounded-t-full overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
-                    <img id="baedeker-slide-1" src="IMG_1603.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
+                    <img id="baedeker-slide-1" src="IMG_1243.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
                     <img id="baedeker-slide-2" src="IMG_1799.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Her Majesty">
                 </div>
                 <!-- Crown Decoration -->
@@ -537,12 +537,14 @@
         <div class="bg-parchment p-6 rounded-sm w-[95%] max-w-3xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
             <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
             <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">Preparing Her Majesty's Sustenance</h3>
-            <div class="relative w-full flex-grow aspect-video overflow-hidden border-2 border-habsburg/30 bg-white flex items-center justify-center">
+            <div class="relative w-full flex-grow aspect-video overflow-hidden border-[1px] md:border-2 border-habsburg/30 bg-white flex items-center justify-center">
                 <img id="carousel-img" src="IMG_4894.jpeg" class="max-w-full max-h-full object-contain transition-opacity duration-300" alt="Sustenance preparation">
             </div>
-            <div class="flex justify-between items-center mt-6 px-4">
+            <!-- Thematic Supplement Decree -->
+            <p class="text-center font-serif italic text-xs md:text-sm text-velvet/80 mt-4 px-2">It is decreed that the sacred supplements must be integrated thoroughly into Her Majesty's royal meal.</p>
+            <div class="flex justify-between items-center mt-4 md:mt-6 px-4">
                 <button id="prev-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-sm md:text-base"><i class="ri-arrow-left-s-line"></i> Prev</button>
-                <span id="carousel-counter" class="font-serif italic text-velvet/70 text-sm md:text-base">1 / 5</span>
+                <span id="carousel-counter" class="font-serif italic text-velvet/70 text-sm md:text-base">1 / 6</span>
                 <button id="next-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-sm md:text-base">Next <i class="ri-arrow-right-s-line"></i></button>
             </div>
         </div>
@@ -578,7 +580,7 @@
         }
 
         // Welcome Screen Slideshow Logic
-        const baedekerImages = ['IMG_1603.jpeg', 'IMG_1799.jpeg', 'IMG_3023.jpeg', 'IMG_3353.jpeg', 'IMG_3233.jpeg', 'IMG_7867.jpeg', 'IMG_9225.jpeg', 'IMG-9769.jpeg'];
+        const baedekerImages = ['IMG_1243.jpeg', 'IMG_1799.jpeg', 'IMG_1868.jpeg', 'IMG_2041.jpeg', 'IMG_2816.jpeg', 'IMG_2943.jpeg', 'IMG_3345.jpeg', 'IMG_3351.jpeg'];
         let baedekerIndex = 0;
         const slide1 = document.getElementById('baedeker-slide-1');
         const slide2 = document.getElementById('baedeker-slide-2');
@@ -664,7 +666,7 @@
         const closeCarouselBtns = document.querySelectorAll('.close-carousel');
         const closeFountainBtns = document.querySelectorAll('.close-fountain');
 
-        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg'];
+        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg', 'IMG_4901.jpeg'];
         let currentImageIndex = 0;
         const carouselImg = document.getElementById('carousel-img');
         const carouselCounter = document.getElementById('carousel-counter');
