@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lieslcare | The Imperial Standard</title>
+    <meta name="description" content="Baedeker's Kaiserin Liesl — the official veneration and care guide for Her Imperial and Royal Majesty, the Ragamuffin Empress.">
+    <meta name="theme-color" content="#991B1B">
+    <meta property="og:title" content="Lieslcare | The Imperial Standard">
+    <meta property="og:description" content="Baedeker's Kaiserin Liesl — the official veneration and care guide for Her Imperial and Royal Majesty.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="IMG_4468.jpeg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%91%3C/text%3E%3C/svg%3E">
     
     <!-- Royal Fonts: Cinzel for majesty, Great Vibes for romance, Lora for classic reading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +38,11 @@
                         habsburg: '#C5A059', // Rich antique gold
                         'habsburg-light': '#E8D5A5',
                         sissi: '#A8B8D0', // Romantic Austrian blue
-                        rose: '#E8D3D8',
+                        rose: { // Scale preserved so rose-200 / rose-400 utilities resolve
+                            DEFAULT: '#E8D3D8',
+                            200: '#F0DDE2',
+                            400: '#C98A9B',
+                        },
                         decree: '#8B2E2E', // Deep royal red
                         baedeker: '#991B1B', // Classic Baedeker Red
                         'baedeker-gold': '#D4AF37',
@@ -144,6 +155,28 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        /* Gentle motion courtesy for sensitive courtiers */
+        @media (prefers-reduced-motion: reduce) {
+            .page-turn { transition: opacity 0.6s ease-in-out; }
+            .page-turn-active { transform: none; }
+        }
+
+        /* Chapter heading flourish */
+        .heading-flourish {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: #C5A059;
+            margin-top: 0.35rem;
+        }
+        .heading-flourish::before, .heading-flourish::after {
+            content: '';
+            height: 1px;
+            width: 3rem;
+            background: linear-gradient(to right, transparent, #C5A059, transparent);
+        }
     </style>
 </head>
 <body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white overflow-hidden w-full max-w-full">
@@ -159,11 +192,11 @@
                     K. u. K. Hoflieferant
                 </p>
                 <h1 class="font-imperial text-5xl md:text-7xl font-bold tracking-wider mb-2 leading-none w-full break-words" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">BAEDEKER'S</h1>
-                <h1 class="font-script text-4xl md:text-5xl text-parchment mb-4 w-full break-words" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</h1>
+                <p class="font-script text-4xl md:text-5xl text-parchment mb-4 w-full break-words" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</p>
             </div>
 
             <!-- Fading Portrait Slideshow (Now Clickable) -->
-            <button id="enter-court-trigger" class="relative w-3/5 max-w-[220px] md:max-w-[280px] aspect-[2/3] my-4 md:my-8 rounded-t-full border-[3px] md:border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50 flex-shrink-0">
+            <button id="enter-court-trigger" aria-label="Enter the court of Kaiserin Liesl" class="relative w-3/5 max-w-[220px] md:max-w-[280px] aspect-[2/3] my-4 md:my-8 rounded-t-full border-[3px] md:border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50 flex-shrink-0">
                 <div class="w-full h-full rounded-t-full overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
                     <img id="baedeker-slide-1" src="IMG_1243.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
                     <img id="baedeker-slide-2" src="IMG_1799.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Her Majesty">
@@ -205,7 +238,7 @@
                 Royal Decree
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-habsburg text-2xl hover:text-habsburg-light transition-colors p-1">
+            <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden text-habsburg text-2xl hover:text-habsburg-light transition-colors p-1">
                 <i class="ri-menu-3-line"></i>
             </button>
         </div>
@@ -214,7 +247,7 @@
     <!-- Mobile Royal Sidebar -->
     <div id="mobile-sidebar" class="fixed inset-y-0 right-0 w-64 bg-parchment-dark/95 backdrop-blur-md border-l-2 border-habsburg shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">
         <div class="p-6 flex flex-col h-full overflow-y-auto">
-            <button id="close-sidebar-btn" class="self-end text-velvet hover:text-habsburg text-3xl mb-8">
+            <button id="close-sidebar-btn" aria-label="Close navigation menu" class="self-end text-velvet hover:text-habsburg text-3xl mb-8">
                 <i class="ri-close-line"></i>
             </button>
             <div class="flex flex-col space-y-6 font-imperial tracking-widest text-velvet text-md text-center">
@@ -233,11 +266,16 @@
     </div>
 
     <!-- UI Pagination Arrows -->
-    <button id="scroll-left" class="fixed left-2 lg:left-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:-translate-x-2 transition-all hidden md:block">
+    <button id="scroll-left" aria-label="Previous page" class="fixed left-2 lg:left-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:-translate-x-2 transition-all hidden md:block">
         <i class="ri-arrow-left-s-line"></i>
     </button>
-    <button id="scroll-right" class="fixed right-2 lg:right-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:translate-x-2 transition-all hidden md:block">
+    <button id="scroll-right" aria-label="Next page" class="fixed right-2 lg:right-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:translate-x-2 transition-all hidden md:block">
         <i class="ri-arrow-right-s-line"></i>
+    </button>
+
+    <!-- Court Orchestra Toggle -->
+    <button id="waltz-toggle" aria-label="Pause the royal waltz" class="fixed bottom-4 right-4 md:bottom-6 md:right-8 z-[45] w-11 h-11 md:w-12 md:h-12 rounded-full bg-velvet/90 border-2 border-habsburg text-habsburg text-xl flex items-center justify-center shadow-lg hover:text-habsburg-light hover:border-habsburg-light transition-colors backdrop-blur-sm">
+        <i id="waltz-icon" class="ri-music-2-line"></i>
     </button>
 
     <!-- HORIZONTAL STORYBOOK CONTAINER -->
@@ -257,7 +295,7 @@
                 </div>
 
                 <div class="font-imperial text-habsburg text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 md:mb-6 border-b border-habsburg-light pb-2 inline-block break-words max-w-full">
-                    The Official Veneration Guide
+                    Official Veneration Guide
                 </div>
                 
                 <h1 class="font-script text-5xl md:text-7xl text-velvet mb-3 md:mb-4 leading-tight break-words px-2 w-full">
@@ -291,7 +329,7 @@
                 <!-- DOM #1: IMAGE -->
                 <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-white lg:border-l border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
                     <div class="w-full max-w-[200px] md:max-w-sm aspect-[3/4] p-3 md:p-4 border-[1px] md:border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
-                        <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" class="w-full h-full object-cover">
+                        <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" loading="lazy" class="w-full h-full object-cover">
                         <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-3 md:m-5"></div>
                     </div>
                 </div>
@@ -301,6 +339,7 @@
                     <div class="text-center mb-6 md:mb-8">
                         <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg uppercase mb-1 md:mb-2">Chapter I</p>
                         <h2 class="font-script text-4xl md:text-5xl text-velvet">Das Bankett</h2>
+                        <div class="heading-flourish"><i class="ri-vip-crown-2-line text-sm"></i></div>
                     </div>
                     
                     <div class="space-y-6">
@@ -354,7 +393,7 @@
                 <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-sissi/5 lg:border-r border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
                     <div class="w-full max-w-[200px] md:max-w-sm aspect-square rounded-full cameo-portrait bg-white p-2 md:p-3 relative shadow-xl hover:scale-[1.02] transition-transform">
                         <div class="w-full h-full rounded-full overflow-hidden border-2 border-sissi/50 relative">
-                            <img src="IMG_4881.jpeg" alt="Imperial Playtime" class="w-full h-full object-cover">
+                            <img src="IMG_4881.jpeg" alt="Imperial Playtime" loading="lazy" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -363,6 +402,7 @@
                     <div class="text-center mb-6 md:mb-8">
                         <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-sissi uppercase mb-1 md:mb-2">Chapter II</p>
                         <h2 class="font-script text-4xl md:text-5xl text-velvet">Imperial Diversions</h2>
+                        <div class="heading-flourish"><i class="ri-sparkling-2-line text-sm"></i></div>
                     </div>
                     
                     <p class="text-sm md:text-base text-velvet/80 mb-6 md:mb-8 italic text-center px-2">A soul of such sensitivity requires moments of whim and play. It is your sacred duty to delight Her Majesty.</p>
@@ -392,6 +432,7 @@
                 <div class="text-center mb-6 md:mb-8">
                     <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg uppercase mb-2">Chapter III</p>
                     <h2 class="font-script text-4xl md:text-5xl text-velvet">Die Rituale der Schönheit</h2>
+                    <div class="heading-flourish"><i class="ri-flower-line text-sm"></i></div>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow items-start lg:items-center">
@@ -420,24 +461,25 @@
                     <div class="text-center mb-6 md:mb-8">
                         <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg-light uppercase mb-2">Chapter IV</p>
                         <h2 class="font-script text-4xl md:text-5xl text-parchment">Die Alchemie</h2>
+                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-habsburg/80 uppercase mt-2">Der Vierte Thron • Litter-Robot 4</p>
                     </div>
                     
                     <div class="border border-habsburg/30 p-5 md:p-6 mb-6 w-full max-w-full box-border">
-                        <h4 class="font-imperial text-center text-sm md:text-base tracking-widest text-habsburg mb-4 border-b border-habsburg/30 pb-2 break-words">The 5-Day Renewal</h4>
+                        <h4 class="font-imperial text-center text-sm md:text-base tracking-widest text-habsburg mb-4 border-b border-habsburg/30 pb-2 break-words">Rite of the 5-Day Renewal</h4>
                         <ol class="text-sm md:text-base space-y-2 text-parchment-dark list-decimal list-inside font-serif italic pl-1">
-                            <li>Halt mechanism with reverence</li>
-                            <li>Remove the old offerings</li>
-                            <li>Place a new, pure receptacle</li>
-                            <li>Replenish the sacred sands to the inner line of purification</li>
-                            <li>Commence the ritual anew</li>
-                            <li>Press the button of renewal</li>
+                            <li>Heed the azure beacon, should it flash upon the panel of command</li>
+                            <li>Withdraw the drawer of offerings by its gilded step</li>
+                            <li>Draw the string and cast out the old tribute</li>
+                            <li>Dress the drawer in a pure new liner, pressed flat lest the all-seeing OmniSense be deceived</li>
+                            <li>Replenish the sacred sands to the raised line of purification</li>
+                            <li>Return the drawer and press the button of renewal</li>
                         </ol>
                     </div>
 
                     <div class="bg-sissi/10 p-5 border border-sissi/30 relative w-full box-border">
                         <i class="ri-alert-fill absolute -top-3 -right-3 text-2xl text-sissi bg-velvet rounded-full"></i>
                         <h4 class="font-imperial font-bold text-base md:text-lg mb-2 text-sissi truncate">Die Kaiserliche Unterbrechung</h4>
-                        <p class="text-sm md:text-base text-parchment-dark/90 italic pr-2">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion.</p>
+                        <p class="text-sm md:text-base text-parchment-dark/90 italic pr-2">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
                     </div>
                 </div>
 
@@ -449,14 +491,15 @@
                         <div class="aspect-video w-full max-w-full relative overflow-hidden border-2 border-habsburg/40 shadow-inner">
                             <iframe 
                                 class="w-full h-full absolute inset-0" 
-                                src="https://www.youtube.com/embed/fPADbNj6k44" 
-                                title="Litter Robot Cleaning Instructions" 
+                                src="https://www.youtube.com/embed/yy1eG_oyeGU" 
+                                title="Ultimate Guide to Cleaning the Litter-Robot 4" 
+                                loading="lazy"
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <p class="text-center font-serif italic text-sm md:text-base text-parchment-dark/50 mt-4 break-words px-2">A moving portrait demonstrating the sacred purification rites.</p>
+                        <p class="text-center font-serif italic text-sm md:text-base text-parchment-dark/50 mt-4 break-words px-2">A moving portrait demonstrating the sacred purification rites of the Fourth Throne, to which Her Majesty's facilities were elevated in the Year of Grace 2026.</p>
                     </div>
                 </div>
             </div>
@@ -486,7 +529,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 text-center flex-grow items-start lg:items-center relative z-10 box-border w-full">
                         <!-- Vet -->
                         <div class="border-t border-habsburg/30 pt-6 md:pt-4">
-                            <h4 class="font-imperial text-xs md:text-sm text-habsburg tracking-widest uppercase mb-2 truncate">Königliche Leibarzt</h4>
+                            <h4 class="font-imperial text-xs md:text-sm text-habsburg tracking-widest uppercase mb-2 truncate">Königlicher Leibarzt</h4>
                             <p class="font-serif text-base md:text-xl mb-1 text-parchment truncate">Toebeans and Tails</p>
                             <p class="text-sm md:text-base text-parchment/70 mb-2 italic">Alexandria</p>
                             <a href="tel:7039884181" class="font-imperial text-base md:text-lg text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1 break-words">
@@ -539,7 +582,7 @@
     <!-- Carousel Modal -->
     <div id="carousel-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
         <div class="bg-parchment p-6 rounded-sm w-[95%] max-w-3xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
-            <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
+            <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10" aria-label="Close preparation precepts"><i class="ri-close-line"></i></button>
             <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">Preparing Her Majesty's Sustenance</h3>
             <div class="relative w-full flex-grow aspect-video overflow-hidden border-[1px] md:border-2 border-habsburg/30 bg-white flex items-center justify-center">
                 <img id="carousel-img" src="IMG_4894.jpeg" class="max-w-full max-h-full object-contain transition-opacity duration-300" alt="Sustenance preparation">
@@ -557,10 +600,10 @@
     <!-- Fountain Modal -->
     <div id="fountain-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
         <div class="bg-parchment p-6 rounded-sm w-[95%] max-w-xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
-            <button class="close-fountain absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10"><i class="ri-close-line"></i></button>
-            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">The Royal Water Levels</h3>
+            <button class="close-fountain absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10" aria-label="Close water levels"><i class="ri-close-line"></i></button>
+            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">Royal Water Levels</h3>
             <div class="w-full flex-grow border-2 border-sissi/50 p-2 bg-white flex items-center justify-center">
-                <img src="IMG_4900.jpeg" class="max-w-full max-h-[60vh] object-contain" alt="Fountain water levels">
+                <img src="IMG_4900.jpeg" class="max-w-full max-h-[60vh] object-contain" alt="Fountain water levels" loading="lazy">
             </div>
         </div>
     </div>
@@ -585,6 +628,8 @@
 
         // Welcome Screen Slideshow Logic
         const baedekerImages = ['IMG_1243.jpeg', 'IMG_1799.jpeg', 'IMG_1868.jpeg', 'IMG_2041.jpeg', 'IMG_2816.jpeg', 'IMG_2943.jpeg', 'IMG_3345.jpeg', 'IMG_3351.jpeg'];
+        // Preload the procession of portraits so no crossfade reveals an empty frame
+        baedekerImages.forEach(src => { const img = new Image(); img.src = src; });
         let baedekerIndex = 0;
         const slide1 = document.getElementById('baedeker-slide-1');
         const slide2 = document.getElementById('baedeker-slide-2');
@@ -610,6 +655,29 @@
         const welcomeScreen = document.getElementById('welcome-screen');
         const enterTrigger = document.getElementById('enter-court-trigger');
         const royalWaltz = document.getElementById('royal-waltz');
+        const waltzToggle = document.getElementById('waltz-toggle');
+        const waltzIcon = document.getElementById('waltz-icon');
+
+        function updateWaltzButton() {
+            if (!royalWaltz || !waltzToggle || !waltzIcon) return;
+            const playing = !royalWaltz.paused;
+            waltzIcon.className = playing ? 'ri-pause-mini-line' : 'ri-music-2-line';
+            waltzToggle.setAttribute('aria-label', playing ? 'Pause the royal waltz' : 'Play the royal waltz');
+        }
+
+        if (waltzToggle && royalWaltz) {
+            waltzToggle.addEventListener('click', () => {
+                if (royalWaltz.paused) {
+                    royalWaltz.volume = 0.4;
+                    royalWaltz.play().catch(e => console.log("Audio play failed:", e));
+                } else {
+                    royalWaltz.pause();
+                }
+            });
+            royalWaltz.addEventListener('play', updateWaltzButton);
+            royalWaltz.addEventListener('pause', updateWaltzButton);
+            updateWaltzButton();
+        }
 
         if (enterTrigger && welcomeScreen) {
             enterTrigger.addEventListener('click', () => {
@@ -630,14 +698,37 @@
         const scrollLeftBtn = document.getElementById('scroll-left');
         const scrollRightBtn = document.getElementById('scroll-right');
 
-        if(scrollLeftBtn && scrollRightBtn && bookContainer) {
-            scrollLeftBtn.addEventListener('click', () => {
-                bookContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
-            });
-            scrollRightBtn.addEventListener('click', () => {
-                bookContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
-            });
+        function turnPage(direction) {
+            if (bookContainer) {
+                bookContainer.scrollBy({ left: direction * window.innerWidth, behavior: 'smooth' });
+            }
         }
+
+        if(scrollLeftBtn && scrollRightBtn && bookContainer) {
+            scrollLeftBtn.addEventListener('click', () => turnPage(-1));
+            scrollRightBtn.addEventListener('click', () => turnPage(1));
+        }
+
+        // Courtly Keyboard Etiquette: arrow keys turn pages, Escape dismisses audiences
+        document.addEventListener('keydown', (e) => {
+            const carouselOpen = carouselModal && !carouselModal.classList.contains('hidden');
+            const fountainOpen = fountainModal && !fountainModal.classList.contains('hidden');
+            if (e.key === 'Escape') {
+                if (carouselOpen) closeModal(carouselModal);
+                if (fountainOpen) closeModal(fountainModal);
+                return;
+            }
+            if (carouselOpen) {
+                if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
+                if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
+                return;
+            }
+            if (fountainOpen) return;
+            const welcomeVisible = welcomeScreen && !welcomeScreen.classList.contains('hidden');
+            if (welcomeVisible) return;
+            if (e.key === 'ArrowLeft') turnPage(-1);
+            if (e.key === 'ArrowRight') turnPage(1);
+        });
 
         // Intersection Observer to reset chapter scroll positions when swiping
         const sections = document.querySelectorAll('.book-chapter');
@@ -671,6 +762,8 @@
         const closeFountainBtns = document.querySelectorAll('.close-fountain');
 
         const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg', 'IMG_4901.jpeg'];
+        // Preload the precepts so the carousel turns without hesitation
+        images.forEach(src => { const img = new Image(); img.src = src; });
         let currentImageIndex = 0;
         const carouselImg = document.getElementById('carousel-img');
         const carouselCounter = document.getElementById('carousel-counter');
