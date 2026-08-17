@@ -1,820 +1,918 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Lieslcare | The Imperial Standard</title>
-    <meta name="description" content="Baedeker's Kaiserin Liesl — the official veneration and care guide for Her Imperial and Royal Majesty, the Ragamuffin Empress.">
-    <meta name="theme-color" content="#991B1B">
-    <meta property="og:title" content="Lieslcare | The Imperial Standard">
-    <meta property="og:description" content="Baedeker's Kaiserin Liesl — the official veneration and care guide for Her Imperial and Royal Majesty.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="IMG_4468.jpeg">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%91%3C/text%3E%3C/svg%3E">
-    
-    <!-- Royal Fonts: Cinzel for majesty, Great Vibes for romance, Lora for classic reading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    
-    <!-- Modern Icons (Remix Icon) -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lieslcare | The Imperial Standard</title>
+<meta name="description" content="Baedeker's Kaiserin Liesl — the official veneration and care chronicle of Her Imperial and Royal Majesty, the Ragamuffin Empress.">
+<meta name="theme-color" content="#8E1F1F">
+<meta property="og:title" content="Lieslcare | The Imperial Standard">
+<meta property="og:description" content="Baedeker's Kaiserin Liesl — the official veneration and care chronicle of Her Imperial and Royal Majesty.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="IMG_4468.jpeg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%91%3C/text%3E%3C/svg%3E">
 
-    <!-- Tailwind CSS for Rapid Styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['Lora', 'serif'],
-                        imperial: ['Cinzel', 'serif'],
-                        script: ['Great Vibes', 'cursive'],
-                    },
-                    colors: {
-                        parchment: '#FDFBF7',
-                        'parchment-dark': '#F4EFE6',
-                        velvet: '#2C1A1D',
-                        habsburg: '#C5A059', // Rich antique gold
-                        'habsburg-light': '#E8D5A5',
-                        sissi: '#A8B8D0', // Romantic Austrian blue
-                        rose: { // Scale preserved so rose-200 / rose-400 utilities resolve
-                            DEFAULT: '#E8D3D8',
-                            200: '#F0DDE2',
-                            400: '#C98A9B',
-                        },
-                        decree: '#8B2E2E', // Deep royal red
-                        baedeker: '#991B1B', // Classic Baedeker Red
-                        'baedeker-gold': '#D4AF37',
-                    },
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Strict global overflow to prevent zooming/scrolling issues on mobile */
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-        /* Hide scrollbars for the main horizontal book layout */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Classic Storybook Scrollbar for inner cards */
-        .inner-scroll::-webkit-scrollbar { width: 6px; }
-        .inner-scroll::-webkit-scrollbar-track { background: transparent; border-left: 1px solid #E8D5A5; }
-        .inner-scroll::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
-        
-        body {
-            background-color: #2C1A1D; /* Velvet table background */
-            background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V20.5zM0 20h2v-2H0v2zm40 0h-2v-2h2v2z" fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E');
-        }
+<style>
+/* ============================================================
+   LIESLCARE · SECOND EDITION — an illuminated vertical codex
+   ============================================================ */
+:root{
+  --parchment:#F7F1E4;
+  --parchment-deep:#EFE5CF;
+  --cream:#FFFDF6;
+  --ink:#2B2118;
+  --ink-soft:#5C4C3B;
+  --ink-faint:#8A7A64;
+  --gold:#A8863D;
+  --gold-bright:#C9A75C;
+  --gold-pale:#E4D3A8;
+  --oxblood:#7E2A23;
+  --baedeker:#8E1F1F;
+  --baedeker-deep:#5E1414;
+  --velvet:#241A16;
+  --velvet-deep:#171009;
+  --sissi:#8FA3BE;
+  --emerald:#4C6B52;
+  --frame-w: clamp(10px, 2.5vw, 22px);
+}
 
-        /* Baedeker Cover Styling */
-        .baedeker-cover {
-            background-color: #991B1B;
-            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.1"/%3E%3C/svg%3E');
-        }
-        .baedeker-frame {
-            border: 2px solid #D4AF37;
-            box-shadow: 0 0 0 4px #991B1B, 0 0 0 6px #D4AF37, inset 0 0 0 2px #991B1B, inset 0 0 0 3px #D4AF37;
-        }
-        @media (min-width: 768px) {
-            .baedeker-frame {
-                box-shadow: 0 0 0 6px #991B1B, 0 0 0 8px #D4AF37, inset 0 0 0 2px #991B1B, inset 0 0 0 4px #D4AF37;
-            }
-        }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+html, body{ margin:0; padding:0; }
+body{
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'EB Garamond', Georgia, serif;
+  font-size:1.19rem;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-        /* Parchment Page Frame */
-        .storybook-frame {
-            background: linear-gradient(to bottom right, #ffffff, #F4EFE6);
-            border: 1px solid #C5A059;
-            box-shadow: 
-                inset 0 0 0 3px #FDFBF7,
-                inset 0 0 0 4px #C5A059,
-                0 15px 30px -10px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        @media (min-width: 768px) {
-            .storybook-frame {
-                box-shadow: 
-                    inset 0 0 0 4px #FDFBF7,
-                    inset 0 0 0 5px #C5A059,
-                    0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            }
-        }
+/* ---------- utility type ---------- */
+.smallcaps{
+  font-family:'Cinzel', serif;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+a{ color:var(--oxblood); text-decoration-color:var(--gold-pale); text-underline-offset:3px; }
+a:hover{ color:var(--gold); }
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
-        .storybook-frame::before, .storybook-frame::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border: 1px solid #C5A059;
-            pointer-events: none;
-        }
-        @media (min-width: 768px) {
-            .storybook-frame::before, .storybook-frame::after {
-                width: 20px;
-                height: 20px;
-            }
-        }
-        .storybook-frame::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
-        .storybook-frame::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+.skip-link{
+  position:absolute; left:-999px; top:0; z-index:300;
+  background:var(--velvet); color:var(--gold-pale); padding:.6rem 1rem;
+}
+.skip-link:focus{ left:0; }
 
-        .cameo-portrait {
-            box-shadow: 
-                0 0 0 6px #FDFBF7,
-                0 0 0 8px #C5A059,
-                0 0 0 12px rgba(197, 160, 89, 0.2),
-                0 15px 30px rgba(44, 26, 29, 0.3);
-        }
-        @media (min-width: 768px) {
-            .cameo-portrait {
-                box-shadow: 
-                    0 0 0 8px #FDFBF7,
-                    0 0 0 10px #C5A059,
-                    0 0 0 16px rgba(197, 160, 89, 0.2),
-                    0 20px 40px rgba(44, 26, 29, 0.3);
-            }
-        }
+/* ============================================================
+   RIBBON NAVIGATION
+   ============================================================ */
+nav.ribbon{
+  position:sticky; top:0; z-index:100;
+  background:rgba(247,241,228,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:2px solid var(--gold);
+  box-shadow:0 1px 0 var(--gold-pale), 0 6px 18px rgba(43,33,24,.08);
+}
+.ribbon-inner{
+  max-width:1120px; margin:0 auto;
+  padding:.65rem 1rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.brand{
+  font-family:'Cinzel',serif; font-weight:700; letter-spacing:.18em;
+  font-size:.95rem; color:var(--ink); white-space:nowrap;
+  display:flex; align-items:center; gap:.5rem; text-decoration:none;
+}
+.brand i{ color:var(--gold); font-size:1.15rem; }
+.ribbon-links{ display:flex; gap:.25rem; overflow-x:auto; scrollbar-width:none; }
+.ribbon-links::-webkit-scrollbar{ display:none; }
+.ribbon-links a{
+  font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none; padding:.45rem .55rem;
+  border-bottom:2px solid transparent; white-space:nowrap; transition:color .2s, border-color .2s;
+}
+.ribbon-links a:hover{ color:var(--gold); border-color:var(--gold); }
+.ribbon-links a.decree-link{ color:var(--oxblood); font-weight:700; }
+.ribbon-links a.decree-link:hover{ color:var(--baedeker); border-color:var(--oxblood); }
+@media (max-width:680px){
+  .ribbon-links a .word{ display:none; }       /* numerals only on small screens */
+  .brand span{ display:none; }
+}
 
-        .wax-seal {
-            background: #8B2E2E;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2);
-        }
+/* ============================================================
+   BAEDEKER COVER
+   ============================================================ */
+.cover{
+  position:relative;
+  min-height:100svh;
+  background:var(--baedeker);
+  background-image:
+    radial-gradient(ellipse at 50% 20%, rgba(255,220,150,.10), transparent 60%),
+    url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23n)" opacity="0.08"/%3E%3C/svg%3E');
+  display:flex; align-items:stretch; justify-content:center;
+  padding:var(--frame-w);
+}
+.cover-frame{
+  flex:1; max-width:920px;
+  border:2px solid var(--gold-bright);
+  outline:1px solid rgba(201,167,92,.5); outline-offset:5px;
+  padding:clamp(1.6rem, 4vw, 3.5rem) clamp(1rem, 4vw, 3rem);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; color:var(--gold-pale); gap:1.1rem;
+}
+.cover .imprint{ font-size:.72rem; color:var(--gold-bright); border-bottom:1px solid rgba(201,167,92,.4); padding-bottom:.7rem; }
+.cover h1{
+  font-family:'Cinzel',serif; font-weight:900; letter-spacing:.08em;
+  font-size:clamp(2.6rem, 8vw, 4.6rem); margin:0; line-height:1.05;
+  color:var(--gold-pale); text-shadow:2px 2px 0 rgba(0,0,0,.45);
+}
+.cover .majesty{
+  font-family:'Great Vibes', cursive; font-size:clamp(2.2rem, 6vw, 3.4rem);
+  color:var(--cream); line-height:1.1; text-shadow:1px 1px 0 rgba(0,0,0,.4);
+}
+.cover .handbook-line{
+  font-style:italic; color:rgba(228,211,168,.9); font-size:clamp(.95rem, 2.5vw, 1.08rem);
+  max-width:34rem;
+}
 
-        /* Page Turn Animation */
-        .page-turn {
-            transform-origin: left center;
-            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 1.2s ease-in-out;
-        }
-        .page-turn-active {
-            transform: rotateY(-100deg);
-            opacity: 0;
-            pointer-events: none;
-        }
+/* portrait arch + crossfade slideshow */
+.arch{
+  position:relative;
+  width:min(62vw, 250px); aspect-ratio:2/3;
+  border:3px solid var(--gold-bright);
+  border-radius:999px 999px 6px 6px;
+  padding:5px; background:var(--velvet);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  margin:.6rem 0 .2rem;
+}
+.arch .well{
+  width:100%; height:100%; overflow:hidden;
+  border-radius:999px 999px 3px 3px; position:relative;
+}
+.arch img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transition:opacity 1.2s ease;
+}
+.arch img.faded{ opacity:0; }
+.arch .crown{
+  position:absolute; top:-1.4rem; left:50%; transform:translateX(-50%);
+  font-size:2.6rem; color:var(--gold-bright); filter:drop-shadow(0 3px 4px rgba(0,0,0,.5));
+}
 
-        /* Gentle motion courtesy for sensitive courtiers */
-        @media (prefers-reduced-motion: reduce) {
-            .page-turn { transition: opacity 0.6s ease-in-out; }
-            .page-turn-active { transform: none; }
-        }
+.precedent{
+  max-width:36rem; font-style:italic; font-size:clamp(.92rem, 2.4vw, 1.05rem);
+  color:rgba(247,241,228,.92);
+}
+.precedent .attrib{ display:block; margin-top:.5rem; font-style:normal; font-size:.66rem; color:var(--gold-bright); }
 
-        /* Chapter heading flourish */
-        .heading-flourish {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            color: #C5A059;
-            margin-top: 0.35rem;
-        }
-        .heading-flourish::before, .heading-flourish::after {
-            content: '';
-            height: 1px;
-            width: 3rem;
-            background: linear-gradient(to right, transparent, #C5A059, transparent);
-        }
-    </style>
+.open-btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold-pale); background:transparent; cursor:pointer;
+  border:1px solid var(--gold-bright); padding:.85rem 1.6rem; margin-top:.4rem;
+  transition:background .25s, color .25s; text-decoration:none;
+}
+.open-btn:hover{ background:var(--gold-bright); color:var(--baedeker-deep); }
+.open-btn i{ animation:beckon 2.2s ease-in-out infinite; }
+@keyframes beckon{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
+.cover .colophon{ font-size:.66rem; color:rgba(201,167,92,.75); margin-top:.4rem; }
+
+/* ============================================================
+   CODEX BODY — shared chapter grammar
+   ============================================================ */
+main{ position:relative; }
+.chapter{
+  padding:clamp(3.2rem, 8vw, 6rem) 1.25rem;
+  scroll-margin-top:4.2rem;
+  position:relative;
+}
+.chapter-inner{ max-width:980px; margin:0 auto; }
+.chapter.alt{ background:var(--parchment-deep); border-top:1px solid var(--gold-pale); border-bottom:1px solid var(--gold-pale); }
+
+/* marginalia rails on wide screens */
+@media (min-width:1200px){
+  .chapter-inner{ position:relative; }
+  .chapter-inner::before, .chapter-inner::after{
+    content:''; position:absolute; top:0; bottom:0; width:1px;
+    background:linear-gradient(to bottom, transparent, var(--gold-pale) 12%, var(--gold-pale) 88%, transparent);
+    opacity:.6;
+  }
+  .chapter-inner::before{ left:-56px; }
+  .chapter-inner::after{ right:-56px; }
+  .chapter.dark .chapter-inner::before, .chapter.dark .chapter-inner::after{ opacity:.25; }
+}
+
+/* frontispiece */
+.frontispiece{ text-align:center; margin-bottom:clamp(2rem, 5vw, 3.2rem); }
+.frontispiece .eyebrow{ font-size:.7rem; color:var(--gold); margin-bottom:1rem; }
+.medallion{
+  width:66px; height:66px; margin:0 auto 1.1rem;
+  border:2px solid var(--gold); border-radius:50%;
+  outline:1px solid var(--gold-pale); outline-offset:4px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cinzel',serif; font-weight:700; font-size:1.5rem; color:var(--gold);
+  background:var(--cream);
+}
+.chapter.dark .medallion{ background:transparent; color:var(--gold-bright); }
+.frontispiece h2{
+  font-family:'EB Garamond',serif; font-style:italic; font-weight:600;
+  font-size:clamp(2.1rem, 5.5vw, 3rem); margin:0 0 .4rem; line-height:1.15;
+}
+.frontispiece .subtitle{ font-size:.68rem; color:var(--ink-faint); }
+.chapter.dark .frontispiece .subtitle{ color:var(--gold-bright); }
+.epigraph{
+  max-width:36rem; margin:1.4rem auto 0; font-style:italic; color:var(--ink-soft);
+  font-size:1.02rem;
+}
+.chapter.dark .epigraph{ color:rgba(247,241,228,.8); }
+.epigraph .attrib{ display:block; margin-top:.45rem; font-style:normal; font-size:.62rem; color:var(--gold); }
+.epigraph .gloss{ display:block; font-size:.9rem; color:var(--ink-faint); margin-top:.3rem; }
+.chapter.dark .epigraph .gloss{ color:rgba(228,211,168,.6); }
+.flourish{
+  display:flex; align-items:center; justify-content:center; gap:.8rem;
+  color:var(--gold); margin:1.2rem auto 0; font-size:.85rem;
+}
+.flourish::before, .flourish::after{
+  content:''; height:1px; width:min(18vw, 90px);
+  background:linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+/* two-column chapter layout that can never strand dead space:
+   figure and prose live in one grid; on mobile it stacks. */
+.duet{
+  display:grid; gap:clamp(1.6rem, 4vw, 3rem);
+  align-items:start;
+}
+@media (min-width:880px){
+  .duet{ grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); }
+  .duet.flip{ grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); }
+  .duet.flip figure{ order:2; }
+}
+
+/* gilt-framed figures — intrinsic aspect, zero void */
+figure.gilt{
+  margin:0; justify-self:center; width:min(100%, 380px);
+}
+figure.gilt .mat{
+  background:var(--cream); padding:10px;
+  border:1px solid var(--gold);
+  box-shadow:0 12px 30px rgba(43,33,24,.18);
+}
+figure.gilt .mat.inner-line{ position:relative; }
+figure.gilt img{
+  display:block; width:100%; aspect-ratio:3/4; object-fit:cover;
+  border:1px solid var(--gold-pale);
+}
+figure.gilt.cameo{ width:min(100%, 330px); }
+figure.gilt.cameo .mat{ border-radius:50%; padding:12px; }
+figure.gilt.cameo img{ aspect-ratio:1/1; border-radius:50%; }
+figure.gilt figcaption{
+  text-align:center; font-style:italic; font-size:.92rem; color:var(--ink-faint);
+  margin-top:.8rem;
+}
+
+/* rubric cards — liturgical red labels for actual duties */
+.rubrics{ display:grid; gap:1.1rem; }
+.rubric{
+  background:var(--cream);
+  border:1px solid var(--gold-pale);
+  border-left:3px solid var(--gold);
+  padding:1.15rem 1.3rem 1.2rem;
+  box-shadow:0 3px 12px rgba(43,33,24,.06);
+}
+.rubric h3{
+  font-family:'Cinzel',serif; font-size:.82rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--oxblood); margin:0 0 .6rem;
+  display:flex; align-items:center; gap:.55rem;
+}
+.rubric h3 i{ color:var(--gold); font-size:1.05rem; }
+.rubric p{ margin:.35rem 0; }
+.rubric .note{
+  margin-top:.75rem; padding:.6rem .8rem; font-size:.95rem; font-style:italic;
+  background:rgba(168,134,61,.08); border:1px solid rgba(168,134,61,.25); color:var(--ink-soft);
+}
+.chip{
+  display:inline-block; font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.1em;
+  padding:.18rem .55rem .14rem; margin:0 .1rem;
+  background:rgba(126,42,35,.08); border:1px solid rgba(126,42,35,.3);
+  color:var(--oxblood); border-radius:2px; white-space:nowrap; vertical-align:baseline;
+}
+.chip.blue{ background:rgba(143,163,190,.14); border-color:rgba(143,163,190,.5); color:#41566E; }
+.chip.green{ background:rgba(76,107,82,.1); border-color:rgba(76,107,82,.4); color:var(--emerald); }
+.text-btn{
+  display:inline-flex; align-items:center; gap:.45rem; margin-top:.55rem;
+  font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); background:none; border:none; border-bottom:1px solid var(--gold-pale);
+  padding:0 0 .25rem; cursor:pointer; transition:color .2s, border-color .2s;
+}
+.text-btn:hover{ color:var(--oxblood); border-color:var(--oxblood); }
+.pair{ display:grid; gap:1.1rem; }
+@media (min-width:640px){ .pair{ grid-template-columns:1fr 1fr; } }
+
+/* ============================================================
+   CHAPTER IV — velvet alchemy
+   ============================================================ */
+.chapter.dark{
+  background:var(--velvet);
+  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:22px 22px;
+  color:var(--parchment);
+}
+.chapter.dark .rubric{
+  background:rgba(255,253,246,.04);
+  border-color:rgba(201,167,92,.3); border-left-color:var(--gold-bright);
+  box-shadow:none;
+}
+.chapter.dark .rubric h3{ color:var(--gold-bright); }
+.chapter.dark .rubric h3 i{ color:var(--gold-bright); }
+.chapter.dark .rubric .note{
+  background:rgba(143,163,190,.08); border-color:rgba(143,163,190,.35);
+  color:rgba(247,241,228,.85);
+}
+.rite{
+  counter-reset:rite; list-style:none; margin:.4rem 0 0; padding:0;
+  display:grid; gap:.7rem;
+}
+.rite li{
+  position:relative; padding-left:2.7rem; font-style:italic;
+}
+.rite li::before{
+  counter-increment:rite; content:counter(rite);
+  position:absolute; left:0; top:.1rem;
+  width:1.7rem; height:1.7rem; border-radius:50%;
+  border:1px solid var(--gold-bright); color:var(--gold-bright);
+  font-family:'Cinzel',serif; font-style:normal; font-size:.8rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.video-shrine{ margin-top:1.4rem; }
+.video-shrine .label{
+  text-align:center; font-size:.66rem; color:var(--gold-bright); margin-bottom:.8rem;
+}
+.video-frame{
+  border:2px solid rgba(201,167,92,.55); outline:1px solid rgba(201,167,92,.25); outline-offset:5px;
+  aspect-ratio:16/9; background:var(--velvet-deep);
+}
+.video-frame iframe{ display:block; width:100%; height:100%; border:0; }
+.video-shrine figcaption{
+  text-align:center; font-style:italic; font-size:.92rem; color:rgba(228,211,168,.65); margin-top:1rem;
+}
+
+/* ============================================================
+   ROYAL DECREE
+   ============================================================ */
+.chapter.decree{
+  background:radial-gradient(ellipse at 50% 30%, var(--baedeker), var(--baedeker-deep));
+  color:var(--parchment);
+}
+.chapter.decree .frontispiece h2{ color:var(--cream); }
+.chapter.decree .medallion{ background:transparent; color:var(--gold-bright); border-color:var(--gold-bright); }
+.chapter.decree .epigraph{ color:rgba(247,241,228,.85); }
+.seal{
+  width:74px; height:74px; margin:0 auto 1.2rem; border-radius:50%;
+  background:var(--oxblood);
+  box-shadow:inset 0 0 12px rgba(0,0,0,.4), 0 5px 10px rgba(0,0,0,.3);
+  display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--baedeker-deep); transform:rotate(-8deg);
+  color:rgba(36,26,22,.8); font-size:1.8rem;
+}
+.court{
+  display:grid; gap:1.1rem; margin-top:2.2rem;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  align-items:start;
+}
+.courtier{
+  border:1px solid rgba(201,167,92,.4);
+  background:rgba(0,0,0,.14);
+  padding:1.3rem 1.2rem 1.4rem; text-align:center;
+}
+.courtier .role{ font-size:.64rem; color:var(--gold-bright); margin-bottom:.65rem; }
+.courtier .name{
+  font-size:1.28rem; font-weight:600; color:var(--cream); line-height:1.3;
+  overflow-wrap:anywhere;                 /* names shall never be truncated again */
+}
+.courtier .place{ font-style:italic; color:rgba(247,241,228,.65); font-size:.95rem; }
+.courtier a.tel{
+  display:inline-block; margin-top:.55rem;
+  font-family:'Cinzel',serif; font-size:.9rem; letter-spacing:.06em;
+  color:var(--parchment); text-decoration:none;
+  border-bottom:1px solid rgba(201,167,92,.6); padding-bottom:.2rem;
+  transition:color .2s;
+}
+.courtier a.tel:hover{ color:var(--gold-bright); }
+.courtier .retinue{ display:grid; gap:1rem; margin-top:.3rem; }
+.footer-line{
+  text-align:center; margin-top:2.6rem; font-size:.62rem;
+  color:rgba(247,241,228,.45);
+}
+
+/* ============================================================
+   FOOTER COLOPHON
+   ============================================================ */
+footer.colophon-bar{
+  background:var(--velvet-deep); color:rgba(228,211,168,.55);
+  text-align:center; padding:1.6rem 1rem; font-size:.9rem; font-style:italic;
+}
+footer.colophon-bar .smallcaps{ font-style:normal; font-size:.6rem; color:rgba(201,167,92,.7); display:block; margin-top:.4rem; }
+
+/* ============================================================
+   FLOATING WALTZ TOGGLE
+   ============================================================ */
+#waltz-toggle{
+  position:fixed; bottom:1.1rem; right:1.1rem; z-index:120;
+  width:48px; height:48px; border-radius:50%;
+  background:rgba(36,26,22,.92); color:var(--gold-bright);
+  border:2px solid var(--gold); font-size:1.25rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.35); transition:color .2s, border-color .2s, transform .2s;
+}
+#waltz-toggle:hover{ color:var(--gold-pale); border-color:var(--gold-bright); transform:scale(1.06); }
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(23,16,9,.94); backdrop-filter:blur(4px);
+  display:none; align-items:center; justify-content:center; padding:1rem;
+}
+.lightbox.open{ display:flex; }
+.lightbox-panel{
+  background:var(--parchment); border:1px solid var(--gold);
+  outline:1px solid var(--gold-pale); outline-offset:4px;
+  max-width:min(94vw, 820px); max-height:92svh; width:100%;
+  padding:1.2rem; display:flex; flex-direction:column; gap:.9rem; position:relative;
+}
+.lightbox-panel h3{
+  font-family:'EB Garamond',serif; font-style:italic; font-weight:600;
+  text-align:center; margin:0; font-size:1.5rem; padding:0 2rem;
+}
+.lightbox-stage{
+  background:var(--cream); border:1px solid var(--gold-pale);
+  display:flex; align-items:center; justify-content:center;
+  min-height:0; flex:1;
+}
+.lightbox-stage img{
+  max-width:100%; max-height:min(62svh, 560px); object-fit:contain; display:block;
+  transition:opacity .25s ease;
+}
+.lightbox .close-x{
+  position:absolute; top:.55rem; right:.7rem; background:none; border:none;
+  color:var(--ink); font-size:1.7rem; cursor:pointer; line-height:1;
+}
+.lightbox .close-x:hover{ color:var(--oxblood); }
+.lightbox-caption{ text-align:center; font-style:italic; font-size:.92rem; color:var(--ink-soft); margin:0; }
+.lightbox-nav{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.lightbox-nav .text-btn{ margin-top:0; }
+.lightbox-nav .counter{ font-style:italic; color:var(--ink-faint); font-size:.95rem; }
+.lightbox.single .lightbox-nav{ display:none; }
+
+/* ============================================================
+   REVEAL ANIMATION (respects reduced motion)
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .open-btn i{ animation:none; }
+  .arch img{ transition:none; }
+}
+</style>
 </head>
-<body class="text-velvet font-serif antialiased selection:bg-habsburg selection:text-white overflow-hidden w-full max-w-full">
+<body>
 
-    <!-- Baedeker Welcome Screen Overlay -->
-    <div id="welcome-screen" class="fixed inset-0 z-[200] baedeker-cover flex items-center justify-center p-3 md:p-12 page-turn w-full max-w-full" style="perspective: 1500px;">
-        <div class="baedeker-frame w-full max-w-3xl h-[95vh] md:h-full max-h-[90vh] flex flex-col items-center justify-between py-8 px-4 md:py-12 md:px-6 text-center text-baedeker-gold bg-baedeker/90 backdrop-blur-sm relative overflow-x-hidden overflow-y-auto inner-scroll">
-            
-            <div class="absolute inset-0 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none"></div>
+<a class="skip-link" href="#hommage">Skip to the chronicle</a>
 
-            <div class="relative z-10 w-full max-w-full flex flex-col items-center">
-                <p class="font-imperial text-xs md:text-sm tracking-[0.2em] md:tracking-[0.4em] uppercase mb-4 md:mb-8 border-b border-baedeker-gold/30 pb-2 md:pb-4 inline-block text-center w-full break-words">
-                    K. u. K. Hoflieferant
-                </p>
-                <h1 class="font-imperial text-5xl md:text-7xl font-bold tracking-wider mb-2 leading-none w-full break-words" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">BAEDEKER'S</h1>
-                <p class="font-script text-4xl md:text-5xl text-parchment mb-4 w-full break-words" style="text-shadow: 1px 1px 0px rgba(0,0,0,0.5);">Kaiserin Liesl</p>
-            </div>
+<!-- ═══════════ RIBBON NAVIGATION ═══════════ -->
+<nav class="ribbon" aria-label="Chapters">
+  <div class="ribbon-inner">
+    <a class="brand" href="#cover"><i class="ri-vip-crown-fill"></i><span>LIESLCARE</span></a>
+    <div class="ribbon-links">
+      <a href="#banquet">I<span class="word"> · Bankett</span></a>
+      <a href="#diversions">II<span class="word"> · Zerstreuungen</span></a>
+      <a href="#rituals">III<span class="word"> · Rituale</span></a>
+      <a href="#alchemy">IV<span class="word"> · Alchemie</span></a>
+      <a href="#decree" class="decree-link"><span class="word">Royal </span>Decree</a>
+    </div>
+  </div>
+</nav>
 
-            <!-- Fading Portrait Slideshow (Now Clickable) -->
-            <button id="enter-court-trigger" aria-label="Enter the court of Kaiserin Liesl" class="relative w-3/5 max-w-[220px] md:max-w-[280px] aspect-[2/3] my-4 md:my-8 rounded-t-full border-[3px] md:border-4 border-baedeker-gold shadow-2xl overflow-hidden bg-velvet z-10 p-1 group cursor-pointer hover:border-parchment transition-colors focus:outline-none focus:ring-4 focus:ring-baedeker-gold/50 flex-shrink-0">
-                <div class="w-full h-full rounded-t-full overflow-hidden relative group-hover:scale-105 transition-transform duration-700">
-                    <img id="baedeker-slide-1" src="IMG_1243.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" alt="Her Majesty">
-                    <img id="baedeker-slide-2" src="IMG_1799.jpeg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" alt="Her Majesty">
-                </div>
-                <!-- Crown Decoration -->
-                <i class="ri-vip-crown-2-fill absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2 text-4xl md:text-5xl text-baedeker-gold filter drop-shadow-md z-20 group-hover:-translate-y-2 transition-transform duration-500"></i>
-            </button>
+<!-- ═══════════ BAEDEKER COVER ═══════════ -->
+<header class="cover" id="cover">
+  <div class="cover-frame">
+    <p class="imprint smallcaps">K. u. K. Hoflieferant</p>
+    <h1>BAEDEKER'S</h1>
+    <p class="majesty">Kaiserin Liesl</p>
+    <p class="handbook-line">Handbook for travellers in the dominion of Her Imperial &amp; Royal Majesty, with all routes of duty, devotion, and delight.</p>
 
-            <div class="relative z-10 w-full max-w-full flex flex-col items-center mt-2">
-                <p class="font-serif italic text-baedeker-gold/90 text-sm md:text-base mb-4 md:mb-6 max-w-lg break-words px-2">
-                    "Ich bin der letzte Monarch der alten Schule. Es ist meine Aufgabe, meine Völker vor ihren Politikern zu schützen."<br>
-                    <span class="block mt-2 font-imperial text-xs md:text-sm tracking-widest text-baedeker-gold">— Kaiser Franz Joseph I.</span>
-                </p>
-                
-                <p class="font-imperial text-xs md:text-sm tracking-[0.1em] md:tracking-[0.2em] uppercase text-baedeker-gold animate-pulse mb-4 md:mb-6 font-bold cursor-pointer break-words w-full" onclick="document.getElementById('enter-court-trigger').click()">
-                    [ Tap Her Majesty To Open ]
-                </p>
-
-                <p class="font-imperial text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase opacity-70 break-words w-full">Leipzig: Karl Baedeker</p>
-            </div>
-        </div>
+    <div class="arch" aria-hidden="true">
+      <i class="ri-vip-crown-2-fill crown"></i>
+      <div class="well">
+        <img id="slide-a" src="IMG_1243.jpeg" alt="">
+        <img id="slide-b" src="IMG_1799.jpeg" alt="" class="faded">
+      </div>
     </div>
 
-    <!-- Royal Ribbon Navigation -->
-    <nav class="fixed top-0 w-full max-w-full z-50 bg-parchment-dark/95 backdrop-blur-sm border-b-2 border-habsburg shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
-            <div class="font-imperial font-bold text-lg md:text-xl tracking-widest text-velvet flex items-center gap-2 truncate">
-                <i class="ri-vip-crown-fill text-habsburg flex-shrink-0"></i> LIESLCARE
-            </div>
-            <!-- Horizontal Anchor Links -->
-            <div class="hidden md:flex space-x-8 text-sm font-imperial tracking-widest text-velvet/70">
-                <a href="#hero" class="hover:text-habsburg transition-colors">Cover</a>
-                <a href="#banquet" class="hover:text-habsburg transition-colors">I. Banquet</a>
-                <a href="#diversions" class="hover:text-habsburg transition-colors">II. Diversions</a>
-                <a href="#rituals" class="hover:text-habsburg transition-colors">III. Rituals</a>
-                <a href="#alchemy" class="hover:text-habsburg transition-colors">IV. Alchemy</a>
-            </div>
-            <a href="#emergency" class="hidden md:inline-block bg-decree text-parchment px-5 py-2 font-imperial text-xs tracking-widest uppercase hover:bg-red-900 transition-all duration-300 border border-transparent hover:border-habsburg shadow-md">
-                Royal Decree
-            </a>
-            
-            <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden text-habsburg text-2xl hover:text-habsburg-light transition-colors p-1">
-                <i class="ri-menu-3-line"></i>
-            </button>
-        </div>
-    </nav>
+    <p class="precedent">At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto. Precedent, once granted, is never rescinded.
+      <span class="attrib smallcaps">— after Sei Shōnagon, Makura no Sōshi</span>
+    </p>
 
-    <!-- Mobile Royal Sidebar -->
-    <div id="mobile-sidebar" class="fixed inset-y-0 right-0 w-64 bg-parchment-dark/95 backdrop-blur-md border-l-2 border-habsburg shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-6 flex flex-col h-full overflow-y-auto">
-            <button id="close-sidebar-btn" aria-label="Close navigation menu" class="self-end text-velvet hover:text-habsburg text-3xl mb-8">
-                <i class="ri-close-line"></i>
-            </button>
-            <div class="flex flex-col space-y-6 font-imperial tracking-widest text-velvet text-md text-center">
-                <a href="#hero" class="hover:text-habsburg transition-colors mobile-link">Cover Page</a>
-                <a href="#banquet" class="hover:text-habsburg transition-colors mobile-link">I. Banquet</a>
-                <a href="#diversions" class="hover:text-habsburg transition-colors mobile-link">II. Diversions</a>
-                <a href="#rituals" class="hover:text-habsburg transition-colors mobile-link">III. Rituals</a>
-                <a href="#alchemy" class="hover:text-habsburg transition-colors mobile-link">IV. Alchemy</a>
-                <div class="h-px w-1/2 mx-auto bg-habsburg/30 my-2"></div>
-                <a href="#emergency" class="text-decree font-bold hover:text-red-900 transition-colors mobile-link">Royal Decree</a>
-            </div>
-            <div class="mt-auto pt-6 text-center opacity-50">
-                <i class="ri-vip-crown-line text-4xl text-habsburg"></i>
-            </div>
-        </div>
+    <a class="open-btn" href="#hommage">Open the Chronicle <i class="ri-arrow-down-line"></i></a>
+    <p class="colophon smallcaps">Leipzig: Karl Baedeker · Second Edition</p>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════ DEDICATION ═══════════ -->
+<section class="chapter" id="hommage">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <p class="eyebrow smallcaps">Official Veneration Guide</p>
+      <figure class="gilt cameo" style="margin:0 auto 1.6rem;">
+        <div class="mat"><img src="IMG_4468.jpeg" alt="Her Imperial and Royal Majesty, Kaiserin Liesl"></div>
+      </figure>
+      <h2>Eine Hommage an die Schönheit von Kaiserin Liesl</h2>
+      <p class="subtitle smallcaps">Compiled for the faithful of her court, that no comfort be left to chance</p>
+      <blockquote class="epigraph">
+        „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!"
+        <span class="gloss">(There is truly something beautiful, magnificent, sublime about life!)</span>
+        <span class="attrib smallcaps">— E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr · set down, fittingly, in a cat's own memoir</span>
+      </blockquote>
+      <div class="flourish"><i class="ri-leaf-fill"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER I · DAS BANKETT ═══════════ -->
+<section class="chapter alt" id="banquet">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <p class="eyebrow smallcaps">Chapter the First</p>
+      <div class="medallion">I</div>
+      <h2>Das Bankett</h2>
+      <blockquote class="epigraph">
+        « Dis-moi ce que tu manges, je te dirai ce que tu es. »
+        <span class="gloss">(Tell me what you eat, and I shall tell you what you are.)</span>
+        <span class="attrib smallcaps">— Brillat-Savarin, Physiologie du Goût · she eats, therefore, like an empress</span>
+      </blockquote>
     </div>
 
-    <!-- UI Pagination Arrows -->
-    <button id="scroll-left" aria-label="Previous page" class="fixed left-2 lg:left-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:-translate-x-2 transition-all hidden md:block">
-        <i class="ri-arrow-left-s-line"></i>
-    </button>
-    <button id="scroll-right" aria-label="Next page" class="fixed right-2 lg:right-8 top-1/2 transform -translate-y-1/2 z-[40] text-habsburg text-5xl opacity-30 hover:opacity-100 hover:translate-x-2 transition-all hidden md:block">
-        <i class="ri-arrow-right-s-line"></i>
-    </button>
+    <div class="duet">
+      <figure class="gilt reveal">
+        <div class="mat"><img src="IMG_4812.jpeg" alt="Her Majesty in serene attendance at the evening feast"></div>
+        <figcaption>Her Majesty presides over the evening service.</figcaption>
+      </figure>
 
-    <!-- Court Orchestra Toggle -->
-    <button id="waltz-toggle" aria-label="Pause the royal waltz" class="fixed bottom-4 right-4 md:bottom-6 md:right-8 z-[45] w-11 h-11 md:w-12 md:h-12 rounded-full bg-velvet/90 border-2 border-habsburg text-habsburg text-xl flex items-center justify-center shadow-lg hover:text-habsburg-light hover:border-habsburg-light transition-colors backdrop-blur-sm">
-        <i id="waltz-icon" class="ri-music-2-line"></i>
-    </button>
+      <div class="rubrics">
+        <article class="rubric reveal">
+          <h3><i class="ri-goblet-fill"></i> Das Abendmahl</h3>
+          <p>A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel, and for the prosperity of the empire fold in
+            <span class="chip">⅛ tsp Lysine</span> and <span class="chip">½ measuring cup Proden PlaqueOff</span> — thoroughly, so no grain escapes her notice.</p>
+          <button class="text-btn" data-lightbox="precepts"><i class="ri-image-line"></i> View Preparation Precepts</button>
+        </article>
 
-    <!-- HORIZONTAL STORYBOOK CONTAINER -->
-    <div id="book-container" class="flex w-full max-w-full h-[100dvh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar pt-14 md:pt-16">
+        <article class="rubric reveal">
+          <h3><i class="ri-bowl-fill"></i> Trockene Gaben</h3>
+          <p>The supply of dry delicacies is replenished by unseen magic. A <span class="chip">weekly polishing</span> of her serving dish is essential to the dignity of the table.</p>
+        </article>
 
-        <!-- TITLE PAGE (Hero Section) -->
-        <section id="hero" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col items-center justify-start md:justify-center text-center p-6 md:p-8 lg:p-12 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment relative">
-                
-                <div class="relative w-32 h-32 flex-shrink-0 md:w-64 md:h-64 rounded-full mb-6 md:mb-10 cameo-portrait z-20 mt-4 md:mt-8">
-                    <div class="w-full h-full rounded-full overflow-hidden">
-                        <img src="IMG_4468.jpeg" alt="Her Imperial Majesty, Kaiserin Liesl" class="w-full h-full object-cover transform scale-[1.4] translate-y-[5%] hover:scale-[1.45] transition-transform duration-700">
-                    </div>
-                    <div class="absolute -top-6 md:-top-10 left-1/2 transform -translate-x-1/2 text-habsburg text-4xl md:text-5xl filter drop-shadow-md pointer-events-none">
-                        <i class="ri-vip-crown-2-fill"></i>
-                    </div>
-                </div>
+        <div class="pair">
+          <article class="rubric reveal">
+            <h3><i class="ri-star-smile-fill"></i> Nektar der Götter</h3>
+            <p><strong>Churu:</strong> offer this ambrosia as a token of adoration.</p>
+            <p><strong>Katzenminze (catnip):</strong> a sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
+            <p class="note">Both sacred offerings are secreted within the <strong>lower left drawer of the grand media cabinet</strong>.</p>
+          </article>
 
-                <div class="font-imperial text-habsburg text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 md:mb-6 border-b border-habsburg-light pb-2 inline-block break-words max-w-full">
-                    Official Veneration Guide
-                </div>
-                
-                <h1 class="font-script text-5xl md:text-7xl text-velvet mb-3 md:mb-4 leading-tight break-words px-2 w-full">
-                    Eine Hommage an die <br>
-                    Schönheit von <span class="text-habsburg">Kaiserin Liesl</span>
-                </h1>
-                
-                <p class="text-sm md:text-lg text-velvet/70 font-serif italic max-w-2xl mx-auto mb-6 md:mb-8 px-2">
-                    "Die Schönheit ist ein offener Empfehlungsbrief, der die Herzen im Voraus für uns gewinnt."<br>
-                    <span class="block mt-2 font-imperial text-xs md:text-sm tracking-widest text-habsburg">— Arthur Schopenhauer</span>
-                </p>
-
-                <div class="flex items-center justify-center gap-2 md:gap-4 text-habsburg mb-6 md:mb-8 w-full px-4">
-                    <div class="h-px flex-grow max-w-[64px] bg-habsburg"></div>
-                    <i class="ri-leaf-fill flex-shrink-0"></i>
-                    <div class="h-px flex-grow max-w-[64px] bg-habsburg"></div>
-                </div>
-
-                <blockquote class="text-sm md:text-base italic text-velvet/80 max-w-xl mx-auto bg-parchment-dark p-5 md:p-6 border border-habsburg/30 break-words w-[95%]">
-                    "Gewisse Bücher scheinen geschrieben zu sein, nicht damit man daraus lerne, sondern damit man wisse, daß der Verfasser etwas gewußt hat."<br>
-                    <span class="block mt-3 md:mt-4 font-imperial text-xs tracking-widest text-habsburg">— Johann Wolfgang von Goethe</span>
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- Chapter 01: The Banquet -->
-        <section id="banquet" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col lg:flex-row-reverse guarantees the Image is naturally first in the DOM, eliminating all buggy mobile starting scroll positions! -->
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row-reverse gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
-                
-                <!-- DOM #1: IMAGE -->
-                <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-white lg:border-l border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
-                    <div class="w-full max-w-[200px] md:max-w-sm aspect-[3/4] p-3 md:p-4 border-[1px] md:border-2 border-habsburg/40 relative shadow-xl hover:scale-[1.02] transition-transform">
-                        <img src="IMG_4812.jpeg" alt="Her Majesty at Feast" loading="lazy" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 border border-habsburg/60 pointer-events-none m-3 md:m-5"></div>
-                    </div>
-                </div>
-
-                <!-- DOM #2: TEXT -->
-                <div class="w-full lg:w-1/2 px-4 py-4 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg uppercase mb-1 md:mb-2">Chapter I</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-velvet">Das Bankett</h2>
-                        <div class="heading-flourish"><i class="ri-vip-crown-2-line text-sm"></i></div>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="border-l-2 md:border-l-4 border-habsburg pl-4 md:pl-6">
-                            <h3 class="font-imperial font-bold text-base md:text-lg text-velvet flex items-center gap-2 mb-2">
-                                <i class="ri-goblet-fill text-habsburg"></i> Das Abendmahl
-                            </h3>
-                            <p class="text-sm md:text-base text-velvet/80 leading-relaxed italic mb-3">A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel. For the prosperity of the empire, add <strong>1/8 tsp of Lysine</strong> and <strong>half the measuring cup of her Proden Plaqueoff</strong>.</p>
-                            <button id="open-carousel-btn" class="inline-flex items-center gap-1 md:gap-2 text-xs md:text-sm font-imperial tracking-widest text-habsburg hover:text-habsburg-light border-b border-habsburg/30 pb-1 transition-colors break-words text-left">
-                                <i class="ri-image-line"></i> View Preparation Precepts
-                            </button>
-                        </div>
-                        
-                        <div class="border-l-2 md:border-l-4 border-habsburg-light pl-4 md:pl-6">
-                            <h3 class="font-imperial font-bold text-base md:text-lg text-velvet flex items-center gap-2 mb-2">
-                                <i class="ri-bowl-fill text-habsburg-light"></i> Trockene Gaben
-                            </h3>
-                            <p class="text-sm md:text-base text-velvet/80 leading-relaxed">The supply of dry delicacies is replenished by unseen magic. A <strong>weekly polishing</strong> of her serving dish is essential.</p>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 md:pt-4">
-                            <div class="w-full">
-                                <h3 class="font-imperial font-bold text-sm text-velvet mb-2 truncate"><i class="ri-star-smile-fill text-habsburg"></i> Nektar der Götter</h3>
-                                <p class="text-sm md:text-base text-velvet/80 mb-2"><strong>Churu:</strong> Offer this ambrosia as a token of adoration.</p>
-                                <p class="text-sm md:text-base text-velvet/80 mb-2"><strong>Katzenminze (Catnip):</strong> A sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
-                                <div class="bg-habsburg/10 p-3 rounded-sm border border-habsburg/20 mt-2">
-                                    <p class="text-xs md:text-sm text-velvet/80 italic font-serif">
-                                        * Both sacred offerings are safely secreted away within the lower left drawer of the grand media cabinet.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full mt-4 sm:mt-0">
-                                <h3 class="font-imperial font-bold text-sm text-velvet mb-2 truncate"><i class="ri-drop-fill text-sissi"></i> Der Lebensbrunnen</h3>
-                                <p class="text-sm md:text-base text-velvet/70 mb-3">Her royal water fountain must be renewed <strong>every two days</strong>. <span class="text-decree font-bold">Note:</span> The top and base of the fountain are not connected; handle with care.</p>
-                                <button id="open-fountain-btn" class="inline-flex items-center gap-1 text-xs md:text-sm font-imperial tracking-widest text-sissi hover:text-blue-400 border-b border-sissi/30 transition-colors">
-                                    <i class="ri-drop-line"></i> Water Levels
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Chapter 02: Diversions -->
-        <section id="diversions" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col ensures the image stays at the TOP on mobile -->
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-parchment">
-                
-                <div class="w-full lg:w-1/2 px-4 py-6 lg:py-12 md:p-8 flex justify-center items-start lg:items-center bg-sissi/5 lg:border-r border-b lg:border-b-0 border-habsburg/20 flex-shrink-0">
-                    <div class="w-full max-w-[200px] md:max-w-sm aspect-square rounded-full cameo-portrait bg-white p-2 md:p-3 relative shadow-xl hover:scale-[1.02] transition-transform">
-                        <div class="w-full h-full rounded-full overflow-hidden border-2 border-sissi/50 relative">
-                            <img src="IMG_4881.jpeg" alt="Imperial Playtime" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-full lg:w-1/2 px-4 py-4 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-sissi uppercase mb-1 md:mb-2">Chapter II</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-velvet">Imperial Diversions</h2>
-                        <div class="heading-flourish"><i class="ri-sparkling-2-line text-sm"></i></div>
-                    </div>
-                    
-                    <p class="text-sm md:text-base text-velvet/80 mb-6 md:mb-8 italic text-center px-2">A soul of such sensitivity requires moments of whim and play. It is your sacred duty to delight Her Majesty.</p>
-                    
-                    <div class="space-y-6 md:space-y-8 px-2">
-                        <div class="relative pl-10 md:pl-12">
-                            <i class="ri-sparkling-fill absolute left-0 top-0 text-2xl text-sissi"></i>
-                            <h4 class="font-imperial font-bold text-base md:text-lg text-velvet mb-2">Die Jagd nach dem Sternenlicht</h4>
-                            <p class="text-sm md:text-base text-velvet/80">Capture a beam of light at dusk and let it dance like a firefly through her chambers.</p>
-                        </div>
-                        <div class="relative pl-10 md:pl-12">
-                            <i class="ri-music-2-fill absolute left-0 top-0 text-2xl text-sissi"></i>
-                            <h4 class="font-imperial font-bold text-base md:text-lg text-velvet mb-2">Spiele der Musen</h4>
-                            <p class="text-sm md:text-base text-velvet/80">Let small feathers and shining orbs bounce from the furniture like notes in a symphony.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chapter 03: Beauty -->
-        <section id="rituals" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] flex flex-col overflow-y-auto overflow-x-hidden inner-scroll bg-parchment px-4 py-6 md:p-8 lg:p-16">
-                <div class="flex items-center justify-center mb-4">
-                    <i class="ri-shining-fill text-4xl text-rose-400"></i>
-                </div>
-                <div class="text-center mb-6 md:mb-8">
-                    <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg uppercase mb-2">Chapter III</p>
-                    <h2 class="font-script text-4xl md:text-5xl text-velvet">Die Rituale der Schönheit</h2>
-                    <div class="heading-flourish"><i class="ri-flower-line text-sm"></i></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow items-start lg:items-center">
-                    <div class="bg-rose/10 p-5 md:p-6 border border-rose-200 flex flex-col justify-center">
-                        <h4 class="font-imperial font-bold text-base md:text-lg mb-2 md:mb-3 text-velvet">Der Kaiserliche Mantel</h4>
-                        <p class="text-sm md:text-base text-velvet/80 italic">Her coat requires your most delicate touch. The <span class="text-emerald-700 font-semibold">green brush</span> smooths the strands, while the <span class="text-sissi font-bold">blue comb</span> resolves any tiny imperfection.</p>
-                    </div>
-                    <div class="bg-rose/10 p-5 md:p-6 border border-rose-200 flex flex-col justify-center">
-                        <h4 class="font-imperial font-bold text-base md:text-lg mb-2 md:mb-3 text-velvet">Die Fenster zur Seele</h4>
-                        <p class="text-sm md:text-base text-velvet/80 italic">Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
-                    </div>
-                    <div class="md:col-span-2 bg-rose/10 p-5 md:p-6 border border-rose-200">
-                        <h4 class="font-imperial font-bold text-base md:text-lg mb-2 md:mb-3 text-velvet text-center">Die Wacht am Rücken</h4>
-                        <p class="text-sm md:text-base text-velvet/80 italic text-center max-w-xl mx-auto">Although rare, under certain circumstances, her rear may be compromised. Cleansing wipes befitting her station are located in the lower left cabinet adjacent to the range.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chapter 04: Alchemy -->
-        <section id="alchemy" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- flex-col ensures text is on top and video is safely at the bottom on mobile -->
-            <div class="storybook-frame w-full max-w-5xl h-full max-h-[85vh] flex flex-col lg:flex-row gap-6 lg:gap-0 overflow-y-auto overflow-x-hidden inner-scroll bg-velvet text-parchment" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px;">
-                
-                <div class="w-full lg:w-1/2 px-4 py-6 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center">
-                    <div class="text-center mb-6 md:mb-8">
-                        <p class="font-imperial text-xs md:text-sm tracking-[0.2em] text-habsburg-light uppercase mb-2">Chapter IV</p>
-                        <h2 class="font-script text-4xl md:text-5xl text-parchment">Die Alchemie</h2>
-                        <p class="font-imperial text-[10px] md:text-xs tracking-[0.2em] text-habsburg/80 uppercase mt-2">Der Vierte Thron • Litter-Robot 4</p>
-                    </div>
-                    
-                    <div class="border border-habsburg/30 p-5 md:p-6 mb-6 w-full max-w-full box-border">
-                        <h4 class="font-imperial text-center text-sm md:text-base tracking-widest text-habsburg mb-4 border-b border-habsburg/30 pb-2 break-words">Rite of the 5-Day Renewal</h4>
-                        <ol class="text-sm md:text-base space-y-2 text-parchment-dark list-decimal list-inside font-serif italic pl-1">
-                            <li>Heed the azure beacon, should it flash upon the panel of command</li>
-                            <li>Withdraw the drawer of offerings by its gilded step</li>
-                            <li>Draw the string and cast out the old tribute</li>
-                            <li>Dress the drawer in a pure new liner, pressed flat lest the all-seeing OmniSense be deceived</li>
-                            <li>Replenish the sacred sands to the raised line of purification</li>
-                            <li>Return the drawer and press the button of renewal</li>
-                        </ol>
-                    </div>
-
-                    <div class="bg-sissi/10 p-5 border border-sissi/30 relative w-full box-border">
-                        <i class="ri-alert-fill absolute -top-3 -right-3 text-2xl text-sissi bg-velvet rounded-full"></i>
-                        <h4 class="font-imperial font-bold text-base md:text-lg mb-2 text-sissi truncate">Die Kaiserliche Unterbrechung</h4>
-                        <p class="text-sm md:text-base text-parchment-dark/90 italic pr-2">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
-                    </div>
-                </div>
-
-                <div class="w-full lg:w-1/2 px-4 py-6 md:p-8 lg:p-12 flex flex-col justify-start lg:justify-center items-center bg-[#1A0F11] lg:border-l border-t lg:border-t-0 border-habsburg/20 flex-shrink-0">
-                    <div class="w-full max-w-full relative group">
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-velvet px-3 font-imperial text-xs tracking-widest text-habsburg uppercase whitespace-nowrap z-10 border border-habsburg/30">
-                            Visual Grimoire
-                        </div>
-                        <div class="aspect-video w-full max-w-full relative overflow-hidden border-2 border-habsburg/40 shadow-inner">
-                            <iframe 
-                                class="w-full h-full absolute inset-0" 
-                                src="https://www.youtube.com/embed/yy1eG_oyeGU" 
-                                title="Ultimate Guide to Cleaning the Litter-Robot 4" 
-                                loading="lazy"
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <p class="text-center font-serif italic text-sm md:text-base text-parchment-dark/50 mt-4 break-words px-2">A moving portrait demonstrating the sacred purification rites of the Fourth Throne, to which Her Majesty's facilities were elevated in the Year of Grace 2026.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Emergency Protocol / Royal Decree -->
-        <section id="emergency" class="book-chapter w-full min-w-full max-w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-3 md:p-12 relative box-border">
-            <!-- inner-scroll applied here so the whole frame allows scrolling -->
-            <div class="storybook-frame w-full max-w-4xl h-full max-h-[85vh] p-2 md:p-4 bg-decree relative shadow-2xl overflow-y-auto overflow-x-hidden inner-scroll">
-                <!-- Inner border container is now min-h-full, naturally growing to hold content -->
-                <div class="border-[1px] md:border-2 border-habsburg p-6 py-8 md:p-8 lg:p-12 min-h-full flex flex-col relative overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-decree to-[#5a1c1c] box-border">
-                    
-                    <!-- Wax Seal Deco -->
-                    <div class="absolute top-4 right-4 w-16 h-16 md:w-20 md:h-20 wax-seal rounded-full flex items-center justify-center border-2 border-[#5a1c1c] opacity-80 transform rotate-12 z-0">
-                        <i class="ri-vip-crown-line text-2xl md:text-3xl text-[#5a1c1c]"></i>
-                    </div>
-
-                    <div class="text-center mb-8 md:mb-10 mt-6 md:mt-6 relative z-10">
-                        <p class="font-imperial text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] text-habsburg uppercase mb-2 md:mb-4">Royal Decree • Urgent</p>
-                        <h2 class="font-script text-4xl md:text-6xl text-parchment mb-4 md:mb-6">Der Schutz der Rose</h2>
-                        <p class="text-sm md:text-base text-parchment/90 max-w-xl mx-auto italic font-serif px-2 break-words">
-                            "Der Mut ist die höchste Eigenschaft des Geistes."<br>
-                            <span class="block mt-2 font-imperial text-xs md:text-sm tracking-widest text-habsburg-light">— Carl von Clausewitz</span>
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8 text-center flex-grow items-start lg:items-center relative z-10 box-border w-full">
-                        <!-- Vet -->
-                        <div class="border-t border-habsburg/30 pt-6 md:pt-4">
-                            <h4 class="font-imperial text-xs md:text-sm text-habsburg tracking-widest uppercase mb-2 truncate">Königlicher Leibarzt</h4>
-                            <p class="font-serif text-base md:text-xl mb-1 text-parchment truncate">Toebeans and Tails</p>
-                            <p class="text-sm md:text-base text-parchment/70 mb-2 italic">Alexandria</p>
-                            <a href="tel:7039884181" class="font-imperial text-base md:text-lg text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1 break-words">
-                                (703) 988-4181
-                            </a>
-                        </div>
-                        
-                        <!-- Head Lady in Waiting -->
-                        <div class="border-t border-habsburg/30 pt-6 md:pt-4">
-                            <h4 class="font-imperial text-xs md:text-sm text-habsburg tracking-widest uppercase mb-2 truncate">Oberste Hofdame</h4>
-                            <p class="font-serif text-base md:text-xl mb-2 text-parchment truncate">Sharon Prince</p>
-                            <a href="tel:5862672151" class="font-imperial text-base md:text-lg text-parchment hover:text-habsburg transition-colors border-b border-habsburg/50 pb-1 break-words">
-                                (586) 267-2151
-                            </a>
-                        </div>
-
-                        <!-- Loyal Court -->
-                        <div class="border-t border-habsburg/30 pt-6 md:pt-4 md:col-span-2 lg:col-span-1">
-                            <h4 class="font-imperial text-xs md:text-sm text-habsburg tracking-widest uppercase mb-4 truncate">Der Getreue Hofstaat</h4>
-                            <div class="space-y-4">
-                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
-                                    <span class="block font-serif text-sm md:text-base text-parchment truncate">Humaira Ahmed</span>
-                                    <a href="tel:9258267542" class="font-imperial text-sm md:text-base text-parchment/80 hover:text-habsburg break-words">(925) 826-7542</a>
-                                </div>
-                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
-                                    <span class="block font-serif text-sm md:text-base text-parchment truncate">Haley Johnson</span>
-                                    <a href="tel:2315100580" class="font-imperial text-sm md:text-base text-parchment/80 hover:text-habsburg break-words">(231) 510-0580</a>
-                                </div>
-                                <div class="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:px-4">
-                                    <span class="block font-serif text-sm md:text-base text-parchment truncate">Amber DeJohn</span>
-                                    <a href="tel:8105160069" class="font-imperial text-sm md:text-base text-parchment/80 hover:text-habsburg break-words">(810) 516-0069</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-12 text-parchment/30 text-xs md:text-sm font-imperial tracking-widest relative z-10 break-words w-full">
-                        © 2026 Lieslcare. All Royal Rights Reserved.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Royal Audio -->
-    <audio id="royal-waltz" src="LieslWaltz.mp3" loop></audio>
-
-    <!-- Modals (Overlayed above the book) -->
-    <!-- Carousel Modal -->
-    <div id="carousel-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
-        <div class="bg-parchment p-6 rounded-sm w-[95%] max-w-3xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
-            <button class="close-carousel absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10" aria-label="Close preparation precepts"><i class="ri-close-line"></i></button>
-            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">Preparing Her Majesty's Sustenance</h3>
-            <div class="relative w-full flex-grow aspect-video overflow-hidden border-[1px] md:border-2 border-habsburg/30 bg-white flex items-center justify-center">
-                <img id="carousel-img" src="IMG_4894.jpeg" class="max-w-full max-h-full object-contain transition-opacity duration-300" alt="Sustenance preparation">
-            </div>
-            <!-- Thematic Supplement Decree -->
-            <p class="text-center font-serif italic text-xs md:text-sm text-velvet/80 mt-4 px-2">It is decreed that the sacred supplements must be integrated thoroughly into Her Majesty's royal meal.</p>
-            <div class="flex justify-between items-center mt-4 md:mt-6 px-4">
-                <button id="prev-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-sm md:text-base"><i class="ri-arrow-left-s-line"></i> Prev</button>
-                <span id="carousel-counter" class="font-serif italic text-velvet/70 text-sm md:text-base">1 / 6</span>
-                <button id="next-btn" class="text-habsburg hover:text-habsburg-light font-imperial tracking-widest text-sm md:text-base">Next <i class="ri-arrow-right-s-line"></i></button>
-            </div>
+          <article class="rubric reveal">
+            <h3><i class="ri-drop-fill"></i> Der Lebensbrunnen</h3>
+            <p>Her royal water fountain must be renewed <span class="chip blue">every two days</span>.</p>
+            <p class="note"><strong>Caution:</strong> the top and base of the fountain are not connected — lift with both hands and due reverence.</p>
+            <button class="text-btn" data-lightbox="fountain"><i class="ri-drop-line"></i> View Water Levels</button>
+          </article>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER II · ZERSTREUUNGEN ═══════════ -->
+<section class="chapter" id="diversions">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <p class="eyebrow smallcaps">Chapter the Second</p>
+      <div class="medallion">II</div>
+      <h2>Kaiserliche Zerstreuungen</h2>
+      <blockquote class="epigraph">
+        « Quand je me joue à ma chatte, qui sait si elle ne passe pas son temps de moi plus que je ne fais d'elle ? »
+        <span class="gloss">(When I play with my cat, who knows whether she is not amusing herself with me more than I with her?)</span>
+        <span class="attrib smallcaps">— Michel de Montaigne, Essais · the only question of state she permits</span>
+      </blockquote>
     </div>
 
-    <!-- Fountain Modal -->
-    <div id="fountain-modal" class="fixed inset-0 z-[250] bg-velvet/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 w-full max-w-full">
-        <div class="bg-parchment p-6 rounded-sm w-[95%] max-w-xl relative storybook-frame shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto inner-scroll">
-            <button class="close-fountain absolute top-4 right-4 text-velvet hover:text-habsburg text-3xl z-10" aria-label="Close water levels"><i class="ri-close-line"></i></button>
-            <h3 class="font-script text-3xl md:text-4xl text-center text-velvet mb-6 pr-6">Royal Water Levels</h3>
-            <div class="w-full flex-grow border-2 border-sissi/50 p-2 bg-white flex items-center justify-center">
-                <img src="IMG_4900.jpeg" class="max-w-full max-h-[60vh] object-contain" alt="Fountain water levels" loading="lazy">
-            </div>
+    <div class="duet flip">
+      <figure class="gilt cameo reveal">
+        <div class="mat"><img src="IMG_4881.jpeg" alt="Her Majesty at her imperial diversions"></div>
+        <figcaption>A soul of such sensitivity requires moments of whim.</figcaption>
+      </figure>
+
+      <div class="rubrics">
+        <article class="rubric reveal">
+          <h3><i class="ri-sparkling-fill"></i> Die Jagd nach dem Sternenlicht</h3>
+          <p>Capture a beam of light at dusk and let it dance like a firefly through her chambers. She will pursue it as her ancestors pursued empires.</p>
+        </article>
+        <article class="rubric reveal">
+          <h3><i class="ri-music-2-fill"></i> Spiele der Musen</h3>
+          <p>Let small feathers and shining orbs bounce from the furniture like notes in a symphony. It is your sacred duty to delight Her Majesty — and, per Montaigne, hers to indulge you.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER III · RITUALE ═══════════ -->
+<section class="chapter alt" id="rituals">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <p class="eyebrow smallcaps">Chapter the Third</p>
+      <div class="medallion">III</div>
+      <h2>Die Rituale der Schönheit</h2>
+      <blockquote class="epigraph">
+        « Les Chinois voient l'heure dans l'œil des chats. »
+        <span class="gloss">(The Chinese tell the hour in the eyes of cats.)</span>
+        <span class="attrib smallcaps">— Baudelaire, Le Spleen de Paris · in her emerald gaze, it is always the golden hour</span>
+      </blockquote>
+    </div>
+
+    <div class="rubrics">
+      <div class="pair">
+        <article class="rubric reveal">
+          <h3><i class="ri-brush-fill"></i> Der Kaiserliche Mantel</h3>
+          <p>Her coat requires your most delicate touch. The <span class="chip green">green brush</span> smooths the strands; the <span class="chip blue">blue comb</span> resolves any tiny imperfection.</p>
+        </article>
+        <article class="rubric reveal">
+          <h3><i class="ri-eye-fill"></i> Die Fenster zur Seele</h3>
+          <p>Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
+        </article>
+      </div>
+      <article class="rubric reveal">
+        <h3><i class="ri-shield-star-fill"></i> Die Wacht am Rücken</h3>
+        <p>Although rare, under certain circumstances her rear may be compromised. Cleansing wipes befitting her station await in the <strong>lower left cabinet adjacent to the range</strong>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER IV · ALCHEMIE ═══════════ -->
+<section class="chapter dark" id="alchemy">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Chapter the Fourth</p>
+      <div class="medallion">IV</div>
+      <h2>Die Alchemie</h2>
+      <p class="subtitle smallcaps">Der Vierte Thron · Litter-Robot 4</p>
+      <blockquote class="epigraph">
+        « Sic transit gloria mundi. »
+        <span class="gloss">(Thus passes the glory of the world — every fifth day, into the drawer below.)</span>
+        <span class="attrib smallcaps">— antiphon of coronations, here most literally observed</span>
+      </blockquote>
+    </div>
+
+    <div class="duet">
+      <div class="rubrics">
+        <article class="rubric reveal">
+          <h3><i class="ri-vip-crown-2-fill"></i> Rite of the 5-Day Renewal</h3>
+          <ol class="rite">
+            <li>Heed the azure beacon, should it flash upon the panel of command</li>
+            <li>Withdraw the drawer of offerings by its gilded step</li>
+            <li>Draw the string and cast out the old tribute</li>
+            <li>Dress the drawer in a pure new liner, pressed flat lest the all-seeing OmniSense be deceived</li>
+            <li>Replenish the sacred sands to the raised line of purification</li>
+            <li>Return the drawer and press the button of renewal</li>
+          </ol>
+        </article>
+
+        <article class="rubric reveal">
+          <h3><i class="ri-alert-fill"></i> Die Kaiserliche Unterbrechung</h3>
+          <p style="font-style:italic;">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
+        </article>
+      </div>
+
+      <figure class="video-shrine reveal" style="margin:0;">
+        <p class="label smallcaps">Visual Grimoire</p>
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/CM6vQSPLGxk"
+            title="Cleaning rites of the Litter-Robot 4"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
+        <figcaption>A moving portrait of the sacred purification rites of the Fourth Throne, to which Her Majesty's facilities were elevated in the Year of Grace 2026.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROYAL DECREE ═══════════ -->
+<section class="chapter decree" id="decree">
+  <div class="chapter-inner">
+    <div class="frontispiece reveal">
+      <div class="seal" aria-hidden="true"><i class="ri-vip-crown-line"></i></div>
+      <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Royal Decree · Urgent</p>
+      <h2>Der Schutz der Rose</h2>
+      <blockquote class="epigraph">
+        „Der Fürst ist der erste Diener seines Staates."
+        <span class="gloss">(The prince is the first servant of his state — and her court, the first servants of the Empress.)</span>
+        <span class="attrib smallcaps">— Friedrich II. von Preußen · a Prussian, but on this point we forgive him</span>
+      </blockquote>
     </div>
 
-    <!-- Royal Scripts -->
-    <script>
-        // Sidebar Logic
-        const sidebar = document.getElementById('mobile-sidebar');
-        const openBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-sidebar-btn');
-        const links = document.querySelectorAll('.mobile-link');
+    <div class="court">
+      <div class="courtier reveal">
+        <p class="role smallcaps">K. u. K. Leibärzte</p>
+        <p class="name">Toebeans and Tails</p>
+        <p class="place">Alexandria</p>
+        <a class="tel" href="tel:7039884181">(703) 988-4181</a>
+      </div>
 
-        function toggleSidebar() {
-            sidebar.classList.toggle('translate-x-full');
-        }
+      <div class="courtier reveal">
+        <p class="role smallcaps">Oberste Hofdame</p>
+        <p class="name">Sharon Prince</p>
+        <a class="tel" href="tel:5862672151">(586) 267-2151</a>
+      </div>
 
-        if(openBtn && closeBtn && sidebar) {
-            openBtn.addEventListener('click', toggleSidebar);
-            closeBtn.addEventListener('click', toggleSidebar);
-            links.forEach(link => link.addEventListener('click', toggleSidebar));
-        }
+      <div class="courtier reveal">
+        <p class="role smallcaps">Der Getreue Hofstaat</p>
+        <div class="retinue">
+          <div>
+            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Humaira Ahmed</p>
+            <a class="tel" href="tel:9258267542">(925) 826-7542</a>
+          </div>
+          <div>
+            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Haley Johnson</p>
+            <a class="tel" href="tel:2315100580">(231) 510-0580</a>
+          </div>
+          <div>
+            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Amber DeJohn</p>
+            <a class="tel" href="tel:8105160069">(810) 516-0069</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        // Welcome Screen Slideshow Logic
-        const baedekerImages = ['IMG_1243.jpeg', 'IMG_1799.jpeg', 'IMG_1868.jpeg', 'IMG_2041.jpeg', 'IMG_2816.jpeg', 'IMG_2943.jpeg', 'IMG_3345.jpeg', 'IMG_3351.jpeg'];
-        // Preload the procession of portraits so no crossfade reveals an empty frame
-        baedekerImages.forEach(src => { const img = new Image(); img.src = src; });
-        let baedekerIndex = 0;
-        const slide1 = document.getElementById('baedeker-slide-1');
-        const slide2 = document.getElementById('baedeker-slide-2');
-        let useSlide1 = true;
+    <p class="footer-line smallcaps">© 2026 Lieslcare · All Royal Rights Reserved</p>
+  </div>
+</section>
 
-        if (slide1 && slide2) {
-            setInterval(() => {
-                baedekerIndex = (baedekerIndex + 1) % baedekerImages.length;
-                if(useSlide1) {
-                    slide2.src = baedekerImages[baedekerIndex];
-                    slide2.classList.remove('opacity-0');
-                    slide1.classList.add('opacity-0');
-                } else {
-                    slide1.src = baedekerImages[baedekerIndex];
-                    slide1.classList.remove('opacity-0');
-                    slide2.classList.add('opacity-0');
-                }
-                useSlide1 = !useSlide1;
-            }, 3500); // Crossfade every 3.5 seconds
-        }
+</main>
 
-        // Welcome Screen & Audio Logic
-        const welcomeScreen = document.getElementById('welcome-screen');
-        const enterTrigger = document.getElementById('enter-court-trigger');
-        const royalWaltz = document.getElementById('royal-waltz');
-        const waltzToggle = document.getElementById('waltz-toggle');
-        const waltzIcon = document.getElementById('waltz-icon');
+<footer class="colophon-bar">
+  Set at the command of Her Imperial &amp; Royal Majesty, Liesl the Ragamuffin.
+  <span class="smallcaps">Cinzel · EB Garamond · Great Vibes — Leipzig: Karl Baedeker</span>
+</footer>
 
-        function updateWaltzButton() {
-            if (!royalWaltz || !waltzToggle || !waltzIcon) return;
-            const playing = !royalWaltz.paused;
-            waltzIcon.className = playing ? 'ri-pause-mini-line' : 'ri-music-2-line';
-            waltzToggle.setAttribute('aria-label', playing ? 'Pause the royal waltz' : 'Play the royal waltz');
-        }
+<!-- Royal Audio + Toggle -->
+<audio id="royal-waltz" src="LieslWaltz.mp3" loop preload="none"></audio>
+<button id="waltz-toggle" aria-label="Play the royal waltz"><i id="waltz-icon" class="ri-music-2-line"></i></button>
 
-        if (waltzToggle && royalWaltz) {
-            waltzToggle.addEventListener('click', () => {
-                if (royalWaltz.paused) {
-                    royalWaltz.volume = 0.4;
-                    royalWaltz.play().catch(e => console.log("Audio play failed:", e));
-                } else {
-                    royalWaltz.pause();
-                }
-            });
-            royalWaltz.addEventListener('play', updateWaltzButton);
-            royalWaltz.addEventListener('pause', updateWaltzButton);
-            updateWaltzButton();
-        }
+<!-- ═══════════ LIGHTBOX ═══════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+  <div class="lightbox-panel">
+    <button class="close-x" id="lightbox-close" aria-label="Close"><i class="ri-close-line"></i></button>
+    <h3 id="lightbox-title">Preparing Her Majesty's Sustenance</h3>
+    <div class="lightbox-stage">
+      <img id="lightbox-img" src="IMG_4894.jpeg" alt="Sustenance preparation">
+    </div>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+    <div class="lightbox-nav">
+      <button class="text-btn" id="lightbox-prev"><i class="ri-arrow-left-s-line"></i> Prev</button>
+      <span class="counter" id="lightbox-counter">1 / 6</span>
+      <button class="text-btn" id="lightbox-next">Next <i class="ri-arrow-right-s-line"></i></button>
+    </div>
+  </div>
+</div>
 
-        if (enterTrigger && welcomeScreen) {
-            enterTrigger.addEventListener('click', () => {
-                welcomeScreen.classList.add('page-turn-active');
-                document.body.classList.remove('overflow-hidden'); // Unlock main doc
-                setTimeout(() => {
-                    welcomeScreen.classList.add('hidden');
-                    if (royalWaltz) {
-                        royalWaltz.volume = 0.4;
-                        royalWaltz.play().catch(e => console.log("Audio play failed:", e));
-                    }
-                }, 1500); // Matches page turn animation duration
-            });
-        }
+<script>
+/* ── Cover slideshow ─────────────────────────────── */
+const coverImages = ['IMG_1243.jpeg','IMG_1799.jpeg','IMG_1868.jpeg','IMG_2041.jpeg','IMG_2816.jpeg','IMG_2943.jpeg','IMG_3345.jpeg','IMG_3351.jpeg'];
+coverImages.forEach(src => { const im = new Image(); im.src = src; });
+const slideA = document.getElementById('slide-a');
+const slideB = document.getElementById('slide-b');
+let coverIdx = 0, showA = true;
+if (slideA && slideB) {
+  setInterval(() => {
+    coverIdx = (coverIdx + 1) % coverImages.length;
+    const incoming = showA ? slideB : slideA;
+    const outgoing = showA ? slideA : slideB;
+    incoming.src = coverImages[coverIdx];
+    incoming.classList.remove('faded');
+    outgoing.classList.add('faded');
+    showA = !showA;
+  }, 3800);
+}
 
-        // Horizontal Scrolling Arrows Logic
-        const bookContainer = document.getElementById('book-container');
-        const scrollLeftBtn = document.getElementById('scroll-left');
-        const scrollRightBtn = document.getElementById('scroll-right');
+/* ── Court orchestra (waltz) ─────────────────────── */
+const waltz = document.getElementById('royal-waltz');
+const waltzToggle = document.getElementById('waltz-toggle');
+const waltzIcon = document.getElementById('waltz-icon');
+function syncWaltz(){
+  const playing = waltz && !waltz.paused;
+  waltzIcon.className = playing ? 'ri-pause-mini-line' : 'ri-music-2-line';
+  waltzToggle.setAttribute('aria-label', playing ? 'Pause the royal waltz' : 'Play the royal waltz');
+}
+if (waltz && waltzToggle) {
+  waltzToggle.addEventListener('click', () => {
+    if (waltz.paused) { waltz.volume = 0.4; waltz.play().catch(()=>{}); }
+    else { waltz.pause(); }
+  });
+  waltz.addEventListener('play', syncWaltz);
+  waltz.addEventListener('pause', syncWaltz);
+  syncWaltz();
+}
 
-        function turnPage(direction) {
-            if (bookContainer) {
-                bookContainer.scrollBy({ left: direction * window.innerWidth, behavior: 'smooth' });
-            }
-        }
+/* ── Lightbox (precepts carousel + fountain plate) ─ */
+const precepts = ['IMG_4894.jpeg','IMG_4895.jpeg','IMG_4896.jpeg','IMG_4898.jpeg','IMG_4899.jpeg','IMG_4901.jpeg'];
+precepts.forEach(src => { const im = new Image(); im.src = src; });
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
+const lbTitle = document.getElementById('lightbox-title');
+const lbCaption = document.getElementById('lightbox-caption');
+const lbCounter = document.getElementById('lightbox-counter');
+const lbPrev = document.getElementById('lightbox-prev');
+const lbNext = document.getElementById('lightbox-next');
+const lbClose = document.getElementById('lightbox-close');
+let lbMode = 'precepts', lbIdx = 0, lastFocus = null;
 
-        if(scrollLeftBtn && scrollRightBtn && bookContainer) {
-            scrollLeftBtn.addEventListener('click', () => turnPage(-1));
-            scrollRightBtn.addEventListener('click', () => turnPage(1));
-        }
+function renderLightbox(){
+  if (lbMode === 'precepts') {
+    lb.classList.remove('single');
+    lbTitle.textContent = "Preparing Her Majesty's Sustenance";
+    lbCaption.textContent = "It is decreed that the sacred supplements be integrated thoroughly into the royal meal.";
+    lbImg.style.opacity = 0;
+    setTimeout(() => {
+      lbImg.src = precepts[lbIdx];
+      lbImg.alt = 'Sustenance preparation, plate ' + (lbIdx + 1);
+      lbCounter.textContent = (lbIdx + 1) + ' / ' + precepts.length;
+      lbImg.style.opacity = 1;
+    }, 150);
+  } else {
+    lb.classList.add('single');
+    lbTitle.textContent = 'Royal Water Levels';
+    lbCaption.textContent = 'Fill precisely thus, that the Lebensbrunnen may murmur without interruption.';
+    lbImg.src = 'IMG_4900.jpeg';
+    lbImg.alt = 'Fountain water levels';
+    lbImg.style.opacity = 1;
+  }
+}
+function openLightbox(mode){
+  lbMode = mode; lbIdx = 0; lastFocus = document.activeElement;
+  renderLightbox();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbClose.focus();
+}
+function closeLightbox(){
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-lightbox]').forEach(btn => {
+  btn.addEventListener('click', () => openLightbox(btn.dataset.lightbox));
+});
+lbClose.addEventListener('click', closeLightbox);
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+lbPrev.addEventListener('click', () => { lbIdx = (lbIdx - 1 + precepts.length) % precepts.length; renderLightbox(); });
+lbNext.addEventListener('click', () => { lbIdx = (lbIdx + 1) % precepts.length; renderLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (lbMode === 'precepts') {
+    if (e.key === 'ArrowLeft') lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  }
+});
 
-        // Courtly Keyboard Etiquette: arrow keys turn pages, Escape dismisses audiences
-        document.addEventListener('keydown', (e) => {
-            const carouselOpen = carouselModal && !carouselModal.classList.contains('hidden');
-            const fountainOpen = fountainModal && !fountainModal.classList.contains('hidden');
-            if (e.key === 'Escape') {
-                if (carouselOpen) closeModal(carouselModal);
-                if (fountainOpen) closeModal(fountainModal);
-                return;
-            }
-            if (carouselOpen) {
-                if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
-                if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
-                return;
-            }
-            if (fountainOpen) return;
-            const welcomeVisible = welcomeScreen && !welcomeScreen.classList.contains('hidden');
-            if (welcomeVisible) return;
-            if (e.key === 'ArrowLeft') turnPage(-1);
-            if (e.key === 'ArrowRight') turnPage(1);
-        });
-
-        // Intersection Observer to reset chapter scroll positions when swiping
-        const sections = document.querySelectorAll('.book-chapter');
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Reset all OTHER chapters to the top, so they are fresh when visited
-                    sections.forEach(sec => {
-                        if (sec !== entry.target) {
-                            const innerFrame = sec.querySelector('.inner-scroll');
-                            if (innerFrame) {
-                                innerFrame.scrollTop = 0;
-                            }
-                        }
-                    });
-                }
-            });
-        }, {
-            root: document.getElementById('book-container'),
-            threshold: 0.5
-        });
-
-        sections.forEach(sec => scrollObserver.observe(sec));
-
-        // Modal & Carousel Logic
-        const carouselModal = document.getElementById('carousel-modal');
-        const fountainModal = document.getElementById('fountain-modal');
-        const openCarouselBtn = document.getElementById('open-carousel-btn');
-        const openFountainBtn = document.getElementById('open-fountain-btn');
-        const closeCarouselBtns = document.querySelectorAll('.close-carousel');
-        const closeFountainBtns = document.querySelectorAll('.close-fountain');
-
-        const images = ['IMG_4894.jpeg', 'IMG_4895.jpeg', 'IMG_4896.jpeg', 'IMG_4898.jpeg', 'IMG_4899.jpeg', 'IMG_4901.jpeg'];
-        // Preload the precepts so the carousel turns without hesitation
-        images.forEach(src => { const img = new Image(); img.src = src; });
-        let currentImageIndex = 0;
-        const carouselImg = document.getElementById('carousel-img');
-        const carouselCounter = document.getElementById('carousel-counter');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-
-        function updateCarousel() {
-            if(carouselImg && carouselCounter) {
-                carouselImg.style.opacity = 0; 
-                setTimeout(() => {
-                    carouselImg.src = images[currentImageIndex];
-                    carouselCounter.innerText = `${currentImageIndex + 1} / ${images.length}`;
-                    carouselImg.style.opacity = 1; 
-                }, 200);
-            }
-        }
-
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
-                updateCarousel();
-            });
-            nextBtn.addEventListener('click', () => {
-                currentImageIndex = (currentImageIndex === images.length - 1) ? 0 : currentImageIndex + 1;
-                updateCarousel();
-            });
-        }
-
-        function openModal(modal) {
-            if (modal) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                setTimeout(() => modal.classList.remove('opacity-0'), 10);
-            }
-        }
-
-        function closeModal(modal) {
-            if (modal) {
-                modal.classList.add('opacity-0');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                }, 300);
-            }
-        }
-
-        if (openCarouselBtn) openCarouselBtn.addEventListener('click', () => openModal(carouselModal));
-        if (openFountainBtn) openFountainBtn.addEventListener('click', () => openModal(fountainModal));
-        
-        closeCarouselBtns.forEach(btn => btn.addEventListener('click', () => closeModal(carouselModal)));
-        closeFountainBtns.forEach(btn => btn.addEventListener('click', () => closeModal(fountainModal)));
-    </script>
+/* ── Gentle reveal on scroll ─────────────────────── */
+const revealables = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  revealables.forEach(el => io.observe(el));
+} else {
+  revealables.forEach(el => el.classList.add('in'));
+}
+</script>
 </body>
 </html>
