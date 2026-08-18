@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Lieslcare | The Imperial Standard</title>
 <meta name="description" content="Baedeker's Kaiserin Liesl — the official veneration and care chronicle of Her Imperial and Royal Majesty, the Ragamuffin Empress.">
 <meta name="theme-color" content="#8E1F1F">
@@ -19,7 +19,9 @@
 
 <style>
 /* ============================================================
-   LIESLCARE · SECOND EDITION — an illuminated vertical codex
+   LIESLCARE · THIRD EDITION — a horizontal illuminated book
+   One chapter per page · content centers when it fits,
+   anchors at its heading when it overflows (margin:auto law).
    ============================================================ */
 :root{
   --parchment:#F7F1E4;
@@ -38,397 +40,393 @@
   --velvet-deep:#171009;
   --sissi:#8FA3BE;
   --emerald:#4C6B52;
-  --frame-w: clamp(10px, 2.5vw, 22px);
+  --nav-h:52px;
 }
 
 *{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
-html, body{ margin:0; padding:0; }
+html, body{ margin:0; padding:0; height:100%; }
 body{
-  background:var(--parchment);
+  background:var(--velvet);
+  background-image:url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V20h8v2h-8v1.5L29.5 26 27 28.5V40h-2V28.5L22.5 26 20 23.5V20.5zM0 20h2v-2H0v2zm40 0h-2v-2h2v2z" fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E');
   color:var(--ink);
   font-family:'EB Garamond', Georgia, serif;
-  font-size:1.19rem;
-  line-height:1.68;
+  font-size:1.15rem;
+  line-height:1.62;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-/* ---------- utility type ---------- */
-.smallcaps{
-  font-family:'Cinzel', serif;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-}
+.smallcaps{ font-family:'Cinzel',serif; letter-spacing:.22em; text-transform:uppercase; }
 a{ color:var(--oxblood); text-decoration-color:var(--gold-pale); text-underline-offset:3px; }
 a:hover{ color:var(--gold); }
 :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
-
-.skip-link{
-  position:absolute; left:-999px; top:0; z-index:300;
-  background:var(--velvet); color:var(--gold-pale); padding:.6rem 1rem;
-}
-.skip-link:focus{ left:0; }
+.no-scrollbar::-webkit-scrollbar{ display:none; }
+.no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+.page-scroll::-webkit-scrollbar{ width:6px; }
+.page-scroll::-webkit-scrollbar-track{ background:transparent; }
+.page-scroll::-webkit-scrollbar-thumb{ background:var(--gold); border-radius:10px; }
 
 /* ============================================================
-   RIBBON NAVIGATION
+   RIBBON NAVIGATION (fixed above the book)
    ============================================================ */
 nav.ribbon{
-  position:sticky; top:0; z-index:100;
-  background:rgba(247,241,228,.94);
+  position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h);
+  background:rgba(247,241,228,.95);
   backdrop-filter:blur(6px);
   border-bottom:2px solid var(--gold);
-  box-shadow:0 1px 0 var(--gold-pale), 0 6px 18px rgba(43,33,24,.08);
+  box-shadow:0 1px 0 var(--gold-pale), 0 6px 18px rgba(23,16,9,.25);
 }
 .ribbon-inner{
-  max-width:1120px; margin:0 auto;
-  padding:.65rem 1rem;
+  max-width:1180px; height:100%; margin:0 auto; padding:0 1rem;
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
 .brand{
   font-family:'Cinzel',serif; font-weight:700; letter-spacing:.18em;
-  font-size:.95rem; color:var(--ink); white-space:nowrap;
+  font-size:.92rem; color:var(--ink); white-space:nowrap;
   display:flex; align-items:center; gap:.5rem; text-decoration:none;
 }
-.brand i{ color:var(--gold); font-size:1.15rem; }
-.ribbon-links{ display:flex; gap:.25rem; overflow-x:auto; scrollbar-width:none; }
-.ribbon-links::-webkit-scrollbar{ display:none; }
+.brand i{ color:var(--gold); font-size:1.1rem; }
+.ribbon-links{ display:flex; gap:.15rem; overflow-x:auto; }
 .ribbon-links a{
-  font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-soft); text-decoration:none; padding:.45rem .55rem;
+  font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none; padding:.45rem .5rem;
   border-bottom:2px solid transparent; white-space:nowrap; transition:color .2s, border-color .2s;
 }
 .ribbon-links a:hover{ color:var(--gold); border-color:var(--gold); }
 .ribbon-links a.decree-link{ color:var(--oxblood); font-weight:700; }
 .ribbon-links a.decree-link:hover{ color:var(--baedeker); border-color:var(--oxblood); }
-@media (max-width:680px){
-  .ribbon-links a .word{ display:none; }       /* numerals only on small screens */
+@media (max-width:720px){
+  .ribbon-links a .word{ display:none; }
   .brand span{ display:none; }
 }
 
 /* ============================================================
-   BAEDEKER COVER
+   BAEDEKER WELCOME OVERLAY (tap to open · waltz begins)
    ============================================================ */
-.cover{
-  position:relative;
-  min-height:100svh;
+#welcome{
+  position:fixed; inset:0; z-index:200;
   background:var(--baedeker);
   background-image:
     radial-gradient(ellipse at 50% 20%, rgba(255,220,150,.10), transparent 60%),
     url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23n)" opacity="0.08"/%3E%3C/svg%3E');
   display:flex; align-items:stretch; justify-content:center;
-  padding:var(--frame-w);
+  padding:clamp(10px, 2.5vw, 22px);
+  perspective:1500px;
+  transform-origin:left center;
+  transition:transform 1.3s cubic-bezier(.645,.045,.355,1), opacity 1.1s ease-in-out;
 }
-.cover-frame{
-  flex:1; max-width:920px;
+#welcome.turned{ transform:rotateY(-100deg); opacity:0; pointer-events:none; }
+.welcome-frame{
+  flex:1; max-width:880px; margin:0 auto;
   border:2px solid var(--gold-bright);
   outline:1px solid rgba(201,167,92,.5); outline-offset:5px;
-  padding:clamp(1.6rem, 4vw, 3.5rem) clamp(1rem, 4vw, 3rem);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; color:var(--gold-pale); gap:1.1rem;
+  display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
 }
-.cover .imprint{ font-size:.72rem; color:var(--gold-bright); border-bottom:1px solid rgba(201,167,92,.4); padding-bottom:.7rem; }
-.cover h1{
+.welcome-content{
+  margin:auto;                                   /* center if fits, top-reachable if not */
+  width:100%; padding:clamp(1.4rem,4vw,2.6rem) clamp(1rem,4vw,2.4rem);
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  color:var(--gold-pale); gap:.95rem;
+}
+.welcome-content .imprint{ font-size:.7rem; color:var(--gold-bright); border-bottom:1px solid rgba(201,167,92,.4); padding-bottom:.6rem; margin:0; }
+.welcome-content h1{
   font-family:'Cinzel',serif; font-weight:900; letter-spacing:.08em;
-  font-size:clamp(2.6rem, 8vw, 4.6rem); margin:0; line-height:1.05;
-  color:var(--gold-pale); text-shadow:2px 2px 0 rgba(0,0,0,.45);
+  font-size:clamp(2.4rem, 7.5vw, 4.2rem); margin:0; line-height:1.05;
+  text-shadow:2px 2px 0 rgba(0,0,0,.45);
 }
-.cover .majesty{
-  font-family:'Great Vibes', cursive; font-size:clamp(2.2rem, 6vw, 3.4rem);
-  color:var(--cream); line-height:1.1; text-shadow:1px 1px 0 rgba(0,0,0,.4);
+.welcome-content .majesty{
+  font-family:'Great Vibes',cursive; font-size:clamp(2rem, 5.5vw, 3.1rem);
+  color:var(--cream); line-height:1.1; margin:0; text-shadow:1px 1px 0 rgba(0,0,0,.4);
 }
-.cover .handbook-line{
-  font-style:italic; color:rgba(228,211,168,.9); font-size:clamp(.95rem, 2.5vw, 1.08rem);
-  max-width:34rem;
-}
-
-/* portrait arch + crossfade slideshow */
-.arch{
-  position:relative;
-  width:min(62vw, 250px); aspect-ratio:2/3;
+.arch-btn{
+  position:relative; display:block;
+  width:min(56vw, 225px); aspect-ratio:2/3;
   border:3px solid var(--gold-bright);
   border-radius:999px 999px 6px 6px;
-  padding:5px; background:var(--velvet);
+  padding:5px; background:var(--velvet); cursor:pointer;
   box-shadow:0 18px 40px rgba(0,0,0,.45);
-  margin:.6rem 0 .2rem;
+  transition:border-color .3s, transform .3s;
+  margin:.4rem 0 0;
 }
-.arch .well{
-  width:100%; height:100%; overflow:hidden;
-  border-radius:999px 999px 3px 3px; position:relative;
+.arch-btn:hover{ border-color:var(--cream); transform:scale(1.02); }
+.arch-btn .well{ width:100%; height:100%; overflow:hidden; border-radius:999px 999px 3px 3px; position:relative; }
+.arch-btn img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity 1.2s ease; }
+.arch-btn img.faded{ opacity:0; }
+.arch-btn .crown{
+  position:absolute; top:-1.35rem; left:50%; transform:translateX(-50%);
+  font-size:2.5rem; color:var(--gold-bright); filter:drop-shadow(0 3px 4px rgba(0,0,0,.5));
 }
-.arch img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  transition:opacity 1.2s ease;
-}
-.arch img.faded{ opacity:0; }
-.arch .crown{
-  position:absolute; top:-1.4rem; left:50%; transform:translateX(-50%);
-  font-size:2.6rem; color:var(--gold-bright); filter:drop-shadow(0 3px 4px rgba(0,0,0,.5));
-}
-
 .precedent{
-  max-width:36rem; font-style:italic; font-size:clamp(.92rem, 2.4vw, 1.05rem);
-  color:rgba(247,241,228,.92);
+  max-width:34rem; font-style:italic; font-size:clamp(.9rem, 2.3vw, 1.02rem);
+  color:rgba(247,241,228,.92); margin:0;
 }
-.precedent .attrib{ display:block; margin-top:.5rem; font-style:normal; font-size:.66rem; color:var(--gold-bright); }
-
-.open-btn{
-  display:inline-flex; align-items:center; gap:.6rem;
-  font-family:'Cinzel',serif; font-size:.74rem; letter-spacing:.24em; text-transform:uppercase;
-  color:var(--gold-pale); background:transparent; cursor:pointer;
-  border:1px solid var(--gold-bright); padding:.85rem 1.6rem; margin-top:.4rem;
-  transition:background .25s, color .25s; text-decoration:none;
+.precedent .attrib{ display:block; margin-top:.45rem; font-style:normal; font-size:.62rem; color:var(--gold-bright); }
+.tap-hint{
+  font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold-pale); font-weight:700; cursor:pointer; margin:0;
+  animation:pulse 2s ease-in-out infinite;
 }
-.open-btn:hover{ background:var(--gold-bright); color:var(--baedeker-deep); }
-.open-btn i{ animation:beckon 2.2s ease-in-out infinite; }
-@keyframes beckon{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
-.cover .colophon{ font-size:.66rem; color:rgba(201,167,92,.75); margin-top:.4rem; }
+@keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.45;} }
+.welcome-content .colophon{ font-size:.62rem; color:rgba(201,167,92,.75); margin:0; }
 
 /* ============================================================
-   CODEX BODY — shared chapter grammar
+   HORIZONTAL BOOK — one chapter per page
    ============================================================ */
-main{ position:relative; }
-.chapter{
-  padding:clamp(3.2rem, 8vw, 6rem) 1.25rem;
-  scroll-margin-top:4.2rem;
+.book{
+  display:flex; width:100%; height:100dvh;
+  overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  padding-top:var(--nav-h);
+}
+.page{
+  min-width:100%; width:100%; height:100%; flex-shrink:0;
+  scroll-snap-align:center;
+  display:flex; align-items:stretch; justify-content:center;
+  padding:clamp(.7rem, 2.2vw, 2.2rem);
+}
+
+/* the leaf: framed parchment card filling the page */
+.leaf{
+  width:100%; max-width:1040px; margin:0 auto;
+  background:linear-gradient(to bottom right, var(--cream), var(--parchment-deep));
+  border:1px solid var(--gold);
+  box-shadow:inset 0 0 0 3px var(--cream), inset 0 0 0 4px var(--gold),
+             0 20px 45px -12px rgba(0,0,0,.55);
   position:relative;
+  display:flex; flex-direction:column; overflow:hidden;
 }
-.chapter-inner{ max-width:980px; margin:0 auto; }
-.chapter.alt{ background:var(--parchment-deep); border-top:1px solid var(--gold-pale); border-bottom:1px solid var(--gold-pale); }
+.leaf::before, .leaf::after{
+  content:''; position:absolute; width:18px; height:18px;
+  border:1px solid var(--gold); pointer-events:none; z-index:5;
+}
+.leaf::before{ top:8px; left:8px; border-right:none; border-bottom:none; }
+.leaf::after{ bottom:8px; right:8px; border-left:none; border-top:none; }
 
-/* marginalia rails on wide screens */
-@media (min-width:1200px){
-  .chapter-inner{ position:relative; }
-  .chapter-inner::before, .chapter-inner::after{
-    content:''; position:absolute; top:0; bottom:0; width:1px;
-    background:linear-gradient(to bottom, transparent, var(--gold-pale) 12%, var(--gold-pale) 88%, transparent);
-    opacity:.6;
-  }
-  .chapter-inner::before{ left:-56px; }
-  .chapter-inner::after{ right:-56px; }
-  .chapter.dark .chapter-inner::before, .chapter.dark .chapter-inner::after{ opacity:.25; }
+/* THE CENTERING LAW:
+   .page-scroll owns overflow; .page-content uses margin:auto,
+   so short pages sit centered and tall pages begin at their heading. */
+.page-scroll{ flex:1; overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; }
+.page-content{
+  margin:auto; width:100%;
+  padding:clamp(1.4rem, 3.5vw, 3rem) clamp(1rem, 3.5vw, 2.8rem);
 }
 
-/* frontispiece */
-.frontispiece{ text-align:center; margin-bottom:clamp(2rem, 5vw, 3.2rem); }
-.frontispiece .eyebrow{ font-size:.7rem; color:var(--gold); margin-bottom:1rem; }
+/* dark + decree leaves */
+.leaf.velvetine{
+  background:var(--velvet);
+  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:22px 22px;
+  box-shadow:inset 0 0 0 3px var(--velvet), inset 0 0 0 4px rgba(201,167,92,.6),
+             0 20px 45px -12px rgba(0,0,0,.6);
+  color:var(--parchment);
+}
+.leaf.oxbloodine{
+  background:radial-gradient(ellipse at 50% 30%, var(--baedeker), var(--baedeker-deep));
+  box-shadow:inset 0 0 0 3px var(--baedeker-deep), inset 0 0 0 4px rgba(201,167,92,.7),
+             0 20px 45px -12px rgba(0,0,0,.6);
+  color:var(--parchment);
+}
+
+/* ---------- frontispiece ---------- */
+.frontispiece{ text-align:center; margin-bottom:clamp(1.4rem, 3vw, 2.2rem); }
+.frontispiece .eyebrow{ font-size:.66rem; color:var(--gold); margin:0 0 .8rem; }
 .medallion{
-  width:66px; height:66px; margin:0 auto 1.1rem;
+  width:56px; height:56px; margin:0 auto .9rem;
   border:2px solid var(--gold); border-radius:50%;
   outline:1px solid var(--gold-pale); outline-offset:4px;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Cinzel',serif; font-weight:700; font-size:1.5rem; color:var(--gold);
+  font-family:'Cinzel',serif; font-weight:700; font-size:1.3rem; color:var(--gold);
   background:var(--cream);
 }
-.chapter.dark .medallion{ background:transparent; color:var(--gold-bright); }
+.velvetine .medallion, .oxbloodine .medallion{ background:transparent; color:var(--gold-bright); border-color:var(--gold-bright); }
 .frontispiece h2{
   font-family:'EB Garamond',serif; font-style:italic; font-weight:600;
-  font-size:clamp(2.1rem, 5.5vw, 3rem); margin:0 0 .4rem; line-height:1.15;
+  font-size:clamp(1.9rem, 4.6vw, 2.7rem); margin:0 0 .3rem; line-height:1.12;
 }
-.frontispiece .subtitle{ font-size:.68rem; color:var(--ink-faint); }
-.chapter.dark .frontispiece .subtitle{ color:var(--gold-bright); }
+.oxbloodine .frontispiece h2{ color:var(--cream); }
+.frontispiece .subtitle{ font-size:.64rem; color:var(--ink-faint); margin:.2rem 0 0; }
+.velvetine .frontispiece .subtitle{ color:var(--gold-bright); }
 .epigraph{
-  max-width:36rem; margin:1.4rem auto 0; font-style:italic; color:var(--ink-soft);
-  font-size:1.02rem;
+  max-width:34rem; margin:1.1rem auto 0; font-style:italic; color:var(--ink-soft);
+  font-size:.98rem;
 }
-.chapter.dark .epigraph{ color:rgba(247,241,228,.8); }
-.epigraph .attrib{ display:block; margin-top:.45rem; font-style:normal; font-size:.62rem; color:var(--gold); }
-.epigraph .gloss{ display:block; font-size:.9rem; color:var(--ink-faint); margin-top:.3rem; }
-.chapter.dark .epigraph .gloss{ color:rgba(228,211,168,.6); }
+.velvetine .epigraph{ color:rgba(247,241,228,.8); }
+.oxbloodine .epigraph{ color:rgba(247,241,228,.88); }
+.epigraph .gloss{ display:block; font-size:.88rem; color:var(--ink-faint); margin-top:.25rem; }
+.velvetine .epigraph .gloss, .oxbloodine .epigraph .gloss{ color:rgba(228,211,168,.6); }
+.epigraph .attrib{ display:block; margin-top:.4rem; font-style:normal; font-size:.58rem; color:var(--gold); }
+.velvetine .epigraph .attrib, .oxbloodine .epigraph .attrib{ color:var(--gold-bright); }
 .flourish{
   display:flex; align-items:center; justify-content:center; gap:.8rem;
-  color:var(--gold); margin:1.2rem auto 0; font-size:.85rem;
+  color:var(--gold); margin:1rem auto 0; font-size:.8rem;
 }
 .flourish::before, .flourish::after{
-  content:''; height:1px; width:min(18vw, 90px);
+  content:''; height:1px; width:min(16vw, 80px);
   background:linear-gradient(to right, transparent, var(--gold), transparent);
 }
 
-/* two-column chapter layout that can never strand dead space:
-   figure and prose live in one grid; on mobile it stacks. */
-.duet{
-  display:grid; gap:clamp(1.6rem, 4vw, 3rem);
-  align-items:start;
-}
+/* ---------- duet layout ---------- */
+.duet{ display:grid; gap:clamp(1.3rem, 3vw, 2.4rem); align-items:start; }
 @media (min-width:880px){
-  .duet{ grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); }
-  .duet.flip{ grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); }
+  .duet{ grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); }
+  .duet.flip{ grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); }
   .duet.flip figure{ order:2; }
 }
 
-/* gilt-framed figures — intrinsic aspect, zero void */
-figure.gilt{
-  margin:0; justify-self:center; width:min(100%, 380px);
-}
+/* ---------- gilt figures ---------- */
+figure.gilt{ margin:0; justify-self:center; width:min(100%, 330px); }
 figure.gilt .mat{
-  background:var(--cream); padding:10px;
+  background:var(--cream); padding:9px;
   border:1px solid var(--gold);
   box-shadow:0 12px 30px rgba(43,33,24,.18);
 }
-figure.gilt .mat.inner-line{ position:relative; }
 figure.gilt img{
   display:block; width:100%; aspect-ratio:3/4; object-fit:cover;
   border:1px solid var(--gold-pale);
 }
-figure.gilt.cameo{ width:min(100%, 330px); }
-figure.gilt.cameo .mat{ border-radius:50%; padding:12px; }
+figure.gilt.cameo{ width:min(100%, 280px); }
+figure.gilt.cameo .mat{ border-radius:50%; padding:11px; }
 figure.gilt.cameo img{ aspect-ratio:1/1; border-radius:50%; }
 figure.gilt figcaption{
-  text-align:center; font-style:italic; font-size:.92rem; color:var(--ink-faint);
-  margin-top:.8rem;
+  text-align:center; font-style:italic; font-size:.9rem; color:var(--ink-faint); margin-top:.7rem;
+}
+.hero-cameo{ width:min(48vw, 190px); margin:0 auto 1.3rem; }
+.hero-cameo .mat{ position:relative; }
+.hero-cameo .crown{
+  position:absolute; top:-1.5rem; left:50%; transform:translateX(-50%);
+  font-size:2.3rem; color:var(--gold); filter:drop-shadow(0 3px 4px rgba(43,33,24,.3)); z-index:3;
 }
 
-/* rubric cards — liturgical red labels for actual duties */
-.rubrics{ display:grid; gap:1.1rem; }
+/* ---------- rubric cards ---------- */
+.rubrics{ display:grid; gap:1rem; }
 .rubric{
   background:var(--cream);
   border:1px solid var(--gold-pale);
   border-left:3px solid var(--gold);
-  padding:1.15rem 1.3rem 1.2rem;
+  padding:1.05rem 1.2rem 1.1rem;
   box-shadow:0 3px 12px rgba(43,33,24,.06);
+  text-align:left;
 }
 .rubric h3{
-  font-family:'Cinzel',serif; font-size:.82rem; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--oxblood); margin:0 0 .6rem;
+  font-family:'Cinzel',serif; font-size:.78rem; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--oxblood); margin:0 0 .55rem;
   display:flex; align-items:center; gap:.55rem;
 }
-.rubric h3 i{ color:var(--gold); font-size:1.05rem; }
-.rubric p{ margin:.35rem 0; }
+.rubric h3 i{ color:var(--gold); font-size:1rem; }
+.rubric p{ margin:.3rem 0; }
 .rubric .note{
-  margin-top:.75rem; padding:.6rem .8rem; font-size:.95rem; font-style:italic;
+  margin-top:.65rem; padding:.55rem .75rem; font-size:.92rem; font-style:italic;
   background:rgba(168,134,61,.08); border:1px solid rgba(168,134,61,.25); color:var(--ink-soft);
 }
+.velvetine .rubric{
+  background:rgba(255,253,246,.04);
+  border-color:rgba(201,167,92,.3); border-left-color:var(--gold-bright);
+  box-shadow:none;
+}
+.velvetine .rubric h3{ color:var(--gold-bright); }
+.velvetine .rubric h3 i{ color:var(--gold-bright); }
+.velvetine .rubric .note{
+  background:rgba(143,163,190,.08); border-color:rgba(143,163,190,.35);
+  color:rgba(247,241,228,.85);
+}
 .chip{
-  display:inline-block; font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.1em;
-  padding:.18rem .55rem .14rem; margin:0 .1rem;
+  display:inline-block; font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.08em;
+  padding:.16rem .5rem .12rem; margin:0 .1rem;
   background:rgba(126,42,35,.08); border:1px solid rgba(126,42,35,.3);
   color:var(--oxblood); border-radius:2px; white-space:nowrap; vertical-align:baseline;
 }
 .chip.blue{ background:rgba(143,163,190,.14); border-color:rgba(143,163,190,.5); color:#41566E; }
 .chip.green{ background:rgba(76,107,82,.1); border-color:rgba(76,107,82,.4); color:var(--emerald); }
 .text-btn{
-  display:inline-flex; align-items:center; gap:.45rem; margin-top:.55rem;
-  font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:.45rem; margin-top:.5rem;
+  font-family:'Cinzel',serif; font-size:.64rem; letter-spacing:.15em; text-transform:uppercase;
   color:var(--gold); background:none; border:none; border-bottom:1px solid var(--gold-pale);
-  padding:0 0 .25rem; cursor:pointer; transition:color .2s, border-color .2s;
+  padding:0 0 .22rem; cursor:pointer; transition:color .2s, border-color .2s;
 }
 .text-btn:hover{ color:var(--oxblood); border-color:var(--oxblood); }
-.pair{ display:grid; gap:1.1rem; }
+.pair{ display:grid; gap:1rem; }
 @media (min-width:640px){ .pair{ grid-template-columns:1fr 1fr; } }
 
-/* ============================================================
-   CHAPTER IV — velvet alchemy
-   ============================================================ */
-.chapter.dark{
-  background:var(--velvet);
-  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
-  background-size:22px 22px;
-  color:var(--parchment);
-}
-.chapter.dark .rubric{
-  background:rgba(255,253,246,.04);
-  border-color:rgba(201,167,92,.3); border-left-color:var(--gold-bright);
-  box-shadow:none;
-}
-.chapter.dark .rubric h3{ color:var(--gold-bright); }
-.chapter.dark .rubric h3 i{ color:var(--gold-bright); }
-.chapter.dark .rubric .note{
-  background:rgba(143,163,190,.08); border-color:rgba(143,163,190,.35);
-  color:rgba(247,241,228,.85);
-}
-.rite{
-  counter-reset:rite; list-style:none; margin:.4rem 0 0; padding:0;
-  display:grid; gap:.7rem;
-}
-.rite li{
-  position:relative; padding-left:2.7rem; font-style:italic;
-}
+/* ---------- rite list ---------- */
+.rite{ counter-reset:rite; list-style:none; margin:.3rem 0 0; padding:0; display:grid; gap:.6rem; }
+.rite li{ position:relative; padding-left:2.5rem; font-style:italic; }
 .rite li::before{
   counter-increment:rite; content:counter(rite);
-  position:absolute; left:0; top:.1rem;
-  width:1.7rem; height:1.7rem; border-radius:50%;
+  position:absolute; left:0; top:.08rem;
+  width:1.55rem; height:1.55rem; border-radius:50%;
   border:1px solid var(--gold-bright); color:var(--gold-bright);
-  font-family:'Cinzel',serif; font-style:normal; font-size:.8rem;
+  font-family:'Cinzel',serif; font-style:normal; font-size:.74rem;
   display:flex; align-items:center; justify-content:center;
 }
-.video-shrine{ margin-top:1.4rem; }
-.video-shrine .label{
-  text-align:center; font-size:.66rem; color:var(--gold-bright); margin-bottom:.8rem;
-}
+
+/* ---------- video shrine ---------- */
+.video-shrine{ margin:0; }
+.video-shrine .label{ text-align:center; font-size:.62rem; color:var(--gold-bright); margin:0 0 .7rem; }
 .video-frame{
   border:2px solid rgba(201,167,92,.55); outline:1px solid rgba(201,167,92,.25); outline-offset:5px;
   aspect-ratio:16/9; background:var(--velvet-deep);
 }
 .video-frame iframe{ display:block; width:100%; height:100%; border:0; }
 .video-shrine figcaption{
-  text-align:center; font-style:italic; font-size:.92rem; color:rgba(228,211,168,.65); margin-top:1rem;
+  text-align:center; font-style:italic; font-size:.9rem; color:rgba(228,211,168,.65); margin-top:.9rem;
 }
 
-/* ============================================================
-   ROYAL DECREE
-   ============================================================ */
-.chapter.decree{
-  background:radial-gradient(ellipse at 50% 30%, var(--baedeker), var(--baedeker-deep));
-  color:var(--parchment);
-}
-.chapter.decree .frontispiece h2{ color:var(--cream); }
-.chapter.decree .medallion{ background:transparent; color:var(--gold-bright); border-color:var(--gold-bright); }
-.chapter.decree .epigraph{ color:rgba(247,241,228,.85); }
+/* ---------- decree court ---------- */
 .seal{
-  width:74px; height:74px; margin:0 auto 1.2rem; border-radius:50%;
+  width:68px; height:68px; margin:0 auto 1rem; border-radius:50%;
   background:var(--oxblood);
   box-shadow:inset 0 0 12px rgba(0,0,0,.4), 0 5px 10px rgba(0,0,0,.3);
   display:flex; align-items:center; justify-content:center;
   border:2px solid var(--baedeker-deep); transform:rotate(-8deg);
-  color:rgba(36,26,22,.8); font-size:1.8rem;
+  color:rgba(36,26,22,.8); font-size:1.6rem;
 }
 .court{
-  display:grid; gap:1.1rem; margin-top:2.2rem;
-  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  display:grid; gap:1rem; margin-top:1.8rem;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
   align-items:start;
 }
 .courtier{
   border:1px solid rgba(201,167,92,.4);
   background:rgba(0,0,0,.14);
-  padding:1.3rem 1.2rem 1.4rem; text-align:center;
+  padding:1.15rem 1.1rem 1.25rem; text-align:center;
 }
-.courtier .role{ font-size:.64rem; color:var(--gold-bright); margin-bottom:.65rem; }
+.courtier .role{ font-size:.6rem; color:var(--gold-bright); margin:0 0 .6rem; }
 .courtier .name{
-  font-size:1.28rem; font-weight:600; color:var(--cream); line-height:1.3;
-  overflow-wrap:anywhere;                 /* names shall never be truncated again */
+  font-size:1.22rem; font-weight:600; color:var(--cream); line-height:1.3; margin:.1rem 0;
+  overflow-wrap:anywhere;                    /* names shall never again be beheaded */
 }
-.courtier .place{ font-style:italic; color:rgba(247,241,228,.65); font-size:.95rem; }
+.courtier .place{ font-style:italic; color:rgba(247,241,228,.65); font-size:.92rem; margin:.1rem 0; }
 .courtier a.tel{
-  display:inline-block; margin-top:.55rem;
-  font-family:'Cinzel',serif; font-size:.9rem; letter-spacing:.06em;
+  display:inline-block; margin-top:.5rem;
+  font-family:'Cinzel',serif; font-size:.86rem; letter-spacing:.05em;
   color:var(--parchment); text-decoration:none;
-  border-bottom:1px solid rgba(201,167,92,.6); padding-bottom:.2rem;
+  border-bottom:1px solid rgba(201,167,92,.6); padding-bottom:.18rem;
   transition:color .2s;
 }
 .courtier a.tel:hover{ color:var(--gold-bright); }
-.courtier .retinue{ display:grid; gap:1rem; margin-top:.3rem; }
-.footer-line{
-  text-align:center; margin-top:2.6rem; font-size:.62rem;
-  color:rgba(247,241,228,.45);
-}
+.courtier .retinue{ display:grid; gap:.9rem; margin-top:.2rem; }
+.footer-line{ text-align:center; margin-top:2rem; font-size:.58rem; color:rgba(247,241,228,.45); }
 
 /* ============================================================
-   FOOTER COLOPHON
+   PAGE ARROWS · WALTZ TOGGLE
    ============================================================ */
-footer.colophon-bar{
-  background:var(--velvet-deep); color:rgba(228,211,168,.55);
-  text-align:center; padding:1.6rem 1rem; font-size:.9rem; font-style:italic;
+.page-arrow{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:90;
+  background:none; border:none; cursor:pointer;
+  color:var(--gold-bright); font-size:3rem; opacity:.4;
+  transition:opacity .25s, transform .25s;
+  display:none;
 }
-footer.colophon-bar .smallcaps{ font-style:normal; font-size:.6rem; color:rgba(201,167,92,.7); display:block; margin-top:.4rem; }
+.page-arrow:hover{ opacity:1; }
+#arrow-left{ left:.6rem; } #arrow-left:hover{ transform:translateY(-50%) translateX(-4px); }
+#arrow-right{ right:.6rem; } #arrow-right:hover{ transform:translateY(-50%) translateX(4px); }
+@media (min-width:768px){ .page-arrow{ display:block; } }
 
-/* ============================================================
-   FLOATING WALTZ TOGGLE
-   ============================================================ */
 #waltz-toggle{
-  position:fixed; bottom:1.1rem; right:1.1rem; z-index:120;
-  width:48px; height:48px; border-radius:50%;
+  position:fixed; bottom:1rem; right:1rem; z-index:120;
+  width:46px; height:46px; border-radius:50%;
   background:rgba(36,26,22,.92); color:var(--gold-bright);
-  border:2px solid var(--gold); font-size:1.25rem; cursor:pointer;
+  border:2px solid var(--gold); font-size:1.2rem; cursor:pointer;
   display:flex; align-items:center; justify-content:center;
   box-shadow:0 6px 16px rgba(0,0,0,.35); transition:color .2s, border-color .2s, transform .2s;
 }
@@ -438,7 +436,7 @@ footer.colophon-bar .smallcaps{ font-style:normal; font-size:.6rem; color:rgba(2
    LIGHTBOX
    ============================================================ */
 .lightbox{
-  position:fixed; inset:0; z-index:200;
+  position:fixed; inset:0; z-index:250;
   background:rgba(23,16,9,.94); backdrop-filter:blur(4px);
   display:none; align-items:center; justify-content:center; padding:1rem;
 }
@@ -446,57 +444,78 @@ footer.colophon-bar .smallcaps{ font-style:normal; font-size:.6rem; color:rgba(2
 .lightbox-panel{
   background:var(--parchment); border:1px solid var(--gold);
   outline:1px solid var(--gold-pale); outline-offset:4px;
-  max-width:min(94vw, 820px); max-height:92svh; width:100%;
-  padding:1.2rem; display:flex; flex-direction:column; gap:.9rem; position:relative;
+  max-width:min(94vw, 780px); max-height:92dvh; width:100%;
+  padding:1.1rem; display:flex; flex-direction:column; gap:.8rem; position:relative;
 }
 .lightbox-panel h3{
   font-family:'EB Garamond',serif; font-style:italic; font-weight:600;
-  text-align:center; margin:0; font-size:1.5rem; padding:0 2rem;
+  text-align:center; margin:0; font-size:1.4rem; padding:0 2rem;
 }
 .lightbox-stage{
   background:var(--cream); border:1px solid var(--gold-pale);
-  display:flex; align-items:center; justify-content:center;
-  min-height:0; flex:1;
+  display:flex; align-items:center; justify-content:center; min-height:0; flex:1;
 }
 .lightbox-stage img{
-  max-width:100%; max-height:min(62svh, 560px); object-fit:contain; display:block;
+  max-width:100%; max-height:min(60dvh, 520px); object-fit:contain; display:block;
   transition:opacity .25s ease;
 }
 .lightbox .close-x{
-  position:absolute; top:.55rem; right:.7rem; background:none; border:none;
-  color:var(--ink); font-size:1.7rem; cursor:pointer; line-height:1;
+  position:absolute; top:.5rem; right:.65rem; background:none; border:none;
+  color:var(--ink); font-size:1.6rem; cursor:pointer; line-height:1;
 }
 .lightbox .close-x:hover{ color:var(--oxblood); }
-.lightbox-caption{ text-align:center; font-style:italic; font-size:.92rem; color:var(--ink-soft); margin:0; }
-.lightbox-nav{
-  display:flex; align-items:center; justify-content:space-between; gap:1rem;
-}
+.lightbox-caption{ text-align:center; font-style:italic; font-size:.9rem; color:var(--ink-soft); margin:0; }
+.lightbox-nav{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
 .lightbox-nav .text-btn{ margin-top:0; }
-.lightbox-nav .counter{ font-style:italic; color:var(--ink-faint); font-size:.95rem; }
+.lightbox-nav .counter{ font-style:italic; color:var(--ink-faint); font-size:.92rem; }
 .lightbox.single .lightbox-nav{ display:none; }
 
 /* ============================================================
-   REVEAL ANIMATION (respects reduced motion)
+   MOTION COURTESY
    ============================================================ */
-.reveal{ opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease; }
-.reveal.in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-  .reveal{ opacity:1; transform:none; transition:none; }
-  .open-btn i{ animation:none; }
-  .arch img{ transition:none; }
+  .book{ scroll-behavior:auto; }
+  #welcome{ transition:opacity .5s ease; }
+  #welcome.turned{ transform:none; }
+  .tap-hint{ animation:none; }
+  .arch-btn img{ transition:none; }
 }
 </style>
 </head>
 <body>
 
-<a class="skip-link" href="#hommage">Skip to the chronicle</a>
+<!-- ═══════════ BAEDEKER WELCOME (tap Her Majesty · the waltz begins) ═══════════ -->
+<div id="welcome" role="dialog" aria-label="Baedeker's Kaiserin Liesl — tap to open">
+  <div class="welcome-frame no-scrollbar">
+    <div class="welcome-content">
+      <p class="imprint smallcaps">K. u. K. Hoflieferant</p>
+      <h1>BAEDEKER'S</h1>
+      <p class="majesty">Kaiserin Liesl</p>
+
+      <button class="arch-btn" id="enter-court" aria-label="Tap Her Majesty to open the chronicle">
+        <i class="ri-vip-crown-2-fill crown"></i>
+        <div class="well">
+          <img id="slide-a" src="IMG_1243.jpeg" alt="Her Majesty">
+          <img id="slide-b" src="IMG_1799.jpeg" alt="Her Majesty" class="faded">
+        </div>
+      </button>
+
+      <p class="precedent">At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto.
+        <span class="attrib smallcaps">— after Sei Shōnagon, Makura no Sōshi</span>
+      </p>
+
+      <p class="tap-hint" id="tap-hint">[ Tap Her Majesty To Open ]</p>
+      <p class="colophon smallcaps">Leipzig: Karl Baedeker · Third Edition</p>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════ RIBBON NAVIGATION ═══════════ -->
 <nav class="ribbon" aria-label="Chapters">
   <div class="ribbon-inner">
-    <a class="brand" href="#cover"><i class="ri-vip-crown-fill"></i><span>LIESLCARE</span></a>
-    <div class="ribbon-links">
+    <a class="brand" href="#hommage"><i class="ri-vip-crown-fill"></i><span>LIESLCARE</span></a>
+    <div class="ribbon-links no-scrollbar">
+      <a href="#hommage"><span class="word">Cover</span><i class="ri-book-2-line" style="display:none;"></i></a>
       <a href="#banquet">I<span class="word"> · Bankett</span></a>
       <a href="#diversions">II<span class="word"> · Zerstreuungen</span></a>
       <a href="#rituals">III<span class="word"> · Rituale</span></a>
@@ -506,285 +525,287 @@ footer.colophon-bar .smallcaps{ font-style:normal; font-size:.6rem; color:rgba(2
   </div>
 </nav>
 
-<!-- ═══════════ BAEDEKER COVER ═══════════ -->
-<header class="cover" id="cover">
-  <div class="cover-frame">
-    <p class="imprint smallcaps">K. u. K. Hoflieferant</p>
-    <h1>BAEDEKER'S</h1>
-    <p class="majesty">Kaiserin Liesl</p>
-    <p class="handbook-line">Handbook for travellers in the dominion of Her Imperial &amp; Royal Majesty, with all routes of duty, devotion, and delight.</p>
+<!-- ═══════════ THE BOOK ═══════════ -->
+<main class="book no-scrollbar" id="book">
 
-    <div class="arch" aria-hidden="true">
-      <i class="ri-vip-crown-2-fill crown"></i>
-      <div class="well">
-        <img id="slide-a" src="IMG_1243.jpeg" alt="">
-        <img id="slide-b" src="IMG_1799.jpeg" alt="" class="faded">
-      </div>
-    </div>
-
-    <p class="precedent">At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto. Precedent, once granted, is never rescinded.
-      <span class="attrib smallcaps">— after Sei Shōnagon, Makura no Sōshi</span>
-    </p>
-
-    <a class="open-btn" href="#hommage">Open the Chronicle <i class="ri-arrow-down-line"></i></a>
-    <p class="colophon smallcaps">Leipzig: Karl Baedeker · Second Edition</p>
-  </div>
-</header>
-
-<main>
-
-<!-- ═══════════ DEDICATION ═══════════ -->
-<section class="chapter" id="hommage">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <p class="eyebrow smallcaps">Official Veneration Guide</p>
-      <figure class="gilt cameo" style="margin:0 auto 1.6rem;">
-        <div class="mat"><img src="IMG_4468.jpeg" alt="Her Imperial and Royal Majesty, Kaiserin Liesl"></div>
-      </figure>
-      <h2>Eine Hommage an die Schönheit von Kaiserin Liesl</h2>
-      <p class="subtitle smallcaps">Compiled for the faithful of her court, that no comfort be left to chance</p>
-      <blockquote class="epigraph">
-        „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!"
-        <span class="gloss">(There is truly something beautiful, magnificent, sublime about life!)</span>
-        <span class="attrib smallcaps">— E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr · set down, fittingly, in a cat's own memoir</span>
-      </blockquote>
-      <div class="flourish"><i class="ri-leaf-fill"></i></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ CHAPTER I · DAS BANKETT ═══════════ -->
-<section class="chapter alt" id="banquet">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <p class="eyebrow smallcaps">Chapter the First</p>
-      <div class="medallion">I</div>
-      <h2>Das Bankett</h2>
-      <blockquote class="epigraph">
-        « Dis-moi ce que tu manges, je te dirai ce que tu es. »
-        <span class="gloss">(Tell me what you eat, and I shall tell you what you are.)</span>
-        <span class="attrib smallcaps">— Brillat-Savarin, Physiologie du Goût · she eats, therefore, like an empress</span>
-      </blockquote>
-    </div>
-
-    <div class="duet">
-      <figure class="gilt reveal">
-        <div class="mat"><img src="IMG_4812.jpeg" alt="Her Majesty in serene attendance at the evening feast"></div>
-        <figcaption>Her Majesty presides over the evening service.</figcaption>
-      </figure>
-
-      <div class="rubrics">
-        <article class="rubric reveal">
-          <h3><i class="ri-goblet-fill"></i> Das Abendmahl</h3>
-          <p>A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel, and for the prosperity of the empire fold in
-            <span class="chip">⅛ tsp Lysine</span> and <span class="chip">½ measuring cup Proden PlaqueOff</span> — thoroughly, so no grain escapes her notice.</p>
-          <button class="text-btn" data-lightbox="precepts"><i class="ri-image-line"></i> View Preparation Precepts</button>
-        </article>
-
-        <article class="rubric reveal">
-          <h3><i class="ri-bowl-fill"></i> Trockene Gaben</h3>
-          <p>The supply of dry delicacies is replenished by unseen magic. A <span class="chip">weekly polishing</span> of her serving dish is essential to the dignity of the table.</p>
-        </article>
-
-        <div class="pair">
-          <article class="rubric reveal">
-            <h3><i class="ri-star-smile-fill"></i> Nektar der Götter</h3>
-            <p><strong>Churu:</strong> offer this ambrosia as a token of adoration.</p>
-            <p><strong>Katzenminze (catnip):</strong> a sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
-            <p class="note">Both sacred offerings are secreted within the <strong>lower left drawer of the grand media cabinet</strong>.</p>
-          </article>
-
-          <article class="rubric reveal">
-            <h3><i class="ri-drop-fill"></i> Der Lebensbrunnen</h3>
-            <p>Her royal water fountain must be renewed <span class="chip blue">every two days</span>.</p>
-            <p class="note"><strong>Caution:</strong> the top and base of the fountain are not connected — lift with both hands and due reverence.</p>
-            <button class="text-btn" data-lightbox="fountain"><i class="ri-drop-line"></i> View Water Levels</button>
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ CHAPTER II · ZERSTREUUNGEN ═══════════ -->
-<section class="chapter" id="diversions">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <p class="eyebrow smallcaps">Chapter the Second</p>
-      <div class="medallion">II</div>
-      <h2>Kaiserliche Zerstreuungen</h2>
-      <blockquote class="epigraph">
-        « Quand je me joue à ma chatte, qui sait si elle ne passe pas son temps de moi plus que je ne fais d'elle ? »
-        <span class="gloss">(When I play with my cat, who knows whether she is not amusing herself with me more than I with her?)</span>
-        <span class="attrib smallcaps">— Michel de Montaigne, Essais · the only question of state she permits</span>
-      </blockquote>
-    </div>
-
-    <div class="duet flip">
-      <figure class="gilt cameo reveal">
-        <div class="mat"><img src="IMG_4881.jpeg" alt="Her Majesty at her imperial diversions"></div>
-        <figcaption>A soul of such sensitivity requires moments of whim.</figcaption>
-      </figure>
-
-      <div class="rubrics">
-        <article class="rubric reveal">
-          <h3><i class="ri-sparkling-fill"></i> Die Jagd nach dem Sternenlicht</h3>
-          <p>Capture a beam of light at dusk and let it dance like a firefly through her chambers. She will pursue it as her ancestors pursued empires.</p>
-        </article>
-        <article class="rubric reveal">
-          <h3><i class="ri-music-2-fill"></i> Spiele der Musen</h3>
-          <p>Let small feathers and shining orbs bounce from the furniture like notes in a symphony. It is your sacred duty to delight Her Majesty — and, per Montaigne, hers to indulge you.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ CHAPTER III · RITUALE ═══════════ -->
-<section class="chapter alt" id="rituals">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <p class="eyebrow smallcaps">Chapter the Third</p>
-      <div class="medallion">III</div>
-      <h2>Die Rituale der Schönheit</h2>
-      <blockquote class="epigraph">
-        « Les Chinois voient l'heure dans l'œil des chats. »
-        <span class="gloss">(The Chinese tell the hour in the eyes of cats.)</span>
-        <span class="attrib smallcaps">— Baudelaire, Le Spleen de Paris · in her emerald gaze, it is always the golden hour</span>
-      </blockquote>
-    </div>
-
-    <div class="rubrics">
-      <div class="pair">
-        <article class="rubric reveal">
-          <h3><i class="ri-brush-fill"></i> Der Kaiserliche Mantel</h3>
-          <p>Her coat requires your most delicate touch. The <span class="chip green">green brush</span> smooths the strands; the <span class="chip blue">blue comb</span> resolves any tiny imperfection.</p>
-        </article>
-        <article class="rubric reveal">
-          <h3><i class="ri-eye-fill"></i> Die Fenster zur Seele</h3>
-          <p>Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
-        </article>
-      </div>
-      <article class="rubric reveal">
-        <h3><i class="ri-shield-star-fill"></i> Die Wacht am Rücken</h3>
-        <p>Although rare, under certain circumstances her rear may be compromised. Cleansing wipes befitting her station await in the <strong>lower left cabinet adjacent to the range</strong>.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ CHAPTER IV · ALCHEMIE ═══════════ -->
-<section class="chapter dark" id="alchemy">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Chapter the Fourth</p>
-      <div class="medallion">IV</div>
-      <h2>Die Alchemie</h2>
-      <p class="subtitle smallcaps">Der Vierte Thron · Litter-Robot 4</p>
-      <blockquote class="epigraph">
-        « Sic transit gloria mundi. »
-        <span class="gloss">(Thus passes the glory of the world — every fifth day, into the drawer below.)</span>
-        <span class="attrib smallcaps">— antiphon of coronations, here most literally observed</span>
-      </blockquote>
-    </div>
-
-    <div class="duet">
-      <div class="rubrics">
-        <article class="rubric reveal">
-          <h3><i class="ri-vip-crown-2-fill"></i> Rite of the 5-Day Renewal</h3>
-          <ol class="rite">
-            <li>Heed the azure beacon, should it flash upon the panel of command</li>
-            <li>Withdraw the drawer of offerings by its gilded step</li>
-            <li>Draw the string and cast out the old tribute</li>
-            <li>Dress the drawer in a pure new liner, pressed flat lest the all-seeing OmniSense be deceived</li>
-            <li>Replenish the sacred sands to the raised line of purification</li>
-            <li>Return the drawer and press the button of renewal</li>
-          </ol>
-        </article>
-
-        <article class="rubric reveal">
-          <h3><i class="ri-alert-fill"></i> Die Kaiserliche Unterbrechung</h3>
-          <p style="font-style:italic;">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
-        </article>
-      </div>
-
-      <figure class="video-shrine reveal" style="margin:0;">
-        <p class="label smallcaps">Visual Grimoire</p>
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/CM6vQSPLGxk"
-            title="Cleaning rites of the Litter-Robot 4"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <figcaption>A moving portrait of the sacred purification rites of the Fourth Throne, to which Her Majesty's facilities were elevated in the Year of Grace 2026.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ ROYAL DECREE ═══════════ -->
-<section class="chapter decree" id="decree">
-  <div class="chapter-inner">
-    <div class="frontispiece reveal">
-      <div class="seal" aria-hidden="true"><i class="ri-vip-crown-line"></i></div>
-      <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Royal Decree · Urgent</p>
-      <h2>Der Schutz der Rose</h2>
-      <blockquote class="epigraph">
-        „Der Fürst ist der erste Diener seines Staates."
-        <span class="gloss">(The prince is the first servant of his state — and her court, the first servants of the Empress.)</span>
-        <span class="attrib smallcaps">— Friedrich II. von Preußen · a Prussian, but on this point we forgive him</span>
-      </blockquote>
-    </div>
-
-    <div class="court">
-      <div class="courtier reveal">
-        <p class="role smallcaps">K. u. K. Leibärzte</p>
-        <p class="name">Toebeans and Tails</p>
-        <p class="place">Alexandria</p>
-        <a class="tel" href="tel:7039884181">(703) 988-4181</a>
-      </div>
-
-      <div class="courtier reveal">
-        <p class="role smallcaps">Oberste Hofdame</p>
-        <p class="name">Sharon Prince</p>
-        <a class="tel" href="tel:5862672151">(586) 267-2151</a>
-      </div>
-
-      <div class="courtier reveal">
-        <p class="role smallcaps">Der Getreue Hofstaat</p>
-        <div class="retinue">
-          <div>
-            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Humaira Ahmed</p>
-            <a class="tel" href="tel:9258267542">(925) 826-7542</a>
-          </div>
-          <div>
-            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Haley Johnson</p>
-            <a class="tel" href="tel:2315100580">(231) 510-0580</a>
-          </div>
-          <div>
-            <p class="name" style="font-size:1.1rem; margin:.1rem 0;">Amber DeJohn</p>
-            <a class="tel" href="tel:8105160069">(810) 516-0069</a>
+  <!-- PAGE · DEDICATION -->
+  <section class="page" id="hommage">
+    <div class="leaf">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece" style="margin-bottom:0;">
+            <p class="eyebrow smallcaps">Official Veneration Guide</p>
+            <figure class="gilt cameo hero-cameo">
+              <div class="mat">
+                <i class="ri-vip-crown-2-fill crown"></i>
+                <img src="IMG_4468.jpeg" alt="Her Imperial and Royal Majesty, Kaiserin Liesl">
+              </div>
+            </figure>
+            <h2>Eine Hommage an die Schönheit von Kaiserin Liesl</h2>
+            <p class="subtitle smallcaps">Compiled for the faithful of her court, that no comfort be left to chance</p>
+            <blockquote class="epigraph">
+              „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!"
+              <span class="gloss">(There is truly something beautiful, magnificent, sublime about life!)</span>
+              <span class="attrib smallcaps">— E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr</span>
+            </blockquote>
+            <div class="flourish"><i class="ri-leaf-fill"></i></div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <p class="footer-line smallcaps">© 2026 Lieslcare · All Royal Rights Reserved</p>
-  </div>
-</section>
+  <!-- PAGE I · DAS BANKETT -->
+  <section class="page" id="banquet">
+    <div class="leaf">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece">
+            <p class="eyebrow smallcaps">Chapter the First</p>
+            <div class="medallion">I</div>
+            <h2>Das Bankett</h2>
+            <blockquote class="epigraph">
+              « Dis-moi ce que tu manges, je te dirai ce que tu es. »
+              <span class="gloss">(Tell me what you eat, and I shall tell you what you are.)</span>
+              <span class="attrib smallcaps">— Jean Anthelme Brillat-Savarin, Physiologie du Goût</span>
+            </blockquote>
+          </div>
+
+          <div class="duet">
+            <figure class="gilt">
+              <div class="mat"><img src="IMG_4812.jpeg" alt="Her Majesty in serene attendance at the evening feast"></div>
+              <figcaption>Her Majesty presides over the evening service.</figcaption>
+            </figure>
+
+            <div class="rubrics">
+              <article class="rubric">
+                <h3><i class="ri-goblet-fill"></i> Das Abendmahl</h3>
+                <p>A pâté worthy of her beauty is served each evening. Stir it gently in its crystal vessel. For the prosperity of the empire, add
+                  <span class="chip">⅛ tsp Lysine</span> and <span class="chip">½ measuring cup Proden PlaqueOff</span>.</p>
+                <button class="text-btn" data-lightbox="precepts"><i class="ri-image-line"></i> View Preparation Precepts</button>
+              </article>
+
+              <article class="rubric">
+                <h3><i class="ri-bowl-fill"></i> Trockene Gaben</h3>
+                <p>The supply of dry delicacies is replenished by unseen magic. A <span class="chip">weekly polishing</span> of her serving dish is essential.</p>
+              </article>
+
+              <div class="pair">
+                <article class="rubric">
+                  <h3><i class="ri-star-smile-fill"></i> Nektar der Götter</h3>
+                  <p><strong>Churu:</strong> offer this ambrosia as a token of adoration.</p>
+                  <p><strong>Katzenminze (catnip):</strong> a sprinkle of this euphoric herb shall send Her Majesty into joyous reverie.</p>
+                  <p class="note">Both sacred offerings are secreted within the <strong>lower left drawer of the grand media cabinet</strong>.</p>
+                </article>
+
+                <article class="rubric">
+                  <h3><i class="ri-drop-fill"></i> Der Lebensbrunnen</h3>
+                  <p>Her royal water fountain must be renewed <span class="chip blue">every two days</span>.</p>
+                  <p class="note"><strong>Caution:</strong> the top and base of the fountain are not connected; handle with care.</p>
+                  <button class="text-btn" data-lightbox="fountain"><i class="ri-drop-line"></i> View Water Levels</button>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE II · ZERSTREUUNGEN -->
+  <section class="page" id="diversions">
+    <div class="leaf">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece">
+            <p class="eyebrow smallcaps">Chapter the Second</p>
+            <div class="medallion">II</div>
+            <h2>Kaiserliche Zerstreuungen</h2>
+            <blockquote class="epigraph">
+              « Quand je me joue à ma chatte, qui sait si elle ne passe pas son temps de moi plus que je ne fais d'elle ? »
+              <span class="gloss">(When I play with my cat, who knows whether she is not amusing herself with me more than I with her?)</span>
+              <span class="attrib smallcaps">— Michel de Montaigne, Essais</span>
+            </blockquote>
+          </div>
+
+          <div class="duet flip">
+            <figure class="gilt cameo">
+              <div class="mat"><img src="IMG_4881.jpeg" alt="Her Majesty at her imperial diversions"></div>
+              <figcaption>A soul of such sensitivity requires moments of whim.</figcaption>
+            </figure>
+
+            <div class="rubrics">
+              <article class="rubric">
+                <h3><i class="ri-sparkling-fill"></i> Die Jagd nach dem Sternenlicht</h3>
+                <p>Capture a beam of light at dusk and let it dance like a firefly through her chambers.</p>
+              </article>
+              <article class="rubric">
+                <h3><i class="ri-music-2-fill"></i> Spiele der Musen</h3>
+                <p>Let small feathers and shining orbs bounce from the furniture like notes in a symphony. It is your sacred duty to delight Her Majesty.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE III · RITUALE -->
+  <section class="page" id="rituals">
+    <div class="leaf">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece">
+            <p class="eyebrow smallcaps">Chapter the Third</p>
+            <div class="medallion">III</div>
+            <h2>Die Rituale der Schönheit</h2>
+            <blockquote class="epigraph">
+              « Les Chinois voient l'heure dans l'œil des chats. »
+              <span class="gloss">(The Chinese tell the hour in the eyes of cats.)</span>
+              <span class="attrib smallcaps">— Charles Baudelaire, Le Spleen de Paris</span>
+            </blockquote>
+          </div>
+
+          <div class="rubrics">
+            <div class="pair">
+              <article class="rubric">
+                <h3><i class="ri-brush-fill"></i> Der Kaiserliche Mantel</h3>
+                <p>Her coat requires your most delicate touch. The <span class="chip green">green brush</span> smooths the strands, while the <span class="chip blue">blue comb</span> resolves any tiny imperfection.</p>
+              </article>
+              <article class="rubric">
+                <h3><i class="ri-eye-fill"></i> Die Fenster zur Seele</h3>
+                <p>Her eyes, twin emeralds of startling clarity, must be free of any blemish. A gentle touch ensures her gaze continues to enchant.</p>
+              </article>
+            </div>
+            <article class="rubric">
+              <h3><i class="ri-shield-star-fill"></i> Die Wacht am Rücken</h3>
+              <p>Although rare, under certain circumstances her rear may be compromised. Cleansing wipes befitting her station are located in the <strong>lower left cabinet adjacent to the range</strong>.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE IV · ALCHEMIE -->
+  <section class="page" id="alchemy">
+    <div class="leaf velvetine">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece">
+            <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Chapter the Fourth</p>
+            <div class="medallion">IV</div>
+            <h2>Die Alchemie</h2>
+            <p class="subtitle smallcaps">Der Vierte Thron · Litter-Robot 4</p>
+            <blockquote class="epigraph">
+              « Sic transit gloria mundi. »
+              <span class="gloss">(Thus passes the glory of the world.)</span>
+              <span class="attrib smallcaps">— traditional antiphon</span>
+            </blockquote>
+          </div>
+
+          <div class="duet">
+            <div class="rubrics">
+              <article class="rubric">
+                <h3><i class="ri-vip-crown-2-fill"></i> Rite of the 5-Day Renewal</h3>
+                <ol class="rite">
+                  <li>Heed the azure beacon, should it flash upon the panel of command</li>
+                  <li>Withdraw the drawer of offerings by its gilded step</li>
+                  <li>Draw the string and cast out the old tribute</li>
+                  <li>Dress the drawer in a pure new liner, pressed flat lest the all-seeing OmniSense be deceived</li>
+                  <li>Replenish the sacred sands to the raised line of purification</li>
+                  <li>Return the drawer and press the button of renewal</li>
+                </ol>
+              </article>
+
+              <article class="rubric">
+                <h3><i class="ri-alert-fill"></i> Die Kaiserliche Unterbrechung</h3>
+                <p style="font-style:italic;">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
+              </article>
+            </div>
+
+            <figure class="video-shrine">
+              <p class="label smallcaps">Visual Grimoire</p>
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/CM6vQSPLGxk"
+                  title="Cleaning rites of the Litter-Robot 4"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+              </div>
+              <figcaption>A moving portrait of the sacred purification rites of the Fourth Throne, to which Her Majesty's facilities were elevated in the Year of Grace 2026.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE · ROYAL DECREE -->
+  <section class="page" id="decree">
+    <div class="leaf oxbloodine">
+      <div class="page-scroll">
+        <div class="page-content">
+          <div class="frontispiece">
+            <div class="seal" aria-hidden="true"><i class="ri-vip-crown-line"></i></div>
+            <p class="eyebrow smallcaps" style="color:var(--gold-bright);">Royal Decree · Urgent</p>
+            <h2>Der Schutz der Rose</h2>
+            <blockquote class="epigraph">
+              „Der Fürst ist der erste Diener seines Staates."
+              <span class="gloss">(The prince is the first servant of his state.)</span>
+              <span class="attrib smallcaps">— Friedrich II. von Preußen</span>
+            </blockquote>
+          </div>
+
+          <div class="court">
+            <div class="courtier">
+              <p class="role smallcaps">K. u. K. Leibärzte</p>
+              <p class="name">Toebeans and Tails</p>
+              <p class="place">Alexandria</p>
+              <a class="tel" href="tel:7039884181">(703) 988-4181</a>
+            </div>
+
+            <div class="courtier">
+              <p class="role smallcaps">Oberste Hofdame</p>
+              <p class="name">Sharon Prince</p>
+              <a class="tel" href="tel:5862672151">(586) 267-2151</a>
+            </div>
+
+            <div class="courtier">
+              <p class="role smallcaps">Der Getreue Hofstaat</p>
+              <div class="retinue">
+                <div>
+                  <p class="name" style="font-size:1.05rem;">Humaira Ahmed</p>
+                  <a class="tel" href="tel:9258267542">(925) 826-7542</a>
+                </div>
+                <div>
+                  <p class="name" style="font-size:1.05rem;">Haley Johnson</p>
+                  <a class="tel" href="tel:2315100580">(231) 510-0580</a>
+                </div>
+                <div>
+                  <p class="name" style="font-size:1.05rem;">Amber DeJohn</p>
+                  <a class="tel" href="tel:8105160069">(810) 516-0069</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="footer-line smallcaps">© 2026 Lieslcare · All Royal Rights Reserved</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-<footer class="colophon-bar">
-  Set at the command of Her Imperial &amp; Royal Majesty, Liesl the Ragamuffin.
-  <span class="smallcaps">Cinzel · EB Garamond · Great Vibes — Leipzig: Karl Baedeker</span>
-</footer>
+<!-- Page arrows -->
+<button class="page-arrow" id="arrow-left" aria-label="Previous page"><i class="ri-arrow-left-s-line"></i></button>
+<button class="page-arrow" id="arrow-right" aria-label="Next page"><i class="ri-arrow-right-s-line"></i></button>
 
 <!-- Royal Audio + Toggle -->
-<audio id="royal-waltz" src="LieslWaltz.mp3" loop preload="none"></audio>
-<button id="waltz-toggle" aria-label="Play the royal waltz"><i id="waltz-icon" class="ri-music-2-line"></i></button>
+<audio id="royal-waltz" src="LieslWaltz.mp3" loop autoplay></audio>
+<button id="waltz-toggle" aria-label="Pause the royal waltz"><i id="waltz-icon" class="ri-music-2-line"></i></button>
 
 <!-- ═══════════ LIGHTBOX ═══════════ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
@@ -822,24 +843,73 @@ if (slideA && slideB) {
   }, 3800);
 }
 
-/* ── Court orchestra (waltz) ─────────────────────── */
+/* ── Court orchestra: the waltz plays for all ────── */
 const waltz = document.getElementById('royal-waltz');
 const waltzToggle = document.getElementById('waltz-toggle');
 const waltzIcon = document.getElementById('waltz-icon');
+let waltzSilenced = false;                    // only a deliberate pause silences the court
+
+function startWaltz(){
+  if (waltzSilenced || !waltz) return;
+  waltz.volume = 0.4;
+  waltz.play().catch(() => {});               // if the browser objects, the first touch prevails
+}
 function syncWaltz(){
   const playing = waltz && !waltz.paused;
   waltzIcon.className = playing ? 'ri-pause-mini-line' : 'ri-music-2-line';
   waltzToggle.setAttribute('aria-label', playing ? 'Pause the royal waltz' : 'Play the royal waltz');
 }
 if (waltz && waltzToggle) {
-  waltzToggle.addEventListener('click', () => {
-    if (waltz.paused) { waltz.volume = 0.4; waltz.play().catch(()=>{}); }
-    else { waltz.pause(); }
+  startWaltz();                               // attempt true autoplay at once
+  const firstGesture = () => { if (waltz.paused) startWaltz(); };
+  document.addEventListener('pointerdown', firstGesture, { once:true });
+  document.addEventListener('keydown', firstGesture, { once:true });
+  waltzToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (waltz.paused) { waltzSilenced = false; startWaltz(); }
+    else { waltzSilenced = true; waltz.pause(); }
   });
   waltz.addEventListener('play', syncWaltz);
   waltz.addEventListener('pause', syncWaltz);
   syncWaltz();
 }
+
+/* ── Welcome overlay: tap Her Majesty to open ────── */
+const welcome = document.getElementById('welcome');
+const enterBtn = document.getElementById('enter-court');
+const tapHint = document.getElementById('tap-hint');
+function openBook(){
+  if (!welcome || welcome.classList.contains('turned')) return;
+  welcome.classList.add('turned');
+  startWaltz();
+  setTimeout(() => { welcome.style.display = 'none'; }, 1400);
+}
+if (enterBtn) enterBtn.addEventListener('click', openBook);
+if (tapHint) tapHint.addEventListener('click', openBook);
+
+/* ── Book pagination ─────────────────────────────── */
+const book = document.getElementById('book');
+function turnPage(dir){
+  book.scrollBy({ left: dir * book.clientWidth, behavior:'smooth' });
+}
+document.getElementById('arrow-left').addEventListener('click', () => turnPage(-1));
+document.getElementById('arrow-right').addEventListener('click', () => turnPage(1));
+
+/* each freshly opened page greets the reader at its heading */
+const pages = document.querySelectorAll('.page');
+const pageObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      pages.forEach(p => {
+        if (p !== entry.target) {
+          const sc = p.querySelector('.page-scroll');
+          if (sc) sc.scrollTop = 0;
+        }
+      });
+    }
+  });
+}, { root:book, threshold:0.5 });
+pages.forEach(p => pageObserver.observe(p));
 
 /* ── Lightbox (precepts carousel + fountain plate) ─ */
 const precepts = ['IMG_4894.jpeg','IMG_4895.jpeg','IMG_4896.jpeg','IMG_4898.jpeg','IMG_4899.jpeg','IMG_4901.jpeg'];
@@ -879,12 +949,10 @@ function openLightbox(mode){
   lbMode = mode; lbIdx = 0; lastFocus = document.activeElement;
   renderLightbox();
   lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
   lbClose.focus();
 }
 function closeLightbox(){
   lb.classList.remove('open');
-  document.body.style.overflow = '';
   if (lastFocus) lastFocus.focus();
 }
 document.querySelectorAll('[data-lightbox]').forEach(btn => {
@@ -894,25 +962,24 @@ lbClose.addEventListener('click', closeLightbox);
 lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 lbPrev.addEventListener('click', () => { lbIdx = (lbIdx - 1 + precepts.length) % precepts.length; renderLightbox(); });
 lbNext.addEventListener('click', () => { lbIdx = (lbIdx + 1) % precepts.length; renderLightbox(); });
-document.addEventListener('keydown', e => {
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (lbMode === 'precepts') {
-    if (e.key === 'ArrowLeft') lbPrev.click();
-    if (e.key === 'ArrowRight') lbNext.click();
-  }
-});
 
-/* ── Gentle reveal on scroll ─────────────────────── */
-const revealables = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { threshold: 0.12 });
-  revealables.forEach(el => io.observe(el));
-} else {
-  revealables.forEach(el => el.classList.add('in'));
-}
+/* ── Courtly keyboard etiquette ──────────────────── */
+document.addEventListener('keydown', e => {
+  if (lb.classList.contains('open')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (lbMode === 'precepts') {
+      if (e.key === 'ArrowLeft') lbPrev.click();
+      if (e.key === 'ArrowRight') lbNext.click();
+    }
+    return;
+  }
+  if (welcome && !welcome.classList.contains('turned')) {
+    if (e.key === 'Enter' || e.key === ' ') openBook();
+    return;
+  }
+  if (e.key === 'ArrowLeft') turnPage(-1);
+  if (e.key === 'ArrowRight') turnPage(1);
+});
 </script>
 </body>
 </html>
