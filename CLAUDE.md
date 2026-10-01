@@ -68,7 +68,7 @@ Pages still publishes unused files, so anyone can open them by URL. Delete them 
    | `diversions` | II · Zerstreuungen | parchment | play |
    | `rituals` | III · Rituale | parchment | portrait (`IMG_5849`) beside coat, eyes and hygiene rubrics |
    | `alchemy` | IV · Alchemie | `.velvetine` (dark) | Litter-Robot 4 procedure, YouTube embed |
-   | `decree` | Royal Decree | `.oxbloodine` (red) | veterinarian, emergency-hospital placeholder and household contacts, medical-notes placeholder, copyright line |
+   | `decree` | Royal Decree | `.oxbloodine` (red) | veterinarian (Toebeans and Tails, 5561 Cardinal Place), 24-hour emergency hospital ("Nachtdienst": VEG ER, 4525 Duke Street, with phone) and household contacts, medical notes, copyright line |
 
 6. Page arrows (768 px and wider only, on dark discs), `<audio loop preload="none">` with `#waltz-toggle`, and the `#lightbox` dialog.
 7. `<script>`: a `reduceMotion` media query used throughout; the cover slideshow (`coverSlides`, each with `src`, `alt` and `frame`, the inline style applied while the slide is hidden; 3.8 s interval, never started under reduced motion, stopped once the book opens, fetching one portrait ahead); waltz start (attempted at load and on first gesture) and toggle; welcome overlay; `turnPage()` pagination; an IntersectionObserver that scrolls pages back to the top once they leave view; the lightbox (`precepts` array of `src`/`alt` plates, fetched on first opening, plus fountain mode); keyboard handling.
@@ -294,7 +294,9 @@ Audio meets the same public-domain standard. Record the provenance of any new re
 
 ### PLACEHOLDERS
 
-**In use on the site** (2026-10-02): `{{EMERGENCY_VET}}` (Royal Decree, "Nachtdienst" card) and `{{MEDICAL_HISTORY}}` (Royal Decree, "Medical notes"). Delete each from the site, and mark it resolved here, once the owner supplies the fact.
+**In use on the site:** none (2026-10-02).
+
+**Resolved** (2026-10-02, supplied by the owner): `{{EMERGENCY_VET}}` → VEG ER, 4525 Duke Street, Alexandria, open 24 hours (street number and phone found by web search at the owner's request, 2026-10-02); `{{MEDICAL_HISTORY}}` → "no medical history of note".
 
 **Reserved tokens.** These facts are still unknown but not shown, since the Hints sections that held them were removed. Use these exact names if a placeholder is needed again; add new rows as needed.
 
@@ -418,7 +420,7 @@ Updated 2026-10-02. Fix them only when the owner asks, and delete each line once
 - **Health (§6):** no health content cites a source; the eyes and rear rubrics defer to the Leibärzte instead. Add citations only after opening the source page (blocked from cloud sessions so far).
 - **Quotations (§3):** the glosses for Brillat-Savarin, Montaigne and Baudelaire were taken from search extracts; re-check them against the pages named in their comments.
 - **Privacy:** 24 of the older `IMG_*.jpeg` files carry GPS coordinates in their EXIF data, and Pages serves them publicly. The seven photos added on 2026-10-02 were stripped losslessly, but their originals, like the older ones, stay in git history unless history is rewritten.
-- **Placeholders (§5):** two facts await the owner on the site, and thirteen more are reserved (see the register).
+- **Placeholders (§5):** none on the site; thirteen facts remain unknown and reserved (see the register).
 
 ## Open questions for the owner
 
