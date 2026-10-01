@@ -22,14 +22,24 @@ The repository has no `.github/`, workflows, `_config.yml`, `.nojekyll`, `CNAME`
 
 #### Image register
 
-| File | Used where | Shows |
+The cover slideshow (`coverSlides` in the script) shows fifteen portraits in this order: `IMG_1243` (also `#slide-a`), `IMG_0197` (also `#slide-b`), `IMG_1799`, `IMG_0132`, `IMG_1868`, `IMG_4280`, `IMG_2041`, `IMG_0191`, `IMG_2816`, `IMG_3594`, `IMG_2943`, `IMG_5849`, `IMG_3345`, `IMG_0175`, `IMG_3351`. Each entry carries its alt text and its framing (see "Framing" in §7).
+
+| File | Also used | Shows |
 |---|---|---|
-| `IMG_1243` | Cover slideshow, first slide (`#slide-a`) | Liesl lying on a rug, looking up |
-| `IMG_1799` | Cover slideshow, second slide (`#slide-b`) | Liesl on a green sofa |
-| `IMG_1868`, `IMG_2041`, `IMG_2816`, `IMG_2943`, `IMG_3345`, `IMG_3351` | Cover slideshow (`coverImages` array in the script) | portraits |
+| `IMG_1243` | | Liesl reclining on a patterned rug, gazing upward |
+| `IMG_0197` | | seated on a red throw, mouth open |
+| `IMG_1799` | | on a green sofa, forepaws extended |
+| `IMG_0132` | | reclining against a red throw |
+| `IMG_1868`, `IMG_2816` | | seated on rugs (landscape / drawing room) |
+| `IMG_4280` | | seated upright on a red throw |
+| `IMG_2041` | | seated on a wooden stand |
+| `IMG_0191`, `IMG_0175` | | lying on a rust-coloured bedspread (landscape) |
+| `IMG_3594`, `IMG_2943` | | reclining on dark throws and cushions |
+| `IMG_5849` | Ch. III figure | seated in a wooden stand, lit gold |
+| `IMG_3345`, `IMG_3351` | | profile gazing upward; looking up, wide-eyed |
 | `IMG_4468` | Dedication cameo (`#hommage`) and `og:image` | close portrait wearing a yellow flower collar |
 | `IMG_4812` | Ch. I figure | frontal portrait |
-| `IMG_4881` | Ch. II cameo | Liesl on a rust-coloured bedspread |
+| `IMG_4881` | Ch. II cameo | on a rust-coloured bedspread |
 | `IMG_4894` | Ch. I lightbox "Preparation Precepts", plate 1 | closed lower cabinet beside the range |
 | `IMG_4895` | plate 2 | the same cabinet, open: a food bag and a bottle |
 | `IMG_4896` | plate 3 | jars, a can and a glass bowl on the counter |
@@ -53,15 +63,15 @@ Pages still publishes unused files, so anyone can open them by URL. Delete them 
 
    | id | Ribbon | Leaf | Contents |
    |---|---|---|---|
-   | `hommage` | Cover | parchment | dedication cameo, Hoffmann epigraph, Hints for Travellers |
-   | `banquet` | I · Bankett | parchment | evening meal, dry food, treats and catnip, water fountain; two lightboxes; Hints for Travellers |
-   | `diversions` | II · Zerstreuungen | parchment | play; Hints for Travellers |
-   | `rituals` | III · Rituale | parchment | coat, eyes, hygiene; Hints for Travellers |
-   | `alchemy` | IV · Alchemie | `.velvetine` (dark) | Litter-Robot 4 procedure, YouTube embed; Hints for Travellers |
+   | `hommage` | Cover | parchment | dedication cameo, Hoffmann epigraph |
+   | `banquet` | I · Bankett | parchment | evening meal, dry food, treats and catnip, water fountain; two lightboxes |
+   | `diversions` | II · Zerstreuungen | parchment | play |
+   | `rituals` | III · Rituale | parchment | portrait (`IMG_5849`) beside coat, eyes and hygiene rubrics |
+   | `alchemy` | IV · Alchemie | `.velvetine` (dark) | Litter-Robot 4 procedure, YouTube embed |
    | `decree` | Royal Decree | `.oxbloodine` (red) | veterinarian, emergency-hospital placeholder and household contacts, medical-notes placeholder, copyright line |
 
 6. Page arrows (768 px and wider only, on dark discs), `<audio loop preload="none">` with `#waltz-toggle`, and the `#lightbox` dialog.
-7. `<script>`: a `reduceMotion` media query used throughout; the cover slideshow (`coverSlides`, each with `src` and `alt`; 3.8 s interval, never started under reduced motion, stopped once the book opens, fetching one portrait ahead); waltz start (attempted at load and on first gesture) and toggle; welcome overlay; `turnPage()` pagination; an IntersectionObserver that scrolls pages back to the top once they leave view; the lightbox (`precepts` array of `src`/`alt` plates, fetched on first opening, plus fountain mode); keyboard handling.
+7. `<script>`: a `reduceMotion` media query used throughout; the cover slideshow (`coverSlides`, each with `src`, `alt` and `frame`, the inline style applied while the slide is hidden; 3.8 s interval, never started under reduced motion, stopped once the book opens, fetching one portrait ahead); waltz start (attempted at load and on first gesture) and toggle; welcome overlay; `turnPage()` pagination; an IntersectionObserver that scrolls pages back to the top once they leave view; the lightbox (`precepts` array of `src`/`alt` plates, fetched on first opening, plus fountain mode); keyboard handling.
 
 To add a chapter, copy a `section.page`, give it an id, renumber the eyebrow ("Chapter the Fifth") and medallion, and add `<a href="#id">V<span class="word"> · Wort</span></a>` to the ribbon before the decree link. Pagination and arrows need no changes.
 
@@ -99,7 +109,7 @@ The two registers work best together, as in the Litter-Robot rite, where each st
 Conventions:
 
 - **Names for Liesl:** Her Majesty, the Empress, Kaiserin Liesl, Her Imperial and Royal Majesty. She/her.
-- **German for titles, English for instructions.** Chapter titles (h2) and rubric titles (h3) are German, with nouns capitalised and umlauts and ß written properly ("Die Wacht am Rücken", "Nektar der Götter"). Ribbon labels pair a Roman numeral with one German word ("III · Rituale"). Body copy is English, with British spelling to match Baedeker's English editions ("Hints for Travellers").
+- **German for titles, English for instructions.** Chapter titles (h2) and rubric titles (h3) are German, with nouns capitalised and umlauts and ß written properly ("Die Wacht am Rücken", "Nektar der Götter"). Ribbon labels pair a Roman numeral with one German word ("III · Rituale"). Body copy is English, with British spelling to match Baedeker's English editions.
 - **Ennobled objects, plainly identified.** Household things take court names: the Litter-Robot 4 is "der Vierte Thron", the fountain "der Lebensbrunnen", the litter "the sacred sands". Name the real object plainly at least once, as the Alchemie subtitle does: "Der Vierte Thron · Litter-Robot 4".
 - **Court offices** for people: "K. u. K. Leibärzte" (veterinarians), "Oberste Hofdame", "Der Getreue Hofstaat". New roles take their titles from the same Hofstaat vocabulary.
 - **Ordinals and dates:** "Chapter the First"; Roman numerals in medallions and the ribbon; "the Year of Grace 2026".
@@ -163,12 +173,12 @@ Chip colours follow real objects where they can (the green brush, the blue comb)
 - **`.rubric`** cards hold an icon and German h3, short paragraphs, `.note` for cautions and locations, `.chip` for quantities and objects, and `.text-btn` to open a lightbox plate. `.pair` sets two rubrics side by side from 640 px.
 - **`.rite`** is a numbered italic procedure with Cinzel numerals in gilt circles. Use it for any step-by-step task.
 - **Lightbox plates** are photographic plates opened from a `.text-btn`, with carousel mode for sequences. Each plate's caption repeats its alt text so the plate can be understood without the picture.
-- **`.rubric.hints`** is the Hints for Travellers card (bulleted, 1rem, no italics).
+- **`.crop`** is the clipping well inside every `figure.gilt` mat (3:4, or round in a `.cameo`); it lets a portrait be shifted and zoomed for framing.
 - **`.court` / `.courtier`** are the contact cards on the decree page.
 
 ### Baedeker conventions
 
-These guidebook devices give the site its form. Hints for Travellers are in use; asterisk ratings and fold-out plans are not yet. Introduce them in the manner described here.
+These guidebook devices give the site its form. Asterisk ratings and fold-out plans are not yet in use; introduce them in the manner described here.
 
 #### Asterisk ratings
 
@@ -186,23 +196,7 @@ Baedeker marked objects of special interest with an asterisk and the most remark
 
 #### Hints for Travellers
 
-This is Baedeker's practical small print, collected in one place.
-
-- Close any chapter that has practical content with a rubric titled exactly "Hints for Travellers".
-- Keep it to a short list. Each item is one imperative line saying what, where, when and how much. The court voice steps back here and ornament is left out. Baedeker abbreviations are welcome if marked up: `<abbr title="left">l.</abbr>`, `r.`, `min.`, `hr.`.
-- Show unknown facts as placeholders (§5), never as guesses.
-- Example, built only from facts already on the site:
-
-  ```html
-  <article class="rubric hints">
-    <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-    <ul>
-      <li>Meals: <mark class="placeholder">{{FEEDING_TIMES}}</mark>.</li>
-      <li>Fountain: renew every two days. Top and base are not connected.</li>
-      <li>Churu and catnip: lower <abbr title="left">l.</abbr> drawer of the media cabinet.</li>
-    </ul>
-  </article>
-  ```
+Not used. The owner removed the Hints for Travellers sections (2026-10-02); do not add them back or build anything like them.
 
 #### Fold-out plans
 
@@ -300,27 +294,26 @@ Audio meets the same public-domain standard. Record the provenance of any new re
 
 ### PLACEHOLDERS
 
-**In use on the site:** every token in the table below (2026-10-02). Delete a row's placeholder from the site, and mark the row resolved, once the owner supplies the fact.
+**In use on the site** (2026-10-02): `{{EMERGENCY_VET}}` (Royal Decree, "Nachtdienst" card) and `{{MEDICAL_HISTORY}}` (Royal Decree, "Medical notes"). Delete each from the site, and mark it resolved here, once the owner supplies the fact.
 
-**Tokens.** Use the exact names given here; add new rows as needed.
+**Reserved tokens.** These facts are still unknown but not shown, since the Hints sections that held them were removed. Use these exact names if a placeholder is needed again; add new rows as needed.
 
 | Token | Meaning | Natural home |
 |---|---|---|
-| `{{FEEDING_TIMES}}` | times of day meals are served | Ch. I, Hints for Travellers |
-| `{{WET_FOOD_BRAND}}` | brand and flavour of the evening pâté | Ch. I, Hints for Travellers |
-| `{{WET_FOOD_PORTION}}` | amount per meal | Ch. I, Hints for Travellers |
-| `{{MEAL_PREPARATION_STEPS}}` | the six Preparation Precepts plates in words, including the oven step | Ch. I, Hints for Travellers |
-| `{{DRY_FOOD_ARRANGEMENT}}` | whether and how the sitter refills dry food | Ch. I, Hints for Travellers |
-| `{{DRY_FOOD_BRAND}}` | dry food brand | Ch. I, Hints for Travellers |
-| `{{TREAT_ALLOWANCE}}` | how much Churu, and how often | Ch. I, Hints for Travellers |
-| `{{GROOMING_FREQUENCY}}` | how often to brush and comb | Ch. III, Hints for Travellers |
-| `{{LITTER_TYPE}}` | litter used in the Litter-Robot 4 | Ch. IV, Hints for Travellers |
-| `{{LIGHT_TOY}}` | which toy casts the "beam of light" | Ch. II, Hints for Travellers |
-| `{{AGE}}` | age or date of birth | dedication, Hints for Travellers |
-| `{{WEIGHT}}` | current weight | dedication, Hints for Travellers |
-| `{{MEDICAL_HISTORY}}` | conditions a sitter must know about | Royal Decree, "Medical notes" |
-| `{{EMERGENCY_VET}}` | after-hours emergency hospital, name and phone | Royal Decree, "Nachtdienst" card |
-| `{{DAILY_SCHEDULE}}` | outline of her day | dedication, Hints for Travellers |
+| `{{FEEDING_TIMES}}` | times of day meals are served | Ch. I |
+| `{{WET_FOOD_BRAND}}` | brand and flavour of the evening pâté | Ch. I, Das Abendmahl |
+| `{{WET_FOOD_PORTION}}` | amount per meal | Ch. I, Das Abendmahl |
+| `{{MEAL_PREPARATION_STEPS}}` | the six Preparation Precepts plates in words, including the oven step | Ch. I lightbox |
+| `{{DRY_FOOD_ARRANGEMENT}}` | whether and how the sitter refills dry food | Ch. I, Trockene Gaben |
+| `{{DRY_FOOD_BRAND}}` | dry food brand | Ch. I, Trockene Gaben |
+| `{{TREAT_ALLOWANCE}}` | how much Churu, and how often | Ch. I, Nektar der Götter |
+| `{{GROOMING_FREQUENCY}}` | how often to brush and comb | Ch. III, Der Kaiserliche Mantel |
+| `{{LITTER_TYPE}}` | litter used in the Litter-Robot 4 | Ch. IV |
+| `{{LIGHT_TOY}}` | which toy casts the "beam of light" | Ch. II |
+| `{{AGE}}` | age or date of birth | dedication |
+| `{{WEIGHT}}` | current weight | dedication |
+| `{{DAILY_SCHEDULE}}` | outline of her day | dedication |
+
 
 ---
 
@@ -373,6 +366,18 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
   print(round(ratio('#2B2118', '#FFFDF6'), 2))  # 15.47
   ```
 
+### Framing
+
+Every portrait of Liesl is framed with her face centred left to right and her eyes on the upper third line, as far as the frame allows.
+
+- Frames have fixed shapes: the cover arch is 2:3, `figure.gilt` 3:4, and `.cameo` a 1:1 circle, so one framing holds at every screen width.
+- Find the midpoint of her eyes as a fraction of the photo's width and height (lay a 10% grid over it). Then set, on the `<img>`:
+  1. `object-position` to slide the photo along the axis the frame crops, then
+  2. where that is not enough, `transform:scale(z)` with a `transform-origin` that leaves her eyes at (50%, 33%). Keep `z` at 1.3 or below, so ear tips stay inside the arch's dome, and skip zooms under 1.06.
+- Zoomed images must sit inside a clipping parent (`.crop` in figures, `.well` in the arch). Render the crop and look at it before committing.
+- For cover slides, put the style in the slide's `frame` field; the script applies it while the slide is hidden.
+- `IMG_3351` reaches only 44% at the 1.3 cap; its eyes sit low in the original.
+
 ### Images and media
 
 - Give every `<img>` descriptive alt text. For a portrait, describe Liesl's pose and setting. For an instructional plate, state the instruction itself (which cabinet, which line to fill to), either in the alt text or in visible text beside the image. When script swaps an image's `src`, update its `alt` as well.
@@ -412,8 +417,8 @@ Updated 2026-10-02. Fix them only when the owner asks, and delete each line once
 
 - **Health (§6):** no health content cites a source; the eyes and rear rubrics defer to the Leibärzte instead. Add citations only after opening the source page (blocked from cloud sessions so far).
 - **Quotations (§3):** the glosses for Brillat-Savarin, Montaigne and Baudelaire were taken from search extracts; re-check them against the pages named in their comments.
-- **Privacy:** 24 of the 25 `IMG_*.jpeg` files carry GPS coordinates in their EXIF data, and Pages serves them publicly. Stripping the data takes new commits, and the originals stay in git history unless history is rewritten.
-- **Placeholders (§5):** fifteen facts await the owner (see the register).
+- **Privacy:** 24 of the older `IMG_*.jpeg` files carry GPS coordinates in their EXIF data, and Pages serves them publicly. The seven photos added on 2026-10-02 were stripped losslessly, but their originals, like the older ones, stay in git history unless history is rewritten.
+- **Placeholders (§5):** two facts await the owner on the site, and thirteen more are reserved (see the register).
 
 ## Open questions for the owner
 

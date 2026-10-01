@@ -289,13 +289,13 @@ figure.gilt .mat{
   border:1px solid var(--gold);
   box-shadow:0 12px 30px rgba(43,33,24,.18);
 }
-figure.gilt img{
-  display:block; width:100%; aspect-ratio:3/4; object-fit:cover;
-  border:1px solid var(--gold-pale);
-}
+/* the crop well clips each portrait, so it may be shifted and gently zoomed
+   until her eyes sit centred on the upper third (see "Framing" in CLAUDE.md) */
+figure.gilt .crop{ overflow:hidden; border:1px solid var(--gold-pale); aspect-ratio:3/4; }
+figure.gilt img{ display:block; width:100%; height:100%; object-fit:cover; }
 figure.gilt.cameo{ width:min(100%, 280px); }
 figure.gilt.cameo .mat{ border-radius:50%; padding:11px; }
-figure.gilt.cameo img{ aspect-ratio:1/1; border-radius:50%; }
+figure.gilt.cameo .crop{ aspect-ratio:1/1; border-radius:50%; }
 figure.gilt figcaption{
   text-align:center; font-style:italic; font-size:.9rem; color:var(--ink-faint); margin-top:.7rem;
 }
@@ -363,10 +363,6 @@ mark.placeholder{
   padding:.05em .3em; border-radius:2px; overflow-wrap:anywhere;
 }
 
-/* ---------- Hints for Travellers: Baedeker's practical small print ---------- */
-.rubric.hints ul{ margin:.2rem 0 0; padding-left:1.1rem; display:grid; gap:.35rem; font-size:1rem; }
-.rubric.hints li::marker{ color:var(--gold); }
-.velvetine .rubric.hints li::marker{ color:var(--gold-bright); }
 
 /* ---------- rite list ---------- */
 .rite{ counter-reset:rite; list-style:none; margin:.3rem 0 0; padding:0; display:grid; gap:.6rem; }
@@ -521,8 +517,8 @@ mark.placeholder{
       <button class="arch-btn" id="enter-court" aria-label="Tap Her Majesty to open the chronicle">
         <i class="ri-vip-crown-2-fill crown" aria-hidden="true"></i>
         <div class="well">
-          <img id="slide-a" src="IMG_1243.jpeg" alt="Her Majesty reclining on a patterned rug, gazing upward">
-          <img id="slide-b" src="IMG_1799.jpeg" alt="Her Majesty resting on a green sofa, forepaws extended" class="faded">
+          <img id="slide-a" src="IMG_1243.jpeg" alt="Her Majesty reclining on a patterned rug, gazing upward" style="object-position:32% 50%; transform:scale(1.26); transform-origin:50% 0%">
+          <img id="slide-b" src="IMG_0197.jpeg" alt="Her Majesty seated on a red throw, mouth open in proclamation" class="faded" style="object-position:50% 50%; transform:scale(1.30); transform-origin:50% 0%">
         </div>
       </button>
 
@@ -567,7 +563,7 @@ mark.placeholder{
             <figure class="gilt cameo hero-cameo">
               <div class="mat">
                 <i class="ri-vip-crown-2-fill crown" aria-hidden="true"></i>
-                <img src="IMG_4468.jpeg" alt="Her Imperial and Royal Majesty, Kaiserin Liesl">
+                <div class="crop"><img src="IMG_4468.jpeg" alt="Her Imperial and Royal Majesty, Kaiserin Liesl, in a yellow flower collar" style="object-position:50% 80%"></div>
               </div>
             </figure>
             <h2 lang="de">Eine Hommage an die Schönheit von Kaiserin Liesl</h2>
@@ -582,14 +578,6 @@ mark.placeholder{
             <div class="flourish"><i class="ri-leaf-fill" aria-hidden="true"></i></div>
           </div>
 
-          <article class="rubric hints" style="max-width:34rem; margin:1.6rem auto 0;">
-            <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-            <ul>
-              <li>Age: <mark class="placeholder">{{AGE}}</mark>. Weight: <mark class="placeholder">{{WEIGHT}}</mark>.</li>
-              <li>Her day: <mark class="placeholder">{{DAILY_SCHEDULE}}</mark>.</li>
-              <li>Swipe sideways, or use the ribbon above, to turn the pages.</li>
-            </ul>
-          </article>
         </div>
       </div>
     </div>
@@ -617,7 +605,7 @@ mark.placeholder{
 
           <div class="duet">
             <figure class="gilt">
-              <div class="mat"><img src="IMG_4812.jpeg" alt="Her Majesty seated upright, regarding the viewer with a level gaze"></div>
+              <div class="mat"><div class="crop"><img src="IMG_4812.jpeg" alt="Her Majesty seated upright, regarding the viewer with a level gaze" style="object-position:50% 50%"></div></div>
               <figcaption>Her Majesty presides over the evening service.</figcaption>
             </figure>
 
@@ -650,17 +638,6 @@ mark.placeholder{
                 </article>
               </div>
 
-              <article class="rubric hints">
-                <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-                <ul>
-                  <li>Meals: <mark class="placeholder">{{FEEDING_TIMES}}</mark>.</li>
-                  <li>Evening pâté: <mark class="placeholder">{{WET_FOOD_BRAND}}</mark>, <mark class="placeholder">{{WET_FOOD_PORTION}}</mark>.</li>
-                  <li>Preparation: <mark class="placeholder">{{MEAL_PREPARATION_STEPS}}</mark> (see the Preparation Precepts plates).</li>
-                  <li>Dry food: <mark class="placeholder">{{DRY_FOOD_BRAND}}</mark>; <mark class="placeholder">{{DRY_FOOD_ARRANGEMENT}}</mark>. Polish the dish weekly.</li>
-                  <li>Churu: <mark class="placeholder">{{TREAT_ALLOWANCE}}</mark>. Churu and catnip: lower <abbr title="left">l.</abbr> drawer of the media cabinet.</li>
-                  <li>Fountain: renew every two days. Top and base are not connected.</li>
-                </ul>
-              </article>
             </div>
           </div>
         </div>
@@ -690,7 +667,7 @@ mark.placeholder{
 
           <div class="duet flip">
             <figure class="gilt cameo">
-              <div class="mat"><img src="IMG_4881.jpeg" alt="Her Majesty reclining on a rust-coloured bedspread, gazing past the viewer"></div>
+              <div class="mat"><div class="crop"><img src="IMG_4881.jpeg" alt="Her Majesty reclining on a rust-coloured bedspread, gazing past the viewer" style="object-position:50% 24%"></div></div>
               <figcaption>A soul of such sensitivity requires moments of whim.</figcaption>
             </figure>
 
@@ -702,12 +679,6 @@ mark.placeholder{
               <article class="rubric">
                 <h3><i class="ri-music-2-fill" aria-hidden="true"></i> <span lang="de">Spiele der Musen</span></h3>
                 <p>Let small feathers and shining orbs bounce from the furniture like notes in a symphony. It is your sacred duty to delight Her Majesty.</p>
-              </article>
-              <article class="rubric hints">
-                <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-                <ul>
-                  <li>Beam of light: <mark class="placeholder">{{LIGHT_TOY}}</mark>.</li>
-                </ul>
               </article>
             </div>
           </div>
@@ -736,6 +707,12 @@ mark.placeholder{
             </blockquote>
           </div>
 
+          <div class="duet">
+            <figure class="gilt">
+              <div class="mat"><div class="crop"><img src="IMG_5849.jpeg" alt="Her Majesty seated in a wooden stand, lit gold, regarding the viewer" width="960" height="1280" loading="lazy" style="object-position:50% 50%; transform:scale(1.22); transform-origin:100% 0%"></div></div>
+              <figcaption>Her Majesty sits for her court portrait.</figcaption>
+            </figure>
+
           <div class="rubrics">
             <div class="pair">
               <article class="rubric">
@@ -753,14 +730,7 @@ mark.placeholder{
               <p>Although rare, under certain circumstances her rear may be compromised. Cleansing wipes befitting her station are located in the <strong>lower left cabinet adjacent to the range</strong>.</p>
               <p class="note">Should the trouble persist or recur, summon the <a href="#decree">k. u. k. Leibärzte</a>.</p>
             </article>
-            <article class="rubric hints">
-              <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-              <ul>
-                <li>Brush (green) and comb (blue): <mark class="placeholder">{{GROOMING_FREQUENCY}}</mark>.</li>
-                <li>Wipes: lower <abbr title="left">l.</abbr> cabinet beside the range.</li>
-                <li>Anything amiss with eyes or rear: see the <a href="#decree">Royal Decree</a>.</li>
-              </ul>
-            </article>
+          </div>
           </div>
         </div>
       </div>
@@ -805,13 +775,6 @@ mark.placeholder{
                 <p style="font-style:italic;">Should the Empress interrupt the cycle, delicately extricate Her Majesty to an alternative salon, securely close the doors, and await completion. The Fourth Throne's QuietSift mechanism pauses in deference to her presence.</p>
               </article>
 
-              <article class="rubric hints">
-                <h3><i class="ri-compass-3-fill" aria-hidden="true"></i> Hints for Travellers</h3>
-                <ul>
-                  <li>Every 5 days: perform the rite above. Watch the panel for a flashing blue light.</li>
-                  <li>Litter: <mark class="placeholder">{{LITTER_TYPE}}</mark>.</li>
-                </ul>
-              </article>
             </div>
 
             <figure class="video-shrine">
@@ -933,14 +896,21 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ── Cover slideshow ─────────────────────────────── */
 const coverSlides = [
-  { src:'IMG_1243.jpeg', alt:'Her Majesty reclining on a patterned rug, gazing upward' },
-  { src:'IMG_1799.jpeg', alt:'Her Majesty resting on a green sofa, forepaws extended' },
-  { src:'IMG_1868.jpeg', alt:'Her Majesty seated on a rug, regarding the viewer' },
-  { src:'IMG_2041.jpeg', alt:'Her Majesty seated upright on a wooden stand' },
-  { src:'IMG_2816.jpeg', alt:'Her Majesty seated on a striped rug in the drawing room' },
-  { src:'IMG_2943.jpeg', alt:'Her Majesty reclining among dark cushions' },
-  { src:'IMG_3345.jpeg', alt:'Her Majesty in profile, gazing upward' },
-  { src:'IMG_3351.jpeg', alt:'Her Majesty looking up, wide-eyed' }
+  { src:'IMG_1243.jpeg', alt:'Her Majesty reclining on a patterned rug, gazing upward', frame:'object-position:32% 50%; transform:scale(1.26); transform-origin:50% 0%' },
+  { src:'IMG_0197.jpeg', alt:'Her Majesty seated on a red throw, mouth open in proclamation', frame:'object-position:50% 50%; transform:scale(1.30); transform-origin:50% 0%' },
+  { src:'IMG_1799.jpeg', alt:'Her Majesty resting on a green sofa, forepaws extended', frame:'object-position:50% 50%' },
+  { src:'IMG_0132.jpeg', alt:'Her Majesty reclining against a red throw, regarding the viewer', frame:'object-position:41% 50%; transform:scale(1.18); transform-origin:50% 100%' },
+  { src:'IMG_1868.jpeg', alt:'Her Majesty seated on a rug, regarding the viewer', frame:'object-position:56% 50%; transform:scale(1.30); transform-origin:50% 0%' },
+  { src:'IMG_4280.jpeg', alt:'Her Majesty seated upright on a red throw, gazing down at the viewer', frame:'object-position:100% 50%; transform:scale(1.30); transform-origin:62% 0%' },
+  { src:'IMG_2041.jpeg', alt:'Her Majesty seated upright on a wooden stand', frame:'object-position:100% 50%; transform:scale(1.10); transform-origin:100% 96%' },
+  { src:'IMG_0191.jpeg', alt:'Her Majesty lying on a rust-coloured bedspread, gazing straight ahead', frame:'object-position:40% 50%; transform:scale(1.21); transform-origin:50% 0%' },
+  { src:'IMG_2816.jpeg', alt:'Her Majesty seated on a striped rug in the drawing room', frame:'object-position:68% 50%' },
+  { src:'IMG_3594.jpeg', alt:'Her Majesty reclining on a dark patterned throw, regarding the viewer', frame:'object-position:0% 50%; transform:scale(1.23); transform-origin:47% 100%' },
+  { src:'IMG_2943.jpeg', alt:'Her Majesty reclining among dark cushions', frame:'object-position:68% 50%; transform:scale(1.20); transform-origin:50% 100%' },
+  { src:'IMG_5849.jpeg', alt:'Her Majesty seated in a wooden stand, lit gold', frame:'object-position:100% 50%; transform:scale(1.21); transform-origin:85% 0%' },
+  { src:'IMG_3345.jpeg', alt:'Her Majesty in profile, gazing upward', frame:'object-position:0% 50%; transform:scale(1.30); transform-origin:28% 100%' },
+  { src:'IMG_0175.jpeg', alt:'Her Majesty lying on a rust-coloured bedspread, head tilted', frame:'object-position:50% 50%; transform:scale(1.23); transform-origin:50% 100%' },
+  { src:'IMG_3351.jpeg', alt:'Her Majesty looking up, wide-eyed', frame:'object-position:68% 50%; transform:scale(1.30); transform-origin:50% 100%' }
 ];
 const slideA = document.getElementById('slide-a');
 const slideB = document.getElementById('slide-b');
@@ -956,6 +926,7 @@ function startSlideshow(){
     const outgoing = showA ? slideA : slideB;
     incoming.src = coverSlides[coverIdx].src;
     incoming.alt = coverSlides[coverIdx].alt;
+    incoming.style.cssText = coverSlides[coverIdx].frame;    // set while hidden, so no visible jump
     incoming.classList.remove('faded');
     outgoing.classList.add('faded');
     showA = !showA;
