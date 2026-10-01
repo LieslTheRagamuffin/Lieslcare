@@ -326,6 +326,7 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 
 - **Keep it practical and conservative.** Tell the sitter what to watch for and when to call. Never diagnose or suggest a treatment.
 - **No medication names or doses.** The rule covers medicines, supplements and anything given for a health purpose: no product names, amounts or frequencies. Write "as her veterinarian has directed" and leave the specifics to the owner's offline instructions.
+- **Owner's exception (2026-10-02):** the two supplement instructions in Ch. I, Das Abendmahl ("⅛ tsp Lysine" and "½ scoop Proden PlaqueOff", the small scoop packed with the product) stay on the site. Keep their wording exact when restyling, change them only on the owner's instruction, and add no other names or amounts.
 - **Defer to her veterinarian.** End every health rubric with a link to the Royal Decree page (`#decree`), where the K. u. K. Leibärzte are listed. Link to the page instead of repeating numbers.
 - **Cite reputable sources only:** AAFP (catvets.com), Cornell Feline Health Center (vet.cornell.edu), International Cat Care (icatcare.org), and ASPCA (aspca.org, including Animal Poison Control). Open the page, confirm it supports the claim, link that page, and add an HTML comment with its title and the date you consulted it. If you cannot reach the source (cloud sessions often block outbound fetches), leave the claim out. Never cite from memory.
 - Show the citation in Baedeker style, as a small line after the advice: "Authority: Cornell Feline Health Center, ‘[page title]’".
@@ -406,7 +407,7 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 
 These were recorded on 2026-10-01, when this file was written. Fix them only when the owner asks, and delete each line once it is fixed.
 
-- **Health (§6):** Ch. I names supplements with amounts ("⅛ tsp Lysine", "½ measuring cup Proden PlaqueOff"). As written, the second reads as half a kitchen measuring cup, which seems unlikely; the owner should check it against the product's own scoop. No health content cites a source.
+- **Health (§6):** no health content cites a source. (The Ch. I supplement amounts are an approved exception.)
 - **Quotations (§3):** none has a source comment, and every gloss is of unknown provenance. The Montaigne line is misquoted, "traditional antiphon" is inaccurate, the Frederick line cites no work, and the Hoffmann gloss should go, since it has no public-domain translation (show the original alone). Both German epigraphs close with a straight `"`, and no original carries a `lang` attribute.
 - **Headings (§4):** `<title>` and `og:title` read "Lieslcare | The Imperial Standard".
 - **Contrast (§7):** these fall below AA: eyebrows, attributions, subtitles, captions, the "View …" text buttons and the flourish (`--gold` or `--ink-faint` on parchment, 2.7–4.1:1); the decree eyebrow, roles and glosses on red (3.1–3.9:1); the decree footer line (2.7–3.4:1); the cover imprint (3.9:1), the colophon (2.8:1) and the pulsing tap hint (2.3:1 at its faintest); and the page arrows at rest (2.3:1, against 3:1 for controls).
@@ -418,4 +419,4 @@ These were recorded on 2026-10-01, when this file was written. Fix them only whe
 
 ## Open questions for the owner
 
-1. **Supplements.** §6 keeps supplement names and amounts off the public site, yet Ch. I currently tells the sitter to add "⅛ tsp Lysine" and "½ measuring cup Proden PlaqueOff" to the evening meal. Should those amounts stay on the site as an owner's exception to §6, or move somewhere private (a note left on the counter, labels on the jars) with the site saying only "add the supplements as directed"? Please also confirm the PlaqueOff amount.
+None at present (2026-10-02).
