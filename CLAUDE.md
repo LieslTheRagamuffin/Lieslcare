@@ -67,7 +67,7 @@ To add a chapter, copy a `section.page`, give it an id, renumber the eyebrow ("C
 
 ### Publishing
 
-- **GitHub Pages**, from the public repository `LieslTheRagamuffin/Lieslcare`, with Pages enabled. With no workflow or config files the site deploys from a branch, and the only possible source is `main` / `(root)`: `main` is the default branch and there is no `/docs` folder. This is inferred, so confirm it under Settings → Pages before depending on it. Address: `https://liesltheragamuffin.github.io/Lieslcare/`.
+- **GitHub Pages**, from the public repository `LieslTheRagamuffin/Lieslcare`, deploying from the branch `main`, folder `(root)` (confirmed by the owner, 2026-10-02). Address: `https://liesltheragamuffin.github.io/Lieslcare/`.
 - **`main` is production.** A merge to `main` goes live within minutes, so work on a branch and open a PR.
 - **No build step.** There is no package manager, bundler, preprocessor or generator, and files are served as committed.
 - GitHub runs Jekyll over branch deployments without being asked. HTML files without front matter (all current files) are copied verbatim, with these consequences:
@@ -220,7 +220,7 @@ Baedeker bound in folding plans with numbered keys, and the text referred to the
 ### Rules for new quotations
 
 - The original **and** the translation must both be public domain. A text published in 1930 or earlier is public domain in the US as of 2026, and the cutoff moves forward every 1 January. Prefer translators who died more than 70 years ago, so the text is also free in the UK and EU.
-- Never write a translation yourself. If no public-domain translation exists, choose another passage.
+- Never write a translation yourself. If no public-domain translation exists, show the original alone, with no gloss (owner's ruling, 2026-10-02).
 - Copy the text from a scan or a reputable transcription (Internet Archive, Project Gutenberg, Wikisource, Gallica, Projekt Gutenberg-DE, Aozora Bunko) and quote it exactly, keeping the translator's spelling. Mark omissions with an ellipsis. Never quote from memory or from a quotation website.
 - Put an HTML comment directly beside every quotation. It records the author, work and exact location, the edition of the original, the translator, the translation's edition (title, place, publisher, year), and the URL consulted with the date.
 - Mark the original's language (`lang="fr"`, `lang="de"`, `lang="la"`, `lang="ja"`).
@@ -262,7 +262,7 @@ There are seven. None has a source comment, and no gloss names its translator.
 | # | Where | Text on the site | Source | Gloss and its provenance | Problems |
 |---|---|---|---|---|---|
 | 1 | Welcome cover, `.precedent` | "At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto." — *after Sei Shōnagon, Makura no Sōshi* | Sei Shōnagon, *Makura no Sōshi* (c. 1000), the passage beginning 上にさぶらふ御猫は; the section number varies by edition | none: an English paraphrase in the court's own words | Needs a source comment. "Omoto" (命婦のおもと) follows some editions; others read "Otodo". |
-| 2 | Dedication (`#hommage`) | „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!" — *E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr* | Hoffmann, *Lebens-Ansichten des Katers Murr*, vol. 1 (1819/20), first sentence of Murr's first section, "Gefühle des Daseins. Die Monate der Jugend" | "There is truly something beautiful, magnificent, sublime about life!": unknown | No public-domain English translation is known. Closing mark is a straight `"`. |
+| 2 | Dedication (`#hommage`) | „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!" — *E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr* | Hoffmann, *Lebens-Ansichten des Katers Murr*, vol. 1 (1819/20), first sentence of Murr's first section, "Gefühle des Daseins. Die Monate der Jugend" | "There is truly something beautiful, magnificent, sublime about life!": unknown | No public-domain English translation is known, so the gloss should be removed and the original shown alone. Closing mark is a straight `"`. |
 | 3 | Ch. I, Das Bankett | « Dis-moi ce que tu manges, je te dirai ce que tu es. » — *Jean Anthelme Brillat-Savarin, Physiologie du Goût* | Brillat-Savarin, *Physiologie du goût* (1825), "Aphorismes du professeur", no. IV | "Tell me what you eat, and I shall tell you what you are.": unknown | Gloss needs a public-domain source (Robinson 1854 or Anderson 1877). |
 | 4 | Ch. II, Kaiserliche Zerstreuungen | « Quand je me joue à ma chatte, qui sait si elle ne passe pas son temps de moi plus que je ne fais d'elle ? » — *Michel de Montaigne, Essais* | Montaigne, *Essais* II.12, "Apologie de Raimond Sebond" | "When I play with my cat, who knows whether she is not amusing herself with me more than I with her?": unknown | **Misquoted.** Montaigne has no "ne … pas": « … qui sait si elle passe son temps de moi plus que je ne fais d'elle ? » |
 | 5 | Ch. III, Die Rituale der Schönheit | « Les Chinois voient l'heure dans l'œil des chats. » — *Charles Baudelaire, Le Spleen de Paris* | Baudelaire, "L'Horloge", *Petits poèmes en prose* (*Le Spleen de Paris*) no. XVI (first printed 1857, collected 1869) | "The Chinese tell the hour in the eyes of cats.": unknown | Gloss needs a public-domain source (Symons 1905). |
@@ -279,7 +279,7 @@ Audio meets the same public-domain standard. Record the provenance of any new re
 
 1. **Never begin a heading with "The".** This covers h1–h6, `<title>`, `og:title`, `<summary>`, lightbox and plan titles, and heading-like labels such as eyebrows and ribbon links. Drop the article or recast the heading: "Royal Water Levels", "Plan of the Kitchen", "Of the Fourth Throne".
    - The current `<title>` and `og:title`, "Lieslcare | The Imperial Standard", put "The" at the head of their second segment. Treat that as a conflict.
-   - Most German headings begin with Der/Die/Das. Whether those count is for the owner to decide (see Open questions). Until then, new headings avoid leading definite articles in every language (Der/Die/Das, Le/La/Les/L'), and existing German headings stay as they are.
+   - The rule applies to the English word only. German headings beginning with Der/Die/Das are fine, existing and new alike (owner's ruling, 2026-10-02).
 2. **Never use the construction "it's not X, it's Y"** or any rewording of the same move ("this isn't X — it's Y", "not X; rather Y", "not merely X, but Y"). State the positive claim directly. The rule covers everything you write: site copy, alt text, captions, code comments, commit messages and PR descriptions. Public-domain quotations are reproduced exactly as published.
 
 ---
@@ -407,8 +407,8 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 These were recorded on 2026-10-01, when this file was written. Fix them only when the owner asks, and delete each line once it is fixed.
 
 - **Health (§6):** Ch. I names supplements with amounts ("⅛ tsp Lysine", "½ measuring cup Proden PlaqueOff"). As written, the second reads as half a kitchen measuring cup, which seems unlikely; the owner should check it against the product's own scoop. No health content cites a source.
-- **Quotations (§3):** none has a source comment, and every gloss is of unknown provenance. The Montaigne line is misquoted, "traditional antiphon" is inaccurate, the Frederick line cites no work, and the Hoffmann line has no public-domain English translation. Both German epigraphs close with a straight `"`, and no original carries a `lang` attribute.
-- **Headings (§4):** `<title>` and `og:title` read "Lieslcare | The Imperial Standard". German Der/Die/Das headings await a ruling.
+- **Quotations (§3):** none has a source comment, and every gloss is of unknown provenance. The Montaigne line is misquoted, "traditional antiphon" is inaccurate, the Frederick line cites no work, and the Hoffmann gloss should go, since it has no public-domain translation (show the original alone). Both German epigraphs close with a straight `"`, and no original carries a `lang` attribute.
+- **Headings (§4):** `<title>` and `og:title` read "Lieslcare | The Imperial Standard".
 - **Contrast (§7):** these fall below AA: eyebrows, attributions, subtitles, captions, the "View …" text buttons and the flourish (`--gold` or `--ink-faint` on parchment, 2.7–4.1:1); the decree eyebrow, roles and glosses on red (3.1–3.9:1); the decree footer line (2.7–3.4:1); the cover imprint (3.9:1), the colophon (2.8:1) and the pulsing tap hint (2.3:1 at its faintest); and the page arrows at rest (2.3:1, against 3:1 for controls).
 - **Reduced motion (§7):** `turnPage()` forces smooth scrolling, and the cover slideshow never stops (it has no pause control either).
 - **Alt text (§7):** every slideshow frame has the alt "Her Majesty". The six preparation plates are "Sustenance preparation, plate N" and the fountain is "Fountain water levels", so the instructions they carry exist only as pictures. Remix icons lack `aria-hidden`.
@@ -418,7 +418,4 @@ These were recorded on 2026-10-01, when this file was written. Fix them only whe
 
 ## Open questions for the owner
 
-1. Do German headings that begin with Der/Die/Das break the "never begin a heading with The" rule?
-2. §6 bars supplement names and amounts from the site. Where should a sitter find them instead (a printed card, a labelled container), and may the site say where?
-3. For quotations with no public-domain translation (Hoffmann's *Kater Murr*), should the site show the original alone, or choose another Hoffmann passage?
-4. Please confirm `main` / `(root)` under Settings → Pages. To keep this file off the public site, a separate change could add a `_config.yml` containing `exclude: [CLAUDE.md]`.
+1. **Supplements.** §6 keeps supplement names and amounts off the public site, yet Ch. I currently tells the sitter to add "⅛ tsp Lysine" and "½ measuring cup Proden PlaqueOff" to the evening meal. Should those amounts stay on the site as an owner's exception to §6, or move somewhere private (a note left on the counter, labels on the jars) with the site saying only "add the supplements as directed"? Please also confirm the PlaqueOff amount.
