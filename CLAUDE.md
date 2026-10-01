@@ -15,7 +15,7 @@ Standing orders for every session in this repository. Read this file in full bef
 | `index.html` | The entire site: markup, inline `<style>` (≈460 lines) and inline `<script>` (≈155 lines). There are no other HTML, CSS or JS files. |
 | `README.md` | One-line GitHub description. Not linked from the site. |
 | `CLAUDE.md` | This file. |
-| `LieslWaltz.mp3` | Background waltz: 13 MB, 8 min 59 s, autoplays and loops. Johann Strauss II, *An der schönen blauen Donau*, Op. 314, performed by the United States Marine Band, according to the file's original name (added in `fd8e1dd`, renamed in `ed442d7`). A US-government recording is public domain in the US. The ID3 comment lists YouTube URLs, so confirm the source before relying on this. |
+| `LieslWaltz.mp3` | Background waltz: 13 MB, 8 min 59 s, loops; loaded only when it starts playing. Johann Strauss II, *An der schönen blauen Donau*, Op. 314, performed by the United States Marine Band, according to the file's original name (added in `fd8e1dd`, renamed in `ed442d7`). A US-government recording is public domain in the US. The ID3 comment lists YouTube URLs, so confirm the source before relying on this. |
 | `IMG_*.jpeg`, `Liesl_Profile.png`, `Liesl_Profile2.jpg` | iPhone photographs, 960×1280 or 1280×960 (the profiles are 860×852). See the image register. |
 
 The repository has no `.github/`, workflows, `_config.yml`, `.nojekyll`, `CNAME` or `package.json`.
@@ -48,20 +48,20 @@ Pages still publishes unused files, so anyone can open them by URL. Delete them 
 1. `<head>`: meta and Open Graph tags, an inline-SVG crown-emoji favicon, Google Fonts, Remix Icon.
 2. `<style>`, divided by banner comments: tokens (`:root`), ribbon navigation, Baedeker welcome overlay, horizontal book, leaf variants, frontispiece, duet, gilt figures, rubric cards, rite list, video shrine, decree court, page arrows and waltz toggle, lightbox, "MOTION COURTESY" (reduced motion).
 3. `#welcome`: the red Baedeker cover, with imprint, "BAEDEKER'S", "Kaiserin Liesl" in script, an arched slideshow button, the Sei Shōnagon precedent, the tap hint and the colophon. A tap turns the cover away like a page and starts the waltz.
-4. `nav.ribbon`: fixed chapter ribbon. At 720 px and below, the `.word` spans hide and only Roman numerals remain.
+4. `nav.ribbon`: fixed chapter ribbon. Every link has an `aria-label`. At 720 px and below, the `.word` spans hide, Roman numerals remain, and the Cover link shows a book icon (`.cover-icon`).
 5. `main#book.book`: a horizontal scroll-snap book. Each chapter is a viewport-wide `section.page`:
 
    | id | Ribbon | Leaf | Contents |
    |---|---|---|---|
-   | `hommage` | Cover | parchment | dedication cameo, Hoffmann epigraph |
-   | `banquet` | I · Bankett | parchment | evening meal, dry food, treats and catnip, water fountain; two lightboxes |
-   | `diversions` | II · Zerstreuungen | parchment | play |
-   | `rituals` | III · Rituale | parchment | coat, eyes, hygiene |
-   | `alchemy` | IV · Alchemie | `.velvetine` (dark) | Litter-Robot 4 procedure, YouTube embed |
-   | `decree` | Royal Decree | `.oxbloodine` (red) | veterinarian and household contacts, copyright line |
+   | `hommage` | Cover | parchment | dedication cameo, Hoffmann epigraph, Hints for Travellers |
+   | `banquet` | I · Bankett | parchment | evening meal, dry food, treats and catnip, water fountain; two lightboxes; Hints for Travellers |
+   | `diversions` | II · Zerstreuungen | parchment | play; Hints for Travellers |
+   | `rituals` | III · Rituale | parchment | coat, eyes, hygiene; Hints for Travellers |
+   | `alchemy` | IV · Alchemie | `.velvetine` (dark) | Litter-Robot 4 procedure, YouTube embed; Hints for Travellers |
+   | `decree` | Royal Decree | `.oxbloodine` (red) | veterinarian, emergency-hospital placeholder and household contacts, medical-notes placeholder, copyright line |
 
-6. Page arrows (768 px and wider only), `<audio autoplay loop>` with `#waltz-toggle`, and the `#lightbox` dialog.
-7. `<script>`: cover slideshow (3.8 s interval), waltz autoplay and toggle, welcome overlay, `turnPage()` pagination, an IntersectionObserver that scrolls pages back to the top once they leave view, the lightbox (`precepts` array plus fountain mode), and keyboard handling.
+6. Page arrows (768 px and wider only, on dark discs), `<audio loop preload="none">` with `#waltz-toggle`, and the `#lightbox` dialog.
+7. `<script>`: a `reduceMotion` media query used throughout; the cover slideshow (`coverSlides`, each with `src` and `alt`; 3.8 s interval, never started under reduced motion, stopped once the book opens, fetching one portrait ahead); waltz start (attempted at load and on first gesture) and toggle; welcome overlay; `turnPage()` pagination; an IntersectionObserver that scrolls pages back to the top once they leave view; the lightbox (`precepts` array of `src`/`alt` plates, fetched on first opening, plus fountain mode); keyboard handling.
 
 To add a chapter, copy a `section.page`, give it an id, renumber the eyebrow ("Chapter the Fifth") and medallion, and add `<a href="#id">V<span class="word"> · Wort</span></a>` to the ribbon before the decree link. Pagination and arrows need no changes.
 
@@ -75,7 +75,7 @@ To add a chapter, copy a `section.page`, give it an id, renumber the eyebrow ("C
   - Liquid template syntax is evaluated in rendered Markdown. In any `.md` file, never write a brace-percent tag opener, and never write an opening double brace without its closing pair. A Liquid syntax error fails the Pages build and freezes the live site at its last good version. Complete tokens such as `{{FEEDING_TIMES}}` are safe; they render blank in the HTML copy.
   - Never add YAML front matter to `index.html`, because Liquid would then swallow the placeholders.
   - Files and folders whose names begin with `_` or `.` are not published.
-- The site is served under `/Lieslcare/`, so use relative URLs (`IMG_4812.jpeg`, never `/IMG_4812.jpeg`). Filenames are case-sensitive (`.jpeg` and `.jpg` are different). `og:image` is currently relative, and social crawlers need an absolute URL.
+- The site is served under `/Lieslcare/`, so use relative URLs (`IMG_4812.jpeg`, never `/IMG_4812.jpeg`). Filenames are case-sensitive (`.jpeg` and `.jpg` are different). The one exception is `og:image`, which social crawlers need as an absolute URL.
 - Local preview: run `python3 -m http.server 8000` in the repository root and open `http://localhost:8000/`.
 
 ---
@@ -104,8 +104,8 @@ Conventions:
 - **Court offices** for people: "K. u. K. Leibärzte" (veterinarians), "Oberste Hofdame", "Der Getreue Hofstaat". New roles take their titles from the same Hofstaat vocabulary.
 - **Ordinals and dates:** "Chapter the First"; Roman numerals in medallions and the ribbon; "the Year of Grace 2026".
 - **Edition:** "Third Edition" appears in the colophon and in the CSS banner comment. Keep the two in step, and change the edition only when the owner asks.
-- **k. u. k.:** lowercase with spaces in running text. The `.smallcaps` class uppercases it in labels.
-- **Quotation marks:** German „…“, French « … », English “…”. The two German epigraphs currently close with a straight `"`.
+- **k. u. k.:** lowercase with spaces in the source. The `.smallcaps` class uppercases it in labels.
+- **Quotation marks:** German „…“, French « … » with no-break spaces inside the guillemets (and before `?`), English “…”.
 - **Code comments** share the voice ("names shall never again be beheaded", "MOTION COURTESY", "Courtly keyboard etiquette") and still say what the code does.
 
 ### Typography
@@ -119,16 +119,17 @@ A single Google Fonts `<link>` loads Cinzel 400–900, EB Garamond 400–700 wit
 | Cover title (h1) | Cinzel 900, tracking .08em, `clamp(2.4rem, 7.5vw, 4.2rem)` | "BAEDEKER'S" |
 | Script | Great Vibes, used once, for "Kaiserin Liesl" on the cover. Keep it that rare. | "Kaiserin Liesl" |
 | Rubric title (h3) | Cinzel .78rem, uppercase, tracking .15em, oxblood, after one gold Remix icon | "Der Lebensbrunnen" |
-| Labels (`.smallcaps`) | Cinzel, uppercase, tracking .22em; eyebrows .66rem, subtitles .64rem, attributions .58rem | "Chapter the First" |
-| Ribbon links, text buttons, chips | Cinzel .62–.66rem, uppercase | "View Water Levels" |
+| Labels (`.smallcaps`) | Cinzel, uppercase, tracking .22em; .75rem (eyebrows, subtitles, attributions, roles, colophon, footer) | "Chapter the First" |
+| Ribbon links, text buttons, chips | Cinzel .75rem, uppercase | "View Water Levels" |
+| Placeholders | `mark.placeholder`: monospace .85em, ink on `--gold-pale` | `{{FEEDING_TIMES}}` |
 | Captions | EB Garamond italic .9rem | "Her Majesty presides over the evening service." |
 | Epigraph | italic .98rem; gloss .88rem in parentheses; attribution as a label after an em dash | each chapter opener |
 
-Many existing labels sit below 0.75rem (12 px). Set new reading text at 0.75rem or larger, and body copy at 1rem or larger.
+No text is set below 0.75rem (12 px); keep it so, and keep body copy at 1rem or larger.
 
 ### Palette
 
-Every colour is a token on `:root`; add new colours as tokens too. The only literal outside the tokens is `#41566E` (blue chip text). Ratios are WCAG contrast for small text.
+Every colour is a token on `:root`; add new colours as tokens too. Literals outside the tokens: `#41566E` (blue chip text) and translucent overlays on the dark leaves, each chosen to pass AA. Ratios are WCAG contrast for small text.
 
 | Token | Hex | Role | As small text |
 |---|---|---|---|
@@ -137,10 +138,11 @@ Every colour is a token on `:root`; add new colours as tokens too. The only lite
 | `--cream` | `#FFFDF6` | leaf gradient top left, rubric cards, mats | background |
 | `--ink` | `#2B2118` | body text | 15.5:1 on cream ✓ |
 | `--ink-soft` | `#5C4C3B` | epigraphs, notes, ribbon links | 6.6:1 on parchment-deep ✓ |
-| `--ink-faint` | `#8A7A64` | captions, subtitles, counters | 4.1:1 cream, 3.3:1 parchment-deep ✗ |
-| `--gold` | `#A8863D` | hairlines, borders, icons, eyebrows, text buttons | 3.4:1 cream, 2.7:1 parchment-deep ✗ |
-| `--gold-bright` | `#C9A75C` | gold on dark leaves | 7.4:1 on velvet ✓; 3.9:1 on baedeker ✗ |
-| `--gold-pale` | `#E4D3A8` | hairlines, cover title | 6.0:1 on baedeker ✓ |
+| `--ink-faint` | `#6B5C48` | captions, subtitles, counters | 6.4:1 cream, 5.2:1 parchment-deep ✓ |
+| `--gold` | `#A8863D` | hairlines, borders, icons, medallion numerals, flourish (never small text) | 3.4:1 cream ✗ for small text |
+| `--gold-text` | `#7A5E22` | gold small text on parchment: eyebrows, attributions, text buttons, hovers | 6.0:1 cream, 4.9:1 parchment-deep ✓ |
+| `--gold-bright` | `#C9A75C` | gold on the dark velvet leaf, page arrows, waltz toggle | 7.4:1 on velvet ✓; 3.9:1 on baedeker ✗ |
+| `--gold-pale` | `#E4D3A8` | gold on red: cover imprint and attributions, decree eyebrow, roles; placeholder ground | 6.0:1 on baedeker ✓ |
 | `--oxblood` | `#7E2A23` | rubric titles, links, chips, seal | 9.2:1 on cream ✓ |
 | `--baedeker` | `#8E1F1F` | Baedeker-cover red: welcome, decree leaf, `theme-color` | background |
 | `--baedeker-deep` | `#5E1414` | decree gradient edge | background |
@@ -160,12 +162,13 @@ Chip colours follow real objects where they can (the green brush, the blue comb)
 - **`figure.gilt`** is a matted 3:4 photograph with an italic caption. `.cameo` makes it circular and `.hero-cameo` adds a crown.
 - **`.rubric`** cards hold an icon and German h3, short paragraphs, `.note` for cautions and locations, `.chip` for quantities and objects, and `.text-btn` to open a lightbox plate. `.pair` sets two rubrics side by side from 640 px.
 - **`.rite`** is a numbered italic procedure with Cinzel numerals in gilt circles. Use it for any step-by-step task.
-- **Lightbox plates** are photographic plates opened from a `.text-btn`, with carousel mode for sequences.
+- **Lightbox plates** are photographic plates opened from a `.text-btn`, with carousel mode for sequences. Each plate's caption repeats its alt text so the plate can be understood without the picture.
+- **`.rubric.hints`** is the Hints for Travellers card (bulleted, 1rem, no italics).
 - **`.court` / `.courtier`** are the contact cards on the decree page.
 
 ### Baedeker conventions
 
-These guidebook devices give the site its form. None is in use yet; introduce them in the manner described here.
+These guidebook devices give the site its form. Hints for Travellers are in use; asterisk ratings and fold-out plans are not yet. Introduce them in the manner described here.
 
 #### Asterisk ratings
 
@@ -255,19 +258,19 @@ Before using one, check its wording and confirm that it contains the passage you
 | Baudelaire | Arthur Symons, *Poems in Prose from Charles Baudelaire* (London: Elkin Mathews, 1905). |
 | Frederick the Great | He wrote in French. English: Thomas Holcroft, *Posthumous Works of Frederic II, King of Prussia* (London, 1789). |
 
-### Inventory of quotations on the site (2026-10-01)
+### Inventory of quotations on the site (2026-10-02)
 
-There are seven. None has a source comment, and no gloss names its translator.
+There are seven, each with a source comment beside it in `index.html`. Search-extract wordings were taken while direct fetches were blocked; re-check them against the page when you can reach it, then delete the "re-check" note from the comment.
 
-| # | Where | Text on the site | Source | Gloss and its provenance | Problems |
+| # | Where | Text on the site | Source | Gloss | Status |
 |---|---|---|---|---|---|
-| 1 | Welcome cover, `.precedent` | "At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto." — *after Sei Shōnagon, Makura no Sōshi* | Sei Shōnagon, *Makura no Sōshi* (c. 1000), the passage beginning 上にさぶらふ御猫は; the section number varies by edition | none: an English paraphrase in the court's own words | Needs a source comment. "Omoto" (命婦のおもと) follows some editions; others read "Otodo". |
-| 2 | Dedication (`#hommage`) | „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!" — *E. T. A. Hoffmann, Lebens-Ansichten des Katers Murr* | Hoffmann, *Lebens-Ansichten des Katers Murr*, vol. 1 (1819/20), first sentence of Murr's first section, "Gefühle des Daseins. Die Monate der Jugend" | "There is truly something beautiful, magnificent, sublime about life!": unknown | No public-domain English translation is known, so the gloss should be removed and the original shown alone. Closing mark is a straight `"`. |
-| 3 | Ch. I, Das Bankett | « Dis-moi ce que tu manges, je te dirai ce que tu es. » — *Jean Anthelme Brillat-Savarin, Physiologie du Goût* | Brillat-Savarin, *Physiologie du goût* (1825), "Aphorismes du professeur", no. IV | "Tell me what you eat, and I shall tell you what you are.": unknown | Gloss needs a public-domain source (Robinson 1854 or Anderson 1877). |
-| 4 | Ch. II, Kaiserliche Zerstreuungen | « Quand je me joue à ma chatte, qui sait si elle ne passe pas son temps de moi plus que je ne fais d'elle ? » — *Michel de Montaigne, Essais* | Montaigne, *Essais* II.12, "Apologie de Raimond Sebond" | "When I play with my cat, who knows whether she is not amusing herself with me more than I with her?": unknown | **Misquoted.** Montaigne has no "ne … pas": « … qui sait si elle passe son temps de moi plus que je ne fais d'elle ? » |
-| 5 | Ch. III, Die Rituale der Schönheit | « Les Chinois voient l'heure dans l'œil des chats. » — *Charles Baudelaire, Le Spleen de Paris* | Baudelaire, "L'Horloge", *Petits poèmes en prose* (*Le Spleen de Paris*) no. XVI (first printed 1857, collected 1869) | "The Chinese tell the hour in the eyes of cats.": unknown | Gloss needs a public-domain source (Symons 1905). |
-| 6 | Ch. IV, Die Alchemie | « Sic transit gloria mundi. » — *traditional antiphon* | Anonymous: the acclamation of the papal coronation rite (recorded from 1409), perhaps after Thomas à Kempis, *Imitatio Christi* I.3, "O quam cito transit gloria mundi" | "Thus passes the glory of the world.": unknown | "Antiphon" is inaccurate. Gloss is unsourced. |
-| 7 | Royal Decree | „Der Fürst ist der erste Diener seines Staates." — *Friedrich II. von Preußen* | Frederick II wrote in French ("premier serviteur de l'État"). The German is a later rendering of the idea in his *Politisches Testament* (1752) and *Essai sur les formes de gouvernement* (1777). | "The prince is the first servant of his state.": unknown | No work, edition or translator cited. Closing mark is a straight `"`. |
+| 1 | Welcome cover, `.precedent` | "At the court of Emperor Ichijō, a cat of the palace was raised to the Fifth Rank and styled Myōbu no Omoto." — *after Sei Shōnagon, Makura no Sōshi* | Sei Shōnagon, *Makura no Sōshi* (c. 1000), the passage beginning 上にさぶらふ御猫は | none: the court's own paraphrase | Complete. |
+| 2 | Dedication (`#hommage`) | „Es ist doch etwas Schönes, Herrliches, Erhabenes um das Leben!“ | Hoffmann, *Lebens-Ansichten des Katers Murr*, vol. 1 (1819/20), first sentence of "Gefühle des Daseins. Die Monate der Jugend" | none (no public-domain translation) | Complete. |
+| 3 | Ch. I, Das Bankett | « Dis-moi ce que tu manges, je te dirai ce que tu es. » | Brillat-Savarin, *Physiologie du goût* (1825), "Aphorismes du professeur", IV | "Tell me what kind of food you eat, and I will tell you what kind of man you are." Fayette Robinson (1854) | Re-check wording against Gutenberg #5434. |
+| 4 | Ch. II, Kaiserliche Zerstreuungen | « Quand je me joue à ma chatte, qui sait si elle passe son temps de moi plus que je ne fais d'elle ? » | Montaigne, *Essais* II.12, "Apologie de Raimond Sebond" | "When I play with my cat who knows whether I do not make her more sport than she makes me?" Charles Cotton, ed. W. C. Hazlitt (1877) | Misquotation corrected. Re-check wording against Gutenberg #3600. |
+| 5 | Ch. III, Die Rituale der Schönheit | « Les Chinois voient l'heure dans l'œil des chats. » | Baudelaire, "L'Horloge", *Petits poèmes en prose* XVI (1857; collected 1869) | "The Chinese can tell the hour of the day by the eyes of their cats." *The World's Best Essays*, ed. David J. Brewer (1900), translator unnamed | Re-check wording against a scan; prefer a named translator (Symons 1905) if it can be verified. |
+| 6 | Ch. IV, Die Alchemie | « Sic transit gloria mundi. » — *from the papal coronation rite* | Anonymous: acclamation of the papal coronation rite (recorded from 1409), perhaps after Thomas à Kempis, *Imitatio Christi* I.3 | none (no verified public-domain translation) | Attribution corrected. A verified PD gloss may be added. |
+| 7 | Royal Decree | „Der Fürst ist der erste Diener seines Staates.“ — *after Friedrich II. von Preußen* | A common German rendering of Frederick's French ("premier serviteur de l'État"), *Politisches Testament* (1752), *Essai sur les formes de gouvernement* (1777) | none (no verified public-domain translation) | Now labelled a paraphrase. A verified PD source for the exact German, or Frederick's French with Holcroft's English (1789), would improve it. |
 
 ### Music
 
@@ -297,26 +300,27 @@ Audio meets the same public-domain standard. Record the provenance of any new re
 
 ### PLACEHOLDERS
 
-**In use on the site:** none (2026-10-01).
+**In use on the site:** every token in the table below (2026-10-02). Delete a row's placeholder from the site, and mark the row resolved, once the owner supplies the fact.
 
-**Reserved tokens.** When one of these gaps gets a placeholder, use the exact name given here. Add new names as needed.
+**Tokens.** Use the exact names given here; add new rows as needed.
 
 | Token | Meaning | Natural home |
 |---|---|---|
-| `{{FEEDING_TIMES}}` | times of day meals are served | Ch. I; Hints for Travellers |
-| `{{WET_FOOD_BRAND}}` | brand and flavour of the evening pâté | Ch. I, Das Abendmahl |
-| `{{WET_FOOD_PORTION}}` | amount per meal | Ch. I, Das Abendmahl |
-| `{{MEAL_PREPARATION_STEPS}}` | the six Preparation Precepts plates in words, including the oven step | Ch. I lightbox |
-| `{{DRY_FOOD_ARRANGEMENT}}` | whether and how the sitter refills dry food | Ch. I, Trockene Gaben |
-| `{{DRY_FOOD_BRAND}}` | dry food brand | Ch. I, Trockene Gaben |
-| `{{TREAT_ALLOWANCE}}` | how much Churu, and how often | Ch. I, Nektar der Götter |
-| `{{GROOMING_FREQUENCY}}` | how often to brush and comb | Ch. III, Der Kaiserliche Mantel |
-| `{{LITTER_TYPE}}` | litter used in the Litter-Robot 4 | Ch. IV |
-| `{{AGE}}` | age or date of birth | dedication |
-| `{{WEIGHT}}` | current weight | Ch. I |
-| `{{MEDICAL_HISTORY}}` | conditions a sitter must know about | Royal Decree or a health chapter |
-| `{{EMERGENCY_VET}}` | after-hours emergency hospital, name and phone | Royal Decree |
-| `{{DAILY_SCHEDULE}}` | outline of her day | a schedule rubric |
+| `{{FEEDING_TIMES}}` | times of day meals are served | Ch. I, Hints for Travellers |
+| `{{WET_FOOD_BRAND}}` | brand and flavour of the evening pâté | Ch. I, Hints for Travellers |
+| `{{WET_FOOD_PORTION}}` | amount per meal | Ch. I, Hints for Travellers |
+| `{{MEAL_PREPARATION_STEPS}}` | the six Preparation Precepts plates in words, including the oven step | Ch. I, Hints for Travellers |
+| `{{DRY_FOOD_ARRANGEMENT}}` | whether and how the sitter refills dry food | Ch. I, Hints for Travellers |
+| `{{DRY_FOOD_BRAND}}` | dry food brand | Ch. I, Hints for Travellers |
+| `{{TREAT_ALLOWANCE}}` | how much Churu, and how often | Ch. I, Hints for Travellers |
+| `{{GROOMING_FREQUENCY}}` | how often to brush and comb | Ch. III, Hints for Travellers |
+| `{{LITTER_TYPE}}` | litter used in the Litter-Robot 4 | Ch. IV, Hints for Travellers |
+| `{{LIGHT_TOY}}` | which toy casts the "beam of light" | Ch. II, Hints for Travellers |
+| `{{AGE}}` | age or date of birth | dedication, Hints for Travellers |
+| `{{WEIGHT}}` | current weight | dedication, Hints for Travellers |
+| `{{MEDICAL_HISTORY}}` | conditions a sitter must know about | Royal Decree, "Medical notes" |
+| `{{EMERGENCY_VET}}` | after-hours emergency hospital, name and phone | Royal Decree, "Nachtdienst" card |
+| `{{DAILY_SCHEDULE}}` | outline of her day | dedication, Hints for Travellers |
 
 ---
 
@@ -345,16 +349,15 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 
 ### Reduced motion
 
-- `@media (prefers-reduced-motion: reduce)` ("MOTION COURTESY") already covers book smooth-scrolling, the cover's page turn (reduced to a fade), the pulsing tap hint and the slideshow cross-fade.
+- `@media (prefers-reduced-motion: reduce)` ("MOTION COURTESY") covers book smooth-scrolling, the cover's page turn (reduced to a fade), the pulsing tap hint, the slideshow and lightbox fades, and hover zooms. In script, `reduceMotion` keeps `turnPage()` instant and the cover slideshow still.
 - Every new animation, moving transition, smooth scroll, auto-advancing element or unfolding effect needs a reduced-motion path in both CSS and JavaScript. Script that animates must check `matchMedia('(prefers-reduced-motion: reduce)').matches`: for example, pass `behavior:'auto'` to `scrollBy`, and don't start interval slideshows.
-- Two gaps remain. `turnPage()` passes `behavior:'smooth'`, which overrides the CSS, and the cover slideshow keeps cycling every 3.8 s.
 
 ### Contrast (WCAG 2.x AA)
 
 - Normal text needs 4.5:1. Large text (24 px or larger, or 18.66 px bold) and meaningful icons, borders and controls need 3:1. Every Cinzel label at .78rem or smaller counts as normal text.
 - Composite translucent colours over their real background before measuring. Measure pulsing or fading text at its faintest point.
 - Use the ✓ pairs in the palette table. Don't set small text in `--gold` or `--ink-faint` on parchment, or in `--gold-bright` on `--baedeker` red.
-- These darker shades pass and can replace the failing ones once the owner approves: gold text `#7A5E22` (6.0:1 on cream, 4.9:1 on parchment-deep) and faint ink `#6B5C48` (6.4:1 on cream, 5.2:1 on parchment-deep). Add them as tokens.
+- On red, use `--gold-pale` or parchment at 0.75 opacity or more; translucent gold-pale text needs at least 0.82 opacity. Anything that pulses must stay at or above its passing opacity throughout.
 - Contrast checker:
 
   ```python
@@ -386,7 +389,7 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 - Leave pinch-zoom enabled: put no `user-scalable=no` or `maximum-scale` in a viewport tag.
 - Make nothing depend on hover.
 - Mark foreign-language passages with `lang` (WCAG 3.1.2), including German headings when you touch them.
-- Keep page weight down; everything loads over a phone connection, and the waltz alone is 13 MB.
+- Keep page weight down; everything loads over a phone connection. The waltz (13 MB) stays `preload="none"`, slides are fetched one ahead, and lightbox plates load on first opening.
 
 ### Checks before every commit
 
@@ -405,17 +408,12 @@ Health content is anything about eating, drinking, elimination, weight, coat, ey
 
 ## Known conflicts in the current site
 
-These were recorded on 2026-10-01, when this file was written. Fix them only when the owner asks, and delete each line once it is fixed.
+Updated 2026-10-02. Fix them only when the owner asks, and delete each line once it is fixed.
 
-- **Health (§6):** no health content cites a source. (The Ch. I supplement amounts are an approved exception.)
-- **Quotations (§3):** none has a source comment, and every gloss is of unknown provenance. The Montaigne line is misquoted, "traditional antiphon" is inaccurate, the Frederick line cites no work, and the Hoffmann gloss should go, since it has no public-domain translation (show the original alone). Both German epigraphs close with a straight `"`, and no original carries a `lang` attribute.
-- **Headings (§4):** `<title>` and `og:title` read "Lieslcare | The Imperial Standard".
-- **Contrast (§7):** these fall below AA: eyebrows, attributions, subtitles, captions, the "View …" text buttons and the flourish (`--gold` or `--ink-faint` on parchment, 2.7–4.1:1); the decree eyebrow, roles and glosses on red (3.1–3.9:1); the decree footer line (2.7–3.4:1); the cover imprint (3.9:1), the colophon (2.8:1) and the pulsing tap hint (2.3:1 at its faintest); and the page arrows at rest (2.3:1, against 3:1 for controls).
-- **Reduced motion (§7):** `turnPage()` forces smooth scrolling, and the cover slideshow never stops (it has no pause control either).
-- **Alt text (§7):** every slideshow frame has the alt "Her Majesty". The six preparation plates are "Sustenance preparation, plate N" and the fountain is "Fountain water levels", so the instructions they carry exist only as pictures. Remix icons lack `aria-hidden`.
-- **Phones (§7):** the viewport meta disables zoom (`maximum-scale=1.0, user-scalable=no`). At 720 px and below, the ribbon's "Cover" link and the brand link render with no visible text and no accessible name. Many labels are 0.58–0.72rem. First load fetches the 13 MB waltz plus about 6 MB of preloaded photographs.
-- **Facts (§5):** there are no placeholders yet, although several facts a sitter needs are missing (see the reserved tokens). Some instructions are hard to act on: "replenished by unseen magic" (dry food) and "Capture a beam of light at dusk" (which toy?).
+- **Health (§6):** no health content cites a source; the eyes and rear rubrics defer to the Leibärzte instead. Add citations only after opening the source page (blocked from cloud sessions so far).
+- **Quotations (§3):** the glosses for Brillat-Savarin, Montaigne and Baudelaire were taken from search extracts; re-check them against the pages named in their comments.
 - **Privacy:** 24 of the 25 `IMG_*.jpeg` files carry GPS coordinates in their EXIF data, and Pages serves them publicly. Stripping the data takes new commits, and the originals stay in git history unless history is rewritten.
+- **Placeholders (§5):** fifteen facts await the owner (see the register).
 
 ## Open questions for the owner
 
